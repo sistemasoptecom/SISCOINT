@@ -1,0 +1,69 @@
+<div ng-controller="GestionArtController" class="window-wrapper">
+    <div class="window-body">
+        <form id="articulos" name="articulos" class="form-horizontal" autocomplete="off">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-6">
+                <div class="col-xs-12" style="margin-top:60px;">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Articulo</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-12 col-md-3">
+                                <label>Codigo<span class="req">*</span></label>
+                                <input type="number" readonly id="ced" ng-model="json.codigo" ng-required="true" class="form-control" name="CODIGO">
+                            </div>
+                            <div class="col-xs-12 col-md-7 col-sm-8">
+                                <label>Descripcion<span class="req">*</span></label>
+                                <input type="text" ng-model="json.descripcion" ng-required="true" id="pnombre" class="form-control" name="DESCRIPCION">
+                            </div>
+                            <div class="col-xs-12 col-md-2">
+                                <label>Und<span class="req">*</span></label>
+                                <select class="form-control" ng-model="json.und" ng-required="true" name="UND">
+                                    <option value=""></option>
+                                    <option value="UND">UND</option>
+                                    <option value="MTS">MTS</option>
+                                    <option value="GLB">GLB</option>
+                                    <option value="CJ">CJ</option>
+                                    <option value="LT">LT</option>
+                                    <option value="GL">GL</option>
+                                    <option value="IN">IN</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-9">
+                                <label>Grupos<span class="req">*</span></label>
+                                <ss-busqueda-rapida data="dataGrupo" resultado="rsGrupo" key="key"></ss-busqueda-rapida>
+                            </div>
+                            <div class="col-xs-3">
+                                <label>Tipo Iva</label>
+                                <select class="form-control" ng-options="c.tipo as c.iva1 for c in iva" ng-model="json.tipo_iva" ng-required="true" name="TIPO IVA">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="col-xs-4">
+                                <label>Cuenta<span class="req">*</span></label>
+                                <input type="text" readonly ng-model="json.cuenta" ng-required="true" class="form-control" name="CUENTA">
+                            </div>
+                            <div class="col-xs-8">
+                                <label>Rubro<span class="req">*</span></label>
+                                <input type="text" readonly ng-model="json.rubro" ng-required="true" class="form-control" name="CUENTA">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="window-footer">
+        <ss-barra formulario="#articulos"
+                  showbtn="showbtn"
+                  disabledbtn="disabledbtn"
+                  nuevo="nuevo()"
+                  editar="editar()"
+                  guardar="guardar()"
+                  actualizar="actualizar()"
+                  eliminar="eliminar()">
+        </ss-barra>
+        <ss-buscador data="dataArticulos" resultado="rsArticulos"></ss-buscador>
+    </div>
+</div>

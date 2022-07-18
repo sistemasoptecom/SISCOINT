@@ -1,0 +1,316 @@
+﻿<div ng-controller="Reporte_Devoluciones_Controller" class="window-wrapper">
+    <div class="window-body">
+        <form id="reporte_devoluciones" name="reporte_devoluciones" class="form-horizontal no-print" autocomplete="off">
+            <div class="col-xs-12">
+                <div class="col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Reporte devoluciones realizadas</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-3">
+                                <label>Buscar</label>
+                                <input class="form-control" ng-model="filtro" ng-change="filtro = filtro.toUpperCase()" />
+                            </div>
+                            <div class="col-xs-12" style="margin-top:15px;">
+                                <div>
+                                    <table class="table table-bordered table-hover table-striped" id="myTable">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center">USUARIO</th>
+                                                <th style="text-align: center">FECHA</th>
+                                                <th style="text-align: center">HORA</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="cursor:pointer" ng-repeat="item in grilla | filter: tipo_filtro | filter: filtro" ng-click="buscar_acta(item)" ng-class="trdell">
+                                                <td style="text-align: center">{{item.nombre}}</td>
+                                                <td style="text-align: center">{{item.fecha}}</td>
+                                                <td style="text-align: center">{{item.hora}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <button ng-show="false" type="button" class="btn btn-primary btn-imprimir" ng-click="search_pro()" id="acta-buscar" style="width:90px"> Si </button>
+
+        <div class="print">
+            <table id="bord" class="table-hover">
+                <tbody>
+                    <tr>
+                        <td id="bord" rowspan="4" style="text-align:center;width:20% "><img style="width:200px;padding:5px" src="{{ruta}}" /></td>
+
+                        <td id="bord" rowspan="4" style="text-align:center;width:52%"><h3><b>ACTA DE ELEMENTOS DEVOLUTIVOS</b></h3></td>
+                        <td id="bord"><b>Codigo:&nbsp;</b><span>{{cod_emp}}</span></td>
+                    </tr>
+
+                    <tr><td id="bord"><b>Version:&nbsp;</b><span>004</span></td></tr>
+                    <tr>
+                        <td id="bord"><b>Fecha Vigencia:</b><span>12/05/2016</span></td>
+                    </tr>
+                    <tr>
+                        <td id="bord"><b>Pag</b><span>1 de 1</span></td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <div class="col-xs-5" style="margin-top:10px">
+                <div class="col-xs-5">
+                    <label>FECHA:</label>
+                </div>
+                <div class="col-xs-7">
+                    <span>{{json.fecha}}</span>
+                </div>
+            </div>
+            <div class="col-xs-7" style="margin-top:10px;">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td id="bord" style="text-align:center">CENTRO DE COSTO ASIGNADO:</td>
+                            <td id="bord" style="text-align:center">{{ccosto}}</td>
+                        </tr>
+                        <tr>
+                            <td id="bord" style="text-align:center">CENTRO DE COSTO PROVENIENTE:</td>
+                            <td id="bord"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xs-12">
+                <div class="col-xs-2">
+                    <label class="radio-inline">
+                        <input type="radio" name="tipo_ent" value="1" ng-model="json.tipo" />ENTREGA
+                    </label>
+                </div>
+                <div class="col-xs-2">
+                    <label class="radio-inline">
+                        <input type="radio" name="tipo_ent" value="2" ng-model="json.tipo" />DEVOLUCION
+                    </label>
+                </div>
+                <div class="col-xs-2" style="margin-left:30px;">
+                    <label class="radio-inline">
+                        <input type="radio" name="tipo_ent" value="3" ng-model="json.tipo" />TRASLADO
+                    </label>
+                </div>
+                <div class="col-xs-2">
+                    <label class="radio-inline">
+                        <input type="radio" name="tipo_ent" value="4" ng-model="json.tipo" />REPARACION
+                    </label>
+                </div>
+                <div class="col-xs-2" style="margin-left:30px;">
+                    <label class="radio-inline">
+                        <input type="radio" name="tipo_ent" value="5" ng-model="json.tipo" />PRESTAMO
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="text-align:center"><b>DATOS DEL EMPLEADO</b></h3>
+                    </div>
+                    <div class="panel-body">
+                        <table>
+                            <tbody>
+                                <tr><td id="bord" style="width:200px"><b>NOMBRE COMPLETO:</b></td><td id="bord" style="width:600px">&nbsp;&nbsp;{{json.nombre_completo}}</td></tr>
+                                <tr><td id="bord"><b>CEDULA:</b></td><td id="bord">&nbsp;&nbsp;{{json.ced_empl}}</td></tr>
+                                <tr><td id="bord"><b>CARGO:</b></td><td id="bord">&nbsp;&nbsp;{{cargo}}</td></tr>
+                                <tr><td id="bord"><b>JEFE INMEDIATO:</b></td><td id="bord">&nbsp;&nbsp;{{jefe_inmediato}}</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="panel panel-primary print-border" style="height:300px">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="text-align:center"><b>DESCRIPCION</b></h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-report">
+                            <thead>
+                                <tr>
+                                    <th id="bord">PRODUCTO/ELEMENTO</th>
+                                    <th id="bord">MARCA</th>
+                                    <th id="bord">IMEI/INV</th>
+                                    <th id="bord">ESTADO</th>
+                                    <th id="bord">CANTIDAD</th>
+                                    <th id="bord">OBSERVACIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in table track by $index" ng-class="trdell" ng-init="show=true">
+                                    <td id="bord">{{item.elemento}}</td>
+                                    <td id="bord">{{item.marca}}</td>
+                                    <td id="bord">{{item.imei_inv}}</td>
+                                    <td id="bord">{{item.estado}}</td>
+                                    <td id="bord">{{item.cantidad}}</td>
+                                    <td id="bord">{{item.observacion}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="text-align:center"><b>OBSERVACIONES</b></h3>
+                    </div>
+                    <div class="panel-body">
+                        <textarea style="font-size:12px" id="bord" class="form-control" ng-required="true" name="OBSERVACIONES" ng-model="json.observacion"></textarea>
+                    </div>
+                </div>
+            </div>
+            <table>
+                <tbody>
+                    <tr>
+                        <td style="text-align:justify;font-size:11px;line-height:1.5">
+                            En la presente acta quedaran consignados los equipos que est&aacute;n bajo mi responsabilidad y  para uso exclusivo de mis funciones laborales.
+                            De igual forma, autorizo a OPTECOM S.A.S, para que descuente de mi nomina, liquidaci&oacute;n de prestaciones sociales y/o indemnizaciones el
+                            valor del producto, equipo o elemento mencionado en el presente documento,  en caso de da&ntilde;o, uso incorrecto, perdida, no devoluci&oacute;n o no  restituci&oacute;n.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="col-xs-4">
+                <label style="border-top: 1px solid; margin-top: 80px; text-align: center;font-size:14px">ENTREGADO POR:</label>
+            </div>
+            <div class="col-xs-4"></div>
+            <div class="col-xs-4">
+                <label style="border-top: 1px solid; margin-top: 80px; text-align: center;font-size:14px">RECIBIDO POR:</label>
+            </div>
+            <div id="dvData">
+                <table class="table table-bordered table-hover table-striped" id="tablet_report">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center">ITEM</th>
+                            <th style="text-align: center">COD. ARTICULO</th>
+                            <th style="text-align: center">DESCRIPCION</th>
+                            <th style="text-align: center">ESTADO</th>
+                            <th style="text-align: center">AF</th>
+                            <th style="text-align: center">IMEI</th>
+                            <th style="text-align: center">USUARIO</th>
+                            <th style="text-align: center">LINEA</th>
+                            <th style="text-align: center">LINEA ACT</th>
+                            <th style="text-align: center">NUEVO IMEI</th>
+                            <th style="text-align: center">FACTURA</th>
+                            <th style="text-align: center">VALOR</th>
+                            <th style="text-align: center">CAUSACION</th>
+                            <th style="text-align: center">CENTRO DE COSTO</th>
+                            <th style="text-align: center">FECHA ESTADO</th>
+                            <th style="text-align: center">OBSERVACION</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="cursor:pointer" ng-repeat="item in grillareport" ng-click="buscar_acta(item)" ng-class="trdell">
+                            <td style="text-align: center">{{$index + 1}}</td>
+                            <td style="text-align: center">{{item.Cod_articulo}}</td>
+                            <td style="text-align: center">{{item.Descripcion}}</td>
+                            <td style="text-align: center">{{item.Estado}}</td>
+                            <td style="text-align: center">{{item.Placa}}</td>
+                            <td style="text-align: center">{{item.Imei}}</td>
+                            <td style="text-align: center">{{item.Usuario}}</td>
+                            <td style="text-align: center">{{item.Linea}}</td>
+                            <td style="text-align: center">{{item.Linea_activa}}</td>
+                            <td style="text-align: center">{{item.Nuevo_imei}}</td>
+                            <td style="text-align: center">{{item.Factura}}</td>
+                            <td style="text-align: center">{{item.Valor}}</td>
+                            <td style="text-align: center">{{convert(item.Causacion)}}</td>
+                            <td style="text-align: center">{{item.Centro_costo}}</td>
+                            <td style="text-align: center">{{convert(item.Fecha_estado)}}</td>
+                            <td style="text-align: center">{{item.Observacion}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="no-print">
+        <div class="waiting-wrapper" ng-class="openWaiting ? 'open' : ''">
+            <div class="waiting">
+                <img src="../../../fonts/animatedEllipse.gif" />
+                El servidor esta procesando la informacion
+            </div>
+        </div>
+    </div>
+    <div class="window-footer">
+        <ss-buscador data="dataActa" resultado="rsActa"></ss-buscador>
+    </div>
+</div>
+
+<style>
+
+    #bord {
+        border: solid 1px;
+        line-height: 20px;
+    }
+
+    .table-report {
+        border: solid 1px;
+    }
+
+    .btn-custom {
+        display: block;
+        height: 25px;
+        text-align: center;
+        border: 1px solid;
+        border-color: #ccc;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    .sv-modal {
+        max-width: 750px;
+    }
+
+    .centermodal {
+        width: 50%;
+        max-width: 200px;
+        min-width: 100px;
+        margin: 0 auto;
+    }
+
+    .botonmodal {
+        margin-top: 18px;
+        display: block;
+        border: 3px solid;
+        border-color: #ccc;
+    }
+
+    .radios {
+    }
+
+    .in-line-content.title label {
+        color: #2196F3;
+    }
+
+        .in-line-content.title label.float-left {
+            padding-top: 0;
+        }
+
+    .in-line-content .border {
+        overflow: hidden;
+        padding-bottom: 5px;
+    }
+</style>
+
+<script>
+    $("#btnexport").click(function (e) {
+        exclude: ".table .table-bordered",
+        window.open('data:application/vnd.ms-excel,' + $('#dvData').html());
+        e.preventDefault();
+    });
+</script>

@@ -1,0 +1,211 @@
+<div ng-controller="Ingreso_activos_contable" class="window-wrapper">
+    <div class="window-body">
+        <form id="ingreso_act_cont" name="ingreso_act_cont" class="form-horizontal no-print" autocomplete="off">
+            <div class="col-xs-12">
+                <div class="col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">REPORTE ACTIVOS PENDIENTES POR INGRESO CONTABLE</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-2">
+                                <label>Buscar numero de pedido</label>
+                                <input class="form-control" ng-model="searchnumber.consecutivo" ng-change="filtro = filtro.toUpperCase()" />
+                            </div>
+                            <div class="col-xs-12" style="margin-top:15px;">
+                                <div>
+                                    <table class="table table-bordered table-hover table-striped" id="myTable">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center">ITEM</th>
+                                                <th style="text-align: center">NRO PEDIDO</th>
+                                                <th style="text-align: center">DESCRIPCION</th>
+                                                <th style="text-align: center">PLACA AF</th>
+                                                <th style="text-align: center">VALOR</th>
+                                                <th style="text-align: center">V UTIL</th>
+                                                <th style="text-align: center">CUOTA</th>
+                                                <th style="text-align: center">FACTURA</th>
+                                                <th style="text-align: center">FECHA</th>
+                                                <th style="text-align: center">CCOSTO</th>
+                                                <th style="text-align: center">CUENTA</th>
+                                                <th style="text-align: center">RUBRO</th>
+                                                <th style="text-align: center"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="cursor:default" ng-repeat="item in grilla | filter: searchnumber" ng-class="trdell">
+                                                <td style="text-align: center">{{$index + 1}}</td>
+                                                <td style="text-align: center">{{item.id_pedido}}</td>
+                                                <td style="text-align: center">{{item.descripcion}}</td>
+                                                <td style="text-align: center">{{item.placa_af}}</td>
+                                                <td style="text-align: center">{{formatnumber(item.valor)}}</td>
+                                                <td style="text-align: center">{{item.v_util}}</td>
+                                                <td style="text-align: center">{{formatnumber(item.cuota)}}</td>
+                                                <td style="text-align: center">{{item.factura}}</td>
+                                                <td style="text-align: center">{{item.causacion}}</td>
+                                                <td style="text-align: center">{{item.ccosto}}</td>
+                                                <td style="text-align: center">{{item.cuenta}}</td>
+                                                <td style="text-align: center">{{item.rubro}}</td>
+                                                <td style="text-align: center">
+                                                    <button ng-click="activar(item)" ng-show="item.inventario == 1" type="button" class="btn btn-success">ACTIVAR</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <button ng-show="false" type="button" class="btn btn-primary btn-imprimir" ng-click="search_pro()" id="acta-buscar" style="width:90px"> Si </button>
+    </div>
+    <div class="no-print">
+        <div class="waiting-wrapper" ng-class="openWai ? 'open' : ''">
+            <div class="waiting">
+                <img src="fonts/animatedEllipse.gif" />
+                El servidor esta procesando la informacion
+            </div>
+        </div>
+    </div>
+    <div class="window-footer">
+        <ss-buscador data="dataActa" resultado="rsActa"></ss-buscador>
+    </div>
+</div>
+<style>
+
+    .innerb {
+        overflow: auto;
+        max-height: 100px;
+    }
+
+    #bord {
+        border: solid 1px;
+        line-height: 20px;
+    }
+
+    .table-report {
+        border: solid 1px;
+    }
+
+    .btn-custom {
+        display: block;
+        height: 25px;
+        text-align: center;
+        border: 1px solid;
+        border-color: #ccc;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    .sv-modal {
+        max-width: 1000px;
+    }
+
+    .centermodal {
+        width: 50%;
+        max-width: 200px;
+        min-width: 100px;
+        margin: 0 auto;
+    }
+
+    .botonmodal {
+        margin-top: 18px;
+        display: block;
+        border: 3px solid;
+        border-color: #ccc;
+    }
+
+    .radios {
+    }
+
+    .in-line-content.title label {
+        color: #2196F3;
+    }
+
+        .in-line-content.title label.float-left {
+            padding-top: 0;
+        }
+
+    .in-line-content .border {
+        overflow: hidden;
+        padding-bottom: 5px;
+    }
+
+    #bord {
+        border: solid 1px;
+        line-height: 20px;
+    }
+
+    .table-report {
+        border: solid 1px;
+    }
+
+    .btn-custom {
+        display: block;
+        height: 25px;
+        text-align: center;
+        border: 1px solid;
+        border-color: #ccc;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+
+    .centermodal {
+        width: 50%;
+        max-width: 200px;
+        min-width: 100px;
+        margin: 0 auto;
+    }
+
+    .botonmodal {
+        margin-top: 18px;
+        display: block;
+        border: 3px solid;
+        border-color: #ccc;
+    }
+
+    .radios {
+    }
+
+    .in-line-content.title label {
+        color: #2196F3;
+    }
+
+        .in-line-content.title label.float-left {
+            padding-top: 0;
+        }
+
+    .in-line-content .border {
+        overflow: hidden;
+        padding-bottom: 5px;
+    }
+
+    .space-td {
+        width: 40px;
+    }
+
+    .space-check {
+        width: 30px;
+    }
+</style>
+
+<script>
+    $("#btnexport").click(function (e) {
+        exclude: ".table .table-bordered",
+        window.open('data:application/vnd.ms-excel,' + $('#dvData').html());
+        e.preventDefault();
+    });
+</script>

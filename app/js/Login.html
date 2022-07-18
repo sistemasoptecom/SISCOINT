@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>SISCOINT</title>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="login-css/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="app/login-css/ico/apple-touch-icon-57-precomposed.png">
+
+    </head>
+
+<style>
+body {
+  background-image: url("app/login-css/img/backgrounds/1.png");
+  background-repeat: no-repeat;
+  width: 100%;
+  background-size:cover;
+}
+</style>
+    <body>
+
+        <!-- Top content -->
+        <div class="top-content">
+
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                            <div class="form-bottom">
+                                <form novalidate name="f1" role="form" class="login-form" ng-submit="Login()">
+                                    <div class="form-group">
+                                        <label class="sr-only" for="form-username">Usuario</label>
+                                        <input type="text" ng-model="LoginData.username" name="form-username" placeholder="Usuario..." class="form-username form-control" id="form-username">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="form-password">Contraseña</label>
+                                        <input type="password" ng-model="LoginData.password" name="form-password" placeholder="Contraseña..." class="form-password form-control" id="form-password">
+                                    </div>
+                                    <div class="col-xs-4"></div>
+                                    <div class="col-xs-4">
+                                        <button type="submit" class="btn"><span style="color:black;font-family:arial">INGRESAR</span></button>
+                                    </div>
+                                        <div class="col-xs-12" style="font-family:Arial; margin-top: 5px; text-align: center; color: rgb(255, 255, 255); font-size: 13px !important"><b>{{Message1}}</b></div>
+                                        <div class="col-xs-12" style="font-family:Arial;margin-top: 5px; text-align: center; color: rgb(230,24,24); font-size: 13px !important"><b>{{Message}}</b></div>
+                                 </form>
+		                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
+    </body>
+
+</html>

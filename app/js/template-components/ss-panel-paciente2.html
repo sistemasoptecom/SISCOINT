@@ -1,0 +1,219 @@
+﻿<button class="btn btn-default btn-xs" ng-click="ppOpen =!ppOpen" style="margin-top:5px;margin-bottom:5px;">
+    <i ng-class="ppOpen ? 'fa-minus-circle' : 'fa-plus-circle'" class="fa" aria-hidden="true"></i>Panel Paciente: {{ ppOpen ? "Ocultar" : "Mostrar" }}
+</button>
+<div class="row ss-pp-container">
+    <!--Apellidos-->
+    <div class="pp-col-md-1 pp-col-lg-1 col-md-8 col-lg-4 no-print">
+        <div class="input-group">
+            <span class="input-group-addon" style="padding-top: 1px;">Nombre Completo</span>
+            <input type="text" class="form-control" ng-model="nomcomp" aria-describedby="basic-addon1" readonly="readonly">
+        </div>
+    </div>
+    <!--Edad-->
+    <div class="pp-col-md-1 pp-col-lg-3 col-md-2 col-lg-2 no-print">
+        <div class="input-group">
+            <span class="input-group-addon" style="padding-top: 1px;">Edad</span>
+            <input type="text" class="form-control" ng-model="model.edad" aria-describedby="basic-addon1" readonly="readonly">
+        </div>
+    </div>
+    <!--Sexo-->
+    <div class="col-md-3 col-lg-2 no-print">
+        <div class="input-group">
+            <span class="input-group-addon" style="padding-top: 1px;">Sexo</span>
+            <input type="text" class="form-control" ng-model="sex" aria-describedby="basic-addon1" readonly="readonly">
+        </div>
+    </div>
+    <!--Identificacion-->
+    <div class="pp-col-lg-1 col-md-5 col-lg-4 no-print">
+        <div class="input-group">
+            <span class="input-group-addon" style="padding-top: 1px;">Identificacion</span>
+            <input type="text" class="form-control" ng-model="id" aria-describedby="basic-addon1" readonly="readonly">
+        </div>
+    </div>
+    <div class="row datosextra" ng-class="ppOpen ? 'active':''">
+        <!--telefono-->
+        <div class="pp-col-md-1 pp-col-lg-2 col-md-4 col-lg-4 no-print">
+            <div class="input-group">
+                <span class="input-group-addon" style="padding-top: 1px;">Telefono</span>
+                <input type="text" class="form-control" ng-model="telefono" aria-describedby="basic-addon1" readonly="readonly">
+            </div>
+        </div>
+        <!--direccion-->
+        <div class="pp-col-lg-3 col-md-4 col-lg-4 no-print">
+            <div class="input-group">
+                <span class="input-group-addon" style="padding-top: 1px;">Direccion</span>
+                <input type="text" class="form-control" ng-model="direccion" aria-describedby="basic-addon1" readonly="readonly">
+            </div>
+        </div>
+        <!--Empresa-->
+        <div class="pp-col-lg-3 col-md-4 col-lg-4 no-print">
+            <div class="input-group">
+                <span class="input-group-addon" style="padding-top: 1px;">Empresa</span>
+                <input type="text" class="form-control" ng-model="model.empresa" aria-describedby="basic-addon1" readonly="readonly">
+            </div>
+        </div>
+        <!--Nit-->
+        <!--div class="pp-col-lg-3 col-md-4 col-lg-4 no-print">
+            <div class="input-group">
+                <span class="input-group-addon" style="padding-top: 1px;">Nit</span>
+                <input type="text" class="form-control" ng-model="model.cod_admin" aria-describedby="basic-addon1" readonly="readonly">
+            </div>
+        </div>-->
+        <!--Tipo usuario Nivel educativo-->
+        <div class="pp-col-lg-1 col-md-4 col-lg-4 no-print">
+            <div class="input-group">
+                <span class="input-group-addon" style="padding-top: 1px;">Tipo/Nivel edu</span>
+                <input type="text" class="form-control" ng-model="tipo_edu" aria-describedby="basic-addon1" readonly="readonly">
+            </div>
+        </div>
+        <!--estado civil-->
+        <div class="pp-col-md-1 pp-col-lg-2 col-md-4 col-lg-4 no-print">
+            <div class="input-group">
+                <span class="input-group-addon" style="padding-top: 1px;">Estado civil</span>
+                <input type="text" class="form-control" ng-model="e_civil" aria-describedby="basic-addon1" readonly="readonly">
+            </div>
+        </div>
+        <!--Fecha nac-->
+        <div class="pp-col-lg-1 col-md-4 col-lg-4 no-print">
+            <div class="input-group">
+                <span class="input-group-addon" style="padding-top: 1px;">Fecha de nacimiento</span>
+                <input type="text" class="form-control" ng-model="fecha_nac" aria-describedby="basic-addon1" readonly="readonly">
+            </div>
+        </div>
+        <!--Ocupacion-->
+        <div class="pp-col-md-1 pp-col-lg-2 col-md-6 col-lg-4 no-print">
+            <div class="input-group">
+                <span class="input-group-addon" style="padding-top: 1px;">Ocupacion</span>
+                <input type="text" class="form-control" ng-model="model.ocupacion" aria-describedby="basic-addon1" readonly="readonly">
+            </div>
+        </div>
+        <!--Religion-->
+        <!--<div class="pp-col-lg-3 col-md-6 col-lg-4 no-print">
+            <div class="input-group">
+                <span class="input-group-addon" style="padding-top: 1px;">Religion</span>
+                <input type="text" class="form-control" ng-model="model.religion" aria-describedby="basic-addon1" readonly="readonly">
+            </div>
+        </div>-->
+        <!--Acompañante-->
+        <!--<div class="pp-col-md-1 pp-col-lg-1 col-md-4 col-lg-4 no-print">
+            <div class="input-group">
+                <span class="input-group-addon" style="padding-top: 1px;">Acompañante</span>
+                <input type="text" class="form-control" ng-model="model.acompanante" aria-describedby="basic-addon1" readonly="readonly">
+            </div>
+        </div>-->
+        <!--Telefono acompañante-->
+        <!--<div class="pp-col-lg-2 col-md-4 col-lg-4 no-print">
+            <div class="input-group">
+                <span class="input-group-addon" style="padding-top: 1px;">Tel Acompañante</span>
+                <input type="text" class="form-control" ng-model="model.tel_acompanante" aria-describedby="basic-addon1" readonly="readonly">
+            </div>
+        </div>-->
+        <!--Parentesco-->
+        <!--<div class="pp-col-lg-3 col-md-4 col-lg-4 no-print">
+            <div class="input-group">
+                <span class="input-group-addon" style="padding-top: 1px;">Parentesco</span>
+                <input type="text" class="form-control" ng-model="model.parentesco" aria-describedby="basic-addon1" readonly="readonly">
+            </div>
+        </div>-->
+        <!--Responsable-->
+        <!--<div class="pp-col-md-1 pp-col-lg-1 col-md-4 col-lg-4 no-print">
+            <div class="input-group">
+                <span class="input-group-addon" style="padding-top: 1px;">Responsable</span>
+                <input type="text" class="form-control" ng-model="model.responsable" aria-describedby="basic-addon1" readonly="readonly">
+            </div>
+        </div>-->
+        <!--Telefono responsable-->
+        <!--<div class="pp-col-lg-2 col-md-4 col-lg-4 no-print">
+            <div class="input-group">
+                <span class="input-group-addon" style="padding-top: 1px;">Tel Responsable</span>
+                <input type="text" class="form-control" ng-model="model.telresponsable" aria-describedby="basic-addon1" readonly="readonly">
+            </div>
+        </div>-->
+        <!--Ciudad-->
+        <div class="pp-col-lg-3 col-md-4 col-lg-4 no-print">
+            <div class="input-group">
+                <span class="input-group-addon" style="padding-top: 1px;">Ciudad</span>
+                <input type="text" class="form-control" ng-model="model.nom_mun" aria-describedby="basic-addon1" readonly="readonly">
+            </div>
+        </div>
+        <!--eps-->
+        <div class="pp-col-lg-3 col-md-4 col-lg-4 no-print">
+            <div class="input-group">
+                <span class="input-group-addon" style="padding-top: 1px;">EPS</span>
+                <input type="text" class="form-control" ng-model="model.eps" aria-describedby="basic-addon1" readonly="readonly">
+            </div>
+        </div>
+        <!--arl-->
+        <div class="pp-col-lg-3 col-md-4 col-lg-4 no-print">
+            <div class="input-group">
+                <span class="input-group-addon" style="padding-top: 1px;">ARL</span>
+                <input type="text" class="form-control" ng-model="model.arl" aria-describedby="basic-addon1" readonly="readonly">
+            </div>
+        </div>
+        <!--fondo pension-->
+        <div class="pp-col-lg-3 col-md-4 col-lg-4 no-print">
+            <div class="input-group">
+                <span class="input-group-addon" style="padding-top: 1px;">Fondo de pension</span>
+                <input type="text" class="form-control" ng-model="model.pension" aria-describedby="basic-addon1" readonly="readonly">
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .datosextra {
+        height: 0px;
+        overflow: hidden;
+        transition: all .5s;
+    }
+
+        .datosextra.active {
+            height: auto;
+        }
+
+    .ss-pp-container {
+        margin: 0px;
+        padding: 15px;
+        border: 1px solid #2196F3;
+        border-radius: 2px;
+        margin-bottom: 15px;
+    }
+
+    @media(min-width:1200px) {
+        .pp-col-lg-1 div span; {
+            min-width: 157px !important;
+        }
+
+        .pp-col-lg-2 div span {
+            min-width: 95px !important;
+        }
+
+        .pp-col-lg-3 div span {
+            min-width: 96px !important;
+        }
+    }
+
+    @media(max-width:993px) {
+        .input-group-addon; {
+            min-width: 157px;
+        }
+    }
+
+    @media(min-width:993px) and (max-width:1199px) {
+        .pp-col-md-1 div span; {
+            min-width: 112px !important;
+        }
+    }
+
+    .ss-pp-container span {
+        text-align: left;
+        background-color: transparent;
+        border: none;
+    }
+
+    .ss-pp-container > div {
+        padding-left: 0px;
+        padding-right: 5px;
+        padding-top: 5px;
+    }
+</style>

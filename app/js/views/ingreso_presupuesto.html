@@ -1,0 +1,113 @@
+﻿<div ng-controller="Ingreso_Presupuesto" class="window-wrapper">
+    <div class="window-body">
+        <form id="ing_presu" name="ing_presu" class="form-horizontal" autocomplete="off">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-8">
+                <button ng-show="false" type="button" class="btn btn-primary btn-imprimir" ng-click="search_emp()" id="empleados" style="width:90px"> Si </button>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="text-align:center">INGRESO DE PRESUPUESTO</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-xs-1"><label>Año</label></div>
+                        <div class="col-xs-2">
+                            <select class="form-control" ng-model="ano">
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+
+                            </select>
+                        </div>
+                        <div style="margin-top:50px;">
+                            <button ng-show="false" type="button" class="btn btn-primary btn-imprimir" ng-click="search_emp()" id="br_ccosto" style="width:90px"> Si </button>
+                            <button ng-show="false" type="button" class="btn btn-primary btn-imprimir" ng-click="search_emp()" id="br_cuentas" style="width:90px"> Si </button>
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>CUENTA</th>
+                                        <th>RUBRO</th>
+                                        <th>CCOSTO</th>
+                                        <th>DESCRIPCION CCOSTO</th>
+                                        <th>VALOR</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="cursor"><input readonly class="form-control cursor " id="cedula" ng-model="json2.cuenta" ng-focus="buscar_cuenta()" /></td>
+                                        <td><input readonly class="form-control" ng-model="json2.rubro" /></td>
+                                        <td class="cursor"><input readonly class="form-control cursor " ng-model="json2.ccosto" ng-focus="buscar_ccosto()" /></td>
+                                        <td><input readonly type="text" class="form-control" ng-model="json2.des_ccosto" /></td>
+                                        <td><input type="number" class="form-control" ng-model="json2.valor" /></td>
+                                        <td style="text-align:center" ng-show="sh_add">
+                                            <button type="button" class="btn btn-primary btn-circle" ng-click="add()" id="add">
+                                                <i class="glyphicon glyphicon-plus"></i>
+                                            </button>
+                                        </td>
+                                        <td style="text-align:center" ng-show="sh_update">
+                                            <button type="button" class="btn btn-primary btn-circle" ng-click="confir_edit()" id="add">
+                                                <i class="glyphicon glyphicon-ok"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr ng-repeat="item in tabla" ng-class="trdell" ng-init="show=true">
+                                        <td>{{item.cuenta}}</td>
+                                        <td>{{item.rubro}}</td>
+                                        <td>{{item.ccosto}}</td>
+                                        <td>{{item.des_ccosto}}</td>
+                                        <td>{{item.valor}}</td>
+                                        <td style="text-align: center;" ng-show="sh_add">
+                                            <span class="btn btn-danger btn-xs" ng-show="show" ng-disabled="delete" ng-click="deleteGrilla($index)">
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                Remover
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="no-print">
+        <div class="waiting-wrapper" ng-class="openWai ? 'open' : ''">
+            <div class="waiting">
+                <img src="fonts/animatedEllipse.gif" />
+                El servidor esta procesando la informacion
+            </div>
+        </div>
+    </div>
+    <div class="window-footer">
+        <!--<div class="col-xs-12 barra">
+            <div class="btn-group">
+                <button id="{{formulario}}-guardar" type="button" class="btn btn-primary btn-guardar" ng-click="guardar()">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar
+                </button>
+            </div>
+        </div>-->
+        <ss-barra formulario="#empleados"
+                  showbtn="showbtn"
+                  disabledbtn="disabledbtn"
+                  nuevo="nuevo()"e
+                  editar="editar()"
+                  guardar="guardar()"
+                  actualizar="actualizar()"
+                  eliminar="eliminar()">
+        </ss-barra>
+        <ss-buscador data="dataCcosto" resultado="rsCcosto"></ss-buscador>
+        <ss-buscador data="dataCuenta" resultado="rsCuenta"></ss-buscador>
+
+    </div>
+</div>
+
+<style>
+
+    .cursor{
+        cursor:pointer;
+    }
+
+</style>

@@ -1,0 +1,133 @@
+<div ng-controller="UsuarioController" class="window-wrapper">
+    <div class="window-body">
+        <form id="formUsuario" name="formUsuario" class="form-horizontal" novalidate autocomplete="off">
+            <div class="col-xs-12">
+                <div class="col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Datos de usuario</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-12">
+                                <div class="col-xs-12 col-md-3">
+                                    <label>Usuario<span class="req">*</span></label>
+                                    <input type="text" id="usuario" name="USUARIO" ng-model="json.username" ng-blur="validateUsername()" ng-required="true" class="form-control">
+                                </div>
+                                <div class="col-xs-12 col-md-3">
+                                    <label>Documento<span class="req">*</span></label>
+                                    <input type="number" name="CODIGO" id="codigo" ng-model="json.codigo" ng-init="json.codigo=''" class="form-control">
+                                </div>
+                                <div class="col-xs-12 col-md-3">
+                                    <label>Nombre<span class="req">*</span></label>
+                                    <input class="form-control" name="NOMBRE DE USUARIO" id="nombre_usuario" ng-required="true" type="text" ng-init="json.nombre_usuario=''" ng-model="json.nombre_usuario" />
+                                </div>
+                                <!--<div class="col-xs-12 col-md-3">
+                                    <label>Modulo</label>
+                                    <select class="form-control" ng-model="json.modulo">
+                                        <option value="1">ADMINISTRATIVO</option>
+                                        <option value="2">SST</option>
+                                        <option value="3">COMPRAS</option>
+                                    </select>
+                                </div>-->
+                                <div class="col-xs-12 col-md-3">
+                                    <label>Tipo Usuario</label>
+                                    <select class="form-control" ng-options="c.id as c.nombre for c in tipo_u" id="id_tipo_usuario" ng-model="json.id_tipo_usuario">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-12 col-md-3">
+                                    <label>Contraseña<span class="req">*</span></label>
+                                    <input type="password" name="CONTRASEÑA" ng-model="json.password" ng-required="true" class="form-control" />
+                                </div>
+                                <div class="col-xs-12 col-md-3">
+                                    <label>Confirmar contraseña<span class="req">*</span></label>
+                                    <input type="password" name="CONF. Contraseña" ng-model="json.confirmar" ng-required="true" class="form-control" />
+                                </div>
+                                <div class="col-md-12" ng-show="x" style="margin-top:10px;text-align:center">
+                                    <div class="alert alert-danger fade in">
+                                        {{msj}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12" style="margin-top:20px;" ng-show="show_admin">
+                    <div class="col-xs-3"></div>
+                    <div class="col-xs-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="text-align:center">PERMISOS</h3>
+                            </div>
+                            <div class="panel-body" >
+                                <div class="col-md-12">
+                                    <table class="table table-bordered table-hover table-striped" width="100px" style="overflow-y:scroll">
+                                        <thead>
+                                            <tr>
+                                                <th>ITEM</th>
+                                                <th>VENTANA</th>
+                                                <th>MODULO</th>
+                                                <th>AUTORIZADO</th>
+                                                <th>P.E. I</th>
+                                                <th>P.E. II</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in tabla" ng-class="trdell" ng-init="show=true">
+                                                <td style="text-align: center">{{$index + 1}}</td>
+                                                <td>{{item.name_module}}</td>
+                                                <td>{{item.module}}</td>
+                                                <td><input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="item.autorizado" /></td>
+                                                <td><input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="item.pe1" /></td>
+                                                <td><input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="item.pe2" /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--MODAL USUARIO EXISTE-->
+    <!--<div class="modal-view2-wrapper no-print" ng-class="ModalMessageOpen">
+        <div class="sv-modal">
+            <div class="sv-modal-head" id="alertColor" ng-class="'amarillo'">
+                <label style="text-align:left !important;">{{data.title}}</label>
+                <button ng-click="close()" id="closePend" class="btn btn-default btn-xs">X</button>
+            </div>
+            <div class="sv-modal-body">
+                <div class="sv-content">
+                    <div class="col-xs-12">
+                        <div class="col-xs-12" style="text-align:center;">
+                            <label>EL USUARIO YA EXISTE</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <!--Wait-->
+    <div class="waiting-wrapper" ng-class="openWaiting ? 'open' : ''">
+        <div class="waiting">
+            <img src="../../../fonts/animatedEllipse.gif" />
+            El servidor esta procesando la informacion
+        </div>
+    </div>
+    <div class="window-footer">
+        <ss-barra formulario="#formUsuario"
+                  showbtn="showbtn"
+                  disabledbtn="disabledbtn"
+                  nuevo="nuevo()"
+                  editar="editar()"
+                  guardar="guardar()"
+                  actualizar="actualizar()"
+                  eliminar="eliminar()">
+        </ss-barra>
+        <ss-buscador data="dataUsuario" resultado="rsBuscador"></ss-buscador>
+    </div>
+</div>
+

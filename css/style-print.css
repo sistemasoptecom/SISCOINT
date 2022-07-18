@@ -1,0 +1,185 @@
+﻿
+p {
+    text-align:justify;
+}
+
+.print-border {
+    border: 1px solid #000 !important;
+}
+
+.label-print{
+    font-size:10px;
+}
+
+.no-print {
+    display: none;
+}
+
+.print {
+    display: block;
+    height: auto;
+}
+
+.form-group label {
+    margin: 0px;
+}
+
+input.form-control {
+    border: none;
+    padding: 0px;
+    height: 20px; 
+}
+
+textarea.form-control {
+    padding: 0px;
+    display: inline-table;
+    border: none;
+    text-align: justify;
+    height:auto;
+}
+
+span.req {
+    display: none;
+}
+
+select.form-control {
+    border: none;
+    padding: 0px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.barra {
+    display: none;
+}
+
+div {
+   border: none !important;
+    height: auto;
+    padding: 0px;
+}
+
+.panel-heading,
+.panel-body {
+    padding: 5px !important;
+    overflow:hidden !important;
+    height:100% !important;
+}
+
+.page-header {
+    /*border: none;*/
+}
+
+.panel.panel-primary {
+    border-radius: 0px;
+}
+
+ul.no-print {
+    left: 0 !important;
+}
+
+.ss-full-view {
+    padding-left: 0 !important;
+}
+
+.btn {
+    display: none;
+}
+
+span.form-control {
+    border: none;
+}
+
+.report-list {
+    display: none !important;
+}
+
+.report-container {
+    width: 100% !important;
+}
+
+.ss-panel-cita-tab {
+    display: none;
+}
+
+* {
+    overflow: hidden;
+    height: auto !important;
+}
+
+    .div-custom {
+      border-top: 1px solid;
+      border-right: 1px solid;
+      border-bottom: 1px solid;
+      border-left: 1px solid;
+    
+    }
+
+
+.window-footer, .pc-modal-head, .pc-tabs, .modal-content {
+    display: none !important;
+}
+
+
+html, body, .pc-modal-wrapper.active, .pc-modal, .window-body {
+    height: auto !important;
+    overflow:hidden !important;
+}
+
+
+.pc-modal {
+    width: 100% !important;
+}
+
+.pc-modal-wrapper {
+    position: static !important;
+    width: 100% !important;
+}
+
+.pc-list-wrapper {
+    display: none !important;
+}
+
+tbody {
+overflow:hidden !important;
+height:100% !important;
+}
+
+table {
+overflow:hidden !important;
+height:100% !important;
+}
+
+th, td {
+    font-size: 0.7em !important;
+}
+
+    td select option {
+        text-align: center !important;
+    }
+
+    td input[type=radio] {
+        display: none !important;
+    }
+
+        td input[type=radio]:checked {
+            display: block !important;
+        }
+
+ul, img {
+	page-break-inside: avoid !important;
+}
+
+.print-horizontal {
+         @page { size: landscape; }
+    }
+
+html, body {
+    margin:0 !important;
+    padding: 0 !important;
+}
+
+.sizetabla{
+    font-size: 1em !important;
+}

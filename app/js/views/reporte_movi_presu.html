@@ -1,0 +1,228 @@
+<div ng-controller="Rep_movimiento_presu" class="window-wrapper">
+    <div class="window-body">
+        <form id="ingreso_act_cont" name="ingreso_act_cont" class="form-horizontal no-print" autocomplete="off">
+            <div class="col-xs-12">
+                <div class="col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">DEPRECIACION DE ACTIVOS</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-2">
+                                <label>Fecha Inicio<span class="req">*</span></label>
+                                <input type="date" class="form-control" ng-model="fecha_inicio" ng-required="true" name="FECHA INICIO" />
+                            </div>
+                            <div class="col-xs-2">
+                                <label>Fecha Fin<span class="req">*</span></label>
+                                <input type="date" class="form-control" ng-model="fecha_fin" ng-required="true" name="FECHA FIN" />
+                            </div>
+                            <div class="col-xs-1">
+                                <label>Periodo<span class="req">*</span></label>
+                                <select class="form-control"  ng-model="ano" ng-required="true" name="AÑO">
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-1">
+                                <label></label>
+                                <a class="no-print" id="test" ng-click="fnExcelReport();">
+                                    <img src="img/Excel_15.png" style="height:30px;display:block;cursor:pointer" />
+                                </a>
+                            </div>
+                            <div class="col-xs-1"><button type="button" class="btn btn-primary btn-imprimir" ng-click="reporte()" style="width:90px">BUSCAR</button></div>
+                            <div class="col-xs-12" style="margin-top:15px;">
+                                <div>
+                                    <table class="table table-bordered table-hover table-striped" id="myTable">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center">ITEM</th>
+                                                <th style="text-align: center">PERIODO</th>
+                                                <th style="text-align: center">CUENTA</th>
+                                                <th style="text-align: center">RUBRO</th>
+                                                <th style="text-align: center">CECO</th>
+                                                <th style="text-align: center">P. INICIAL</th>
+                                                <th style="text-align: center">EJECUTADO</th>
+                                                <th style="text-align: center">DISPONIBLE</th>
+                                                <th style="text-align: center">SALDO ANTERIOR</th>
+                                                <th style="text-align: center">NUEVO SALDO</th>
+                                                <th style="text-align: center">DIFERENCIA</th>
+                                                <th style="text-align: center">OBSERVACION</th>
+                                                <th style="text-align: center">FECHA</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="cursor:default" ng-repeat="item in grilla | filter: searchnumber" ng-class="trdell">
+                                                <td style="text-align: center">{{$index + 1}}</td>
+                                                <td style="text-align: center">{{item.ano}}</td>
+                                                <td style="text-align: center">{{item.cuenta}}</td>
+                                                <td style="text-align: center">{{item.rubro}}</td>
+                                                <td style="text-align: center">{{item.ccosto}}</td>
+                                                <td style="text-align: center">{{formatnumber(item.presupuesto_inicial)}}</td>
+                                                <td style="text-align: center">{{formatnumber(item.total_ejecucion)}}</td>
+                                                <td style="text-align: center">{{formatnumber(item.disponibilidad)}}</td>
+                                                <td style="text-align: center">{{formatnumber(item.valor_ant)}}</td>
+                                                <td style="text-align: center">{{formatnumber(item.nuevo_saldo)}}</td>
+                                                <td style="text-align: center">{{formatnumber(item.diferencia)}}</td>
+                                                <td style="text-align: center">{{(item.observacion)}}</td>
+                                                <td style="text-align: center">{{item.fecha}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="no-print">
+        <div class="waiting-wrapper" ng-class="openWai ? 'open' : ''">
+            <div class="waiting">
+                <img src="fonts/animatedEllipse.gif" />
+                El servidor esta procesando la informacion
+            </div>
+        </div>
+    </div>
+    <div class="window-footer">
+        <ss-buscador data="dataActa" resultado="rsActa"></ss-buscador>
+    </div>
+</div>
+<style>
+
+    .innerb {
+        overflow: auto;
+        max-height: 100px;
+    }
+
+    #bord {
+        border: solid 1px;
+        line-height: 20px;
+    }
+
+    .table-report {
+        border: solid 1px;
+    }
+
+    .btn-custom {
+        display: block;
+        height: 25px;
+        text-align: center;
+        border: 1px solid;
+        border-color: #ccc;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    .sv-modal {
+        max-width: 1000px;
+    }
+
+    .centermodal {
+        width: 50%;
+        max-width: 200px;
+        min-width: 100px;
+        margin: 0 auto;
+    }
+
+    .botonmodal {
+        margin-top: 18px;
+        display: block;
+        border: 3px solid;
+        border-color: #ccc;
+    }
+
+    .radios {
+    }
+
+    .in-line-content.title label {
+        color: #2196F3;
+    }
+
+        .in-line-content.title label.float-left {
+            padding-top: 0;
+        }
+
+    .in-line-content .border {
+        overflow: hidden;
+        padding-bottom: 5px;
+    }
+
+    #bord {
+        border: solid 1px;
+        line-height: 20px;
+    }
+
+    .table-report {
+        border: solid 1px;
+    }
+
+    .btn-custom {
+        display: block;
+        height: 25px;
+        text-align: center;
+        border: 1px solid;
+        border-color: #ccc;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+
+    .centermodal {
+        width: 50%;
+        max-width: 200px;
+        min-width: 100px;
+        margin: 0 auto;
+    }
+
+    .botonmodal {
+        margin-top: 18px;
+        display: block;
+        border: 3px solid;
+        border-color: #ccc;
+    }
+
+    .radios {
+    }
+
+    .in-line-content.title label {
+        color: #2196F3;
+    }
+
+        .in-line-content.title label.float-left {
+            padding-top: 0;
+        }
+
+    .in-line-content .border {
+        overflow: hidden;
+        padding-bottom: 5px;
+    }
+
+    .space-td {
+        width: 40px;
+    }
+
+    .space-check {
+        width: 30px;
+    }
+</style>
+
+<script>
+    $("#btnexport").click(function (e) {
+        exclude: ".table .table-bordered",
+        window.open('data:application/vnd.ms-excel,' + $('#dvData').html());
+        e.preventDefault();
+    });
+</script>

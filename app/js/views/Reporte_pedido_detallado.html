@@ -1,0 +1,97 @@
+﻿<div ng-controller="ReportepedidoDetallado_Controller" class="window-wrapper">
+    <div class="window-body">
+        <form id="reporte" name="hurtos" class="form-horizontal" autocomplete="off">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-6">
+                <div class="col-xs-12" style="margin-top:30px;">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">REPORTE DETALLADO DE PEDIDOS</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-3">
+                                <label>Fecha Inicio</label>
+                                <input type="date" class="form-control" ng-model="fecha_inicio" />
+                            </div>
+                            <div class="col-xs-3">
+                                <label>Fecha Fin</label>
+                                <input type="date" class="form-control" ng-model="fecha_fin" />
+                            </div>
+                            <div class="col-xs-3">
+                                <label></label>
+                                <input type="button" class="btn btn-info" ng-click="buscar_pedidos()" value="Buscar" />
+                            </div>
+
+                            <div class="col-xs-2">
+                                <label>Buscar</label>
+                                <input class="form-control" ng-model="filtro" ng-change="filtro = filtro.toUpperCase()" />
+                            </div>
+                            <div class="col-xs-1">
+                                <label></label>
+                                <a class="no-print" id="test" ng-click="fnExcelReport();">
+                                    <img src="img/Excel_15.png" style="height:30px;display:block;cursor:pointer" />
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-body">
+                            <div class="col-xs-12" style="margin-top:15px;">
+                                <div>
+                                    <table class="table table-bordered table-hover table-striped" id="myTable">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center">ITEM</th>
+                                                <th style="text-align: center">NRO_PEDIDO</th>
+                                                <th style="text-align: center">CODIGO</th>
+                                                <th style="text-align: center">PROVEEDOR</th>
+                                                <th style="text-align: center">CECO</th>
+                                                <th style="text-align: center">NRO_CONTRATO</th>
+                                                <th style="text-align: center">DESCRIPCION</th>
+                                                <th style="text-align: center">CANTIDAD</th>
+                                                <th style="text-align: center">V/UNITARIO</th>
+                                                <th style="text-align: center">TOTAL/ITEM</th>
+                                                <th style="text-align: center">FECHA</th>
+                                                <th style="text-align: center">USUARIO</th>
+                                                <th style="text-align: center">CUENTA</th>
+                                                <th style="text-align: center">TOTAL</th>
+                                                <th style="text-align: center">ASIGANDO</th>
+                                                <th style="text-align: center">ESTADO</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="cursor:pointer" ng-repeat="item in grilla | filter: filtro " ng-class="trdell">
+                                                <td style="text-align: center">{{$index + 1}}</td>
+                                                <td style="text-align: center">{{item.numero}}</td>
+                                                <td style="text-align: center">{{item.codigo_art}}</td>
+                                                <td style="text-align: center">{{item.razon_social}}</td>
+                                                <td style="text-align: center">{{item.ccosto}}</td>
+                                                <td style="text-align: center">{{item.nro_contrato}}</td>
+                                                <td style="text-align: center">{{item.descripcion}}</td>
+                                                <td style="text-align: center">{{item.cantidad}}</td>
+                                                <td style="text-align: center">{{formatnumber(item.valor)}}</td>
+                                                <td style="text-align: center">{{formatnumber(item.total)}}</td>
+                                                <td style="text-align: center">{{item.fecha}}</td>
+                                                <td style="text-align: center">{{item.usuario}}</td>
+                                                <td style="text-align: center">{{item.cuenta}}</td>
+                                                <td style="text-align: center">{{formatnumber(item.vlr_total)}}</td>
+                                                <td style="text-align: center">{{item.asignado_a}}</td>
+                                                <td style="text-align: center">{{item.estado}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

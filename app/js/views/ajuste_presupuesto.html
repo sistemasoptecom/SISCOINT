@@ -1,0 +1,529 @@
+<div ng-controller="Ajuste_Presupuesto" class="window-wrapper">
+    <div class="window-body">
+        <form id="ajust_presu" name="ajust_presu" class="form-horizontal" autocomplete="off">
+            <button ng-show="false" type="button" class="btn btn-primary btn-imprimir" ng-click="search_emp()" id="empleados" style="width:90px"> Si </button>
+            <div class="col-xs-12">
+                <div style="width:800px" ng-if="log_user =='rgomez' || log_user =='brayan' || log_user =='ylobo' || log_user =='norozco' || log_user =='kromero'" class="col-xs-5 bs-example">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" ng-click="show_tabs(1)" data-toggle="tab">INFORME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" ng-click="show_tabs(2)" data-toggle="tab">PRESION PRESUPUESTAL</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" ng-click="show_tabs(3)" data-toggle="tab">TRASLADO PRESUPUESTAL</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" ng-click="show_tabs(4)" data-toggle="tab">ASIGNACION ANUAL</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-1" ng-show="show_pp == true">
+                <label style="text-align:center">BUSCAR</label>
+            </div>
+            <div class="col-xs-2" ng-show="show_pp == true">
+                <input class="form-control" type="text" ng-model="search.cuenta" />
+            </div>
+            <div class="col-xs-1"><label>PERIODO</label></div>
+            <div class="col-xs-1">
+                <select class="form-control" ng-model="search.ano" ng-init="search.ano = 2022" name="PERIODO">
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                </select>
+            </div>
+            <div class="col-xs-2">
+                <a class="no-print" id="test" ng-click="fnExcelReport();">
+                    <img src="img/Excel_15.png" style="height:30px;display:block;" />
+                </a>
+            </div>
+            <!--INFORME PRESUPUESTO-->
+            <div class="col-xs-12" style="margin-top:10px;" ng-show="show_pp == true">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="text-align:center">INFORME PRESUPUESTO</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th style="width:70px;text-align:center">PERIODO</th>
+                                        <th style="width:125px;text-align:center">CUENTA</th>
+                                        <th style="width:330px;text-align:center">RUBRO</th>
+                                        <th style="width:71px;text-align:center">CCOSTO</th>
+                                        <th style="width:159px;text-align:center">PRESUPUESTO INICIAL</th>
+                                        <th style="width:159px;text-align:center">TOTAL EJECUCION</th>
+                                        <th style="width:159px;text-align:center">TOTAL DISPONIBILIDAD</th>
+                                        <th style="width:70px;text-align:center">INDICE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="8">
+                                            <div class="innerb">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr ng-repeat="item in tabla  | filter: search" ng-class="trdell" ng-init="show=true">
+                                                            <td style="width:70px">{{item.ano}}</td>
+                                                            <td style="width:125px">{{item.cuenta}}</td>
+                                                            <td style="width:425px">{{item.rubro}}</td>
+                                                            <td style="width:71px">{{item.ccosto}}</td>
+                                                            <td style="width:159px">{{formatnumber(item.total_presupuesto)}}</td>
+                                                            <td style="width:159px">{{formatnumber(item.total_ejecucion)}}</td>
+                                                            <td style="width:159px">{{formatnumber(item.disponibilidad)}}</td>
+                                                            <td ng-show="item.indice =='UP'" ng-click="show_mov(item.id)" style=" width:70px; text-align: center"><span style="cursor:pointer"><i class="fa fa-arrow-up" aria-hidden="true"></i></span> </td>
+                                                            <!--<td ng-show="item.indice =='UP'" style=" width:70px; text-align: center"><span style="cursor:pointer"><i class="fa fa-arrow-down" aria-hidden="true"></i></span> </td>-->
+                                                            <td ng-show="item.indice =='RIGHT'" ng-click="show_mov(item.id)" style=" width:70px; text-align: center"><span style="cursor:pointer"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--TRASLADO PRESUPUESTO-->
+            <!--<div class="col-xs-2" ng-if="TRAS_PRE == true"></div>-->
+            <div class="col-xs-4" ng-if="TRAS_PRE == true">
+                <div class="col-xs-12" style="margin-top:20px;">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" style="text-align:center">PRESUPUESTO INICIAL</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-12">
+                                <label>Buscar presupuesto<span class="req">*</span></label>
+                                <ss-busqueda-rapida data="dataPresupuestoini" resultado="rsPresupuestofin" key="key2"></ss-busqueda-rapida>
+                            </div>
+                            <div class="col-xs-6">
+                                <label>Cuenta</label>
+                                <input class="form-control" readonly ng-model="json2.cuenta" />
+                            </div>
+                            <div class="col-xs-6">
+                                <label>Rubro</label>
+                                <input class="form-control" readonly ng-model="json2.rubro" />
+                            </div>
+                            <div class="col-xs-6">
+                                <label>CECO</label>
+                                <input class="form-control" readonly ng-model="json2.ccosto" />
+                            </div>
+                            <div class="col-xs-6">
+                                <label>Presupuesto Incial</label>
+                                <input class="form-control" readonly type="number" ng-model="json2.total_presupuesto" />
+                            </div>
+                            <div class="col-xs-6">
+                                <label>Disponible</label>
+                                <input class="form-control" readonly type="number" ng-model="json2.disponible" />
+                            </div>
+                            <div class="col-xs-6">
+                                <label>Valor a trasladar</label>
+                                <input class="form-control" type="number" ng-blur="calcular_valor()" ng-model="json2.valor_traslado" />
+                            </div>
+                            <div class="col-xs-12">
+                                <label>Observaciones <span class="req">*</span></label>
+                                <textarea type="text" class="form-control" ng-model="json2.observacion" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--TRASLADO PRESUPUESTO-->
+            <div class="col-xs-4" ng-if="TRAS_PRE == true">
+                <div class="col-xs-12" style="margin-top:20px;">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" style="text-align:center">PRESUPUESTO FINAL</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-12"> <label>Fecha<span class="req">*</span></label><input type="date" class="form-control" /></div>
+                            <div class="col-xs-12">
+                                <label>Buscar presupuesto<span class="req">*</span></label>
+                                <ss-busqueda-rapida data="dataPresupuestofinal" resultado="rsPresupuestofinal" key="key3"></ss-busqueda-rapida>
+                            </div>
+                            <div class="col-xs-6">
+                                <label>Cuenta</label>
+                                <input class="form-control" readonly ng-model="json3.cuenta" />
+                            </div>
+                            <div class="col-xs-6">
+                                <label>Rubro</label>
+                                <input class="form-control" readonly ng-model="json3.rubro" />
+                            </div>
+                            <div class="col-xs-6">
+                                <label>CECO</label>
+                                <input class="form-control" readonly ng-model="json3.ccosto" />
+                            </div>
+                            <div class="col-xs-6">
+                                <label>Presupuesto Incial</label>
+                                <input class="form-control" readonly type="number" ng-model="json3.total_presupuesto" />
+                            </div>
+                            <div class="col-xs-6">
+                                <label>Disponible</label>
+                                <input class="form-control" readonly type="number" ng-model="json3.disponible" />
+                            </div>
+                            <div class="col-xs-6">
+                                <label>Nuevo total presupuesto</label>
+                                <input class="form-control" readonly type="number" ng-model="json2.nuevo_total" />
+                            </div>
+                            <div ng-show="message_confirm" class=" col-xs-12 alert alert-success" role="alert">GUARDADO EXITOSO</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--AJUSTE PRESUPUESTO-->
+            <div class="col-xs-4" ng-if="INFORME_PRE == true">
+                <div class="col-xs-12" style="margin-top:20px;">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" style="text-align:center">AJUSTAR DE PRESUPUESTO</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-12"> <label>Fecha<span class="req">*</span></label><input type="date" class="form-control" /></div>
+                            <div class="col-xs-12">
+                                <label>Buscar presupuesto<span class="req">*</span></label>
+                                <ss-busqueda-rapida data="dataPresupuesto" resultado="rsPresupuesto" key="key"></ss-busqueda-rapida>
+                            </div>
+                            <div class="col-xs-6">
+                                <label>Cuenta</label>
+                                <input class="form-control" readonly ng-model="json.cuenta" />
+                            </div>
+                            <div class="col-xs-6">
+                                <label>Rubro</label>
+                                <input class="form-control" readonly ng-model="json.rubro" />
+                            </div>
+                            <div class="col-xs-6">
+                                <label>CECO</label>
+                                <input class="form-control" readonly ng-model="json.ccosto" />
+                            </div>
+                            <div class="col-xs-6">
+                                <label>Presupuesto Inicial</label>
+                                <input class="form-control" readonly type="number" ng-model="json.total_presupuesto" />
+                            </div>
+                            <div class="col-xs-6">
+                                <label>Disponible</label>
+                                <input class="form-control" readonly type="number" ng-model="json.disponible" />
+                            </div>
+                            <div class="col-xs-6">
+                                <label>Valor Adiccion</label>
+                                <input class="form-control" type="number" ng-model="json.adiccion" />
+                            </div>
+                            <div class="col-xs-12">
+                                <label>Observaciones <span class="req">*</span></label>
+                                <textarea type="text" class="form-control" ng-model="json.observacion" />
+                            </div>
+                            <div ng-show="message" class=" col-xs-12 alert alert-success" role="alert">GUARDADO EXITOSO</div>
+                            <button style="margin-top:10px;" id="{{formulario}}-guardar" type="button" class="btn btn-primary btn-guardar" ng-click="ajustar()">
+                                <i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--ASIGNACION DE PRESUPUESTO ANUAL-->
+            <div ng-show="show_asig_anual == true" class="col-xs-3">
+                <button type="button" class="btn btn-primary btn-imprimir" ng-click="ejecutar()">Ejecutar Saldos</button>
+            </div>
+            <div class="col-xs-12" style="margin-top:10px;" ng-show="show_asig_anual == true">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="text-align:center">ACTIVOS PENDIENTES EJECUTAR</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th style="width:50px;text-align:center">NRO PEDIDO</th>
+                                        <th style="width:50px;text-align:center">A&ntilde;O</th>
+                                        <th style="width:280px;text-align:center">DESCRIPCION</th>
+                                        <th style="width:100px;text-align:center">VALOR</th>
+                                        <th style="width:70px;text-align:center">CCOSTO</th>
+                                        <th style="width:140px;text-align:center">CUENTA</th>
+                                        <th style="width:350px;text-align:center">RUBRO</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="7">
+                                            <div class="innerb">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr ng-repeat="item in grilla_no_ejec " ng-class="trdell" ng-init="show=true">
+                                                            <td style="width:50px">{{item.id_pedido}}</td>
+                                                            <td style="width:50px">{{item.ano}}</td>
+                                                            <td style="width:280px">{{item.descripcion}}</td>
+                                                            <td style="width:70px">{{formatnumber(item.valor)}}</td>
+                                                            <td style="width:70px">{{item.ccosto}}</td>
+                                                            <td style="width:140px">{{item.cuenta}}</td>
+                                                            <td style="width:350px">{{item.rubro}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="no-print">
+        <div class="waiting-wrapper" ng-class="openWaiting ? 'open' : ''">
+            <div class="waiting">
+                <img src="fonts/animatedEllipse.gif" />
+                El servidor esta procesando la informacion
+            </div>
+        </div>
+    </div>
+    <div class="window-footer" ng-if="TRAS_PRE == true">
+        <div class="col-xs-12 barra">
+            <div class="btn-group">
+                <button id="reporte-guardar" type="button" class="btn btn-primary btn-guardar" ng-click="guardar_traslado()">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar
+                </button>
+            </div>
+        </div>
+        <ss-buscador data="dataActa" resultado="rsActa"></ss-buscador>
+    </div>
+    <div class="no-print">
+        <div class="waiting-wrapper" ng-class="openWait? 'open' : ''">
+            <div class="waiting">
+                <div id="modal" style="z-index:3000" class="sv-modal-wrapper no-print" ng-class="openModalPRO ? 'active':''">
+                    <div class="sv-modal">
+                        <div class="sv-modal-head">
+                            <label style="color:#fff">MOVIMIENTOS DE PRESUPUESTO</label>
+                            <button ng-click="closePRO()" class="btn btn-default btn-xs">X</button>
+                        </div>
+                        <div class="sv-modal-body">
+                            <div class="sv-content">
+                                <div class="col-xs-12">
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-1">
+                                            <label>A&ntilde;o</label>
+                                            {{json5.ano}}
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <label>Cuenta</label>
+                                            {{json5.cuenta}}
+                                        </div>
+                                        <div class="col-xs-7">
+                                            <label>Rubro</label>
+                                            {{json5.rubro}}
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <label>CECO</label>
+                                            {{json5.ccosto}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">DETALLE DE MOVIMIENTOS</h3>
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <a class="no-print" id="test" ng-click="fnExcelReport2();">
+                                                <img src="img/Excel_15.png" style="height:30px;display:block;" />
+                                            </a>
+                                        </div>
+
+                                        <div class="panel-body">
+                                            <div class="col-md-12" style="overflow:auto;height:450px;max-height:450px;">
+                                                <table class="table table-bordered table-hover table-striped" id="myTable">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="text-align:center;">FECHA</th>
+                                                            <th style="text-align:center;">SALDO ANT</th>
+                                                            <th style="text-align:center;">NEVO SALDO</th>
+                                                            <th style="text-align:center;">DIFERENCIA</th>
+                                                            <th style="text-align:center;">JUSTIFICACION</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="item in grillapre" ng-class="trdell" ng-init="show=true">
+                                                            <td style="width:124px;">{{convert(item.fecha)}}</td>
+                                                            <td>{{formatnumber(item.valor_ant)}}</td>
+                                                            <td>{{formatnumber(item.nuevo_saldo)}}</td>
+                                                            <td>{{formatnumber(item.nuevo_saldo - item.valor_ant)}}</td>
+                                                            <td><textarea class="form-control" readonly>{{item.observacion}}</textarea></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--style="overflow:auto;overflow-x:hidden; max-height:370px;"-->
+
+<style>
+
+
+    .bs-example {
+        margin: 20px;
+    }
+    .innerb{
+        overflow:auto;
+        max-height:376px;
+    }
+    .line{
+        border-top:1px;
+    }
+</style>
+
+
+<style>
+
+
+
+    #bord {
+        border: solid 1px;
+        line-height: 20px;
+    }
+
+    .table-report {
+        border: solid 1px;
+    }
+
+    .btn-custom {
+        display: block;
+        height: 25px;
+        text-align: center;
+        border: 1px solid;
+        border-color: #ccc;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    .sv-modal {
+        height: 650px;
+        max-width: 90%;
+        /*margin-top: -300px;*/
+    }
+
+    .centermodal {
+        width: 50%;
+        max-width: 200px;
+        min-width: 100px;
+        margin: 0 auto;
+    }
+
+    .botonmodal {
+        margin-top: 18px;
+        display: block;
+        border: 3px solid;
+        border-color: #ccc;
+    }
+
+    .radios {
+    }
+
+    .in-line-content.title label {
+        color: #2196F3;
+    }
+
+        .in-line-content.title label.float-left {
+            padding-top: 0;
+        }
+
+    .in-line-content .border {
+        overflow: hidden;
+        padding-bottom: 5px;
+    }
+
+    #bord {
+        border: solid 1px;
+        line-height: 20px;
+    }
+
+    .table-report {
+        border: solid 1px;
+    }
+
+    .btn-custom {
+        display: block;
+        height: 25px;
+        text-align: center;
+        border: 1px solid;
+        border-color: #ccc;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+
+    .centermodal {
+        width: 50%;
+        max-width: 200px;
+        min-width: 100px;
+        margin: 0 auto;
+    }
+
+    .botonmodal {
+        margin-top: 18px;
+        display: block;
+        border: 3px solid;
+        border-color: #ccc;
+    }
+
+    .radios {
+    }
+
+    .in-line-content.title label {
+        color: #2196F3;
+    }
+
+        .in-line-content.title label.float-left {
+            padding-top: 0;
+        }
+
+    .in-line-content .border {
+        overflow: hidden;
+        padding-bottom: 5px;
+    }
+
+    .space-td {
+        width: 40px;
+    }
+
+    .space-check {
+        width: 30px;
+    }
+</style>
+<!--<script>
+            Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Your work has been saved',
+            showConfirmButton: false,
+            timer: 1500
+        })
+</script>-->
+

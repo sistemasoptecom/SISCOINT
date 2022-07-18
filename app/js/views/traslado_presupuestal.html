@@ -1,0 +1,110 @@
+<div ng-controller="Traslado_Presupuestal_Controller" class="window-wrapper">
+    <div class="window-body">
+        <form id="traslado_controller" name="traslado_controller" class="form-horizontal" autocomplete="off">
+            <div class="col-xs-12">
+                <div class="col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">TRASLADO PRESUPUESTAL</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-12 col-md-3 col-sm-8">
+                                <label>USUARIO<span class="req">*</span></label>
+                                <input type="text" ng-model="json.usuario" class="form-control" readonly>
+                            </div>
+                            <div class="col-xs-12">
+                                <label>JUSTIFICACION<span class="req">*</span></label>
+                                <textarea class="form-control" ng-model="json.justificacion"></textarea>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">AREA RESPONSABLE DEL GASTO</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <table class="table table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    
+                                                    <th colspan="4" style="text-align:center;background-color:#33E9FF">PRESUPUESTO INICIAL</th>
+                                                    <th colspan="4" style="text-align:center;background-color:#52FF33">PRESUPUESTO FINAL</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>CECO</th>
+                                                    <th>CUENTA CONTABLE</th>
+                                                    <th>RUBRO</th>
+                                                    <th>SALDO DISPONIBLE</th>
+                                                    <th>CECO</th>
+                                                    <th>CUENTA CONTABLE</th>
+                                                    <th>RUBRO</th>
+                                                    <th>SALDO DISPONIBLE</th>
+                                                    <th>VALOR TRASLADO</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="cursor"><input readonly class="form-control cursor" id="articulo" ng-model="json2.ccosto_ini" /></td>
+                                                    <td><input readonly class="form-control" ng-model="json2.cuenta_ini" /></td>
+                                                    <td><input readonly class="form-control" ng-model="json2.rubro_ini" /></td>
+                                                    <td><input type="number" readonly class="form-control" ng-model="json2.disponible_ini" /></td>
+                                                    <td class="cursor"><input readonly class="form-control cursor" id="ccostofin" ng-model="json2.ccosto_fin" /></td>
+                                                    <td><input readonly class="form-control" ng-model="json2.cuenta_fin" /></td>
+                                                    <td><input readonly class="form-control" ng-model="json2.rubro_fin" /></td>
+                                                    <td><input type="number" readonly class="form-control" ng-model="json2.disponible_fin" /></td>
+                                                    <td><input type="number"  class="form-control" ng-model="json2.valor_traslado" /></td>
+                                                    <td style="text-align:center" ng-show="sh_add">
+                                                        <button type="button" class="btn btn-primary btn-circle" ng-click="add()" id="add">
+                                                            <i class="glyphicon glyphicon-plus"></i>
+                                                        </button>
+                                                    </td>
+                                                    <td style="text-align:center" ng-show="sh_update">
+                                                        <button type="button" class="btn btn-primary btn-circle" ng-click="confir_edit()" id="add">
+                                                            <i class="glyphicon glyphicon-ok"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr ng-repeat="item in tabla" ng-class="trdell" ng-init="show=true">
+                                                    <td>{{item.ccosto_ini}}</td>
+                                                    <td>{{item.cuenta_ini}}</td>
+                                                    <td>{{item.rubro_ini}}</td>
+                                                    <td>{{formatnumber(item.disponible_ini)}}</td>
+                                                    <td>{{item.ccosto_fin}}</td>
+                                                    <td>{{item.cuenta_fin}}</td>
+                                                    <td>{{item.rubro_fin}}</td>
+                                                    <td>{{formatnumber(item.disponible_fin)}}</td>
+                                                    <td>{{formatnumber(item.valor_traslado)}}</td>
+                                                    <td style="text-align: center;" ng-show="sh_edit">
+                                                        <button type="button" class="btn btn-primary btn-circle" ng-click="load_edit(item,$index)" id="add"><i class="glyphicon glyphicon-pencil"></i></button>
+                                                    </td>
+                                                    <td style="text-align: center;" ng-show="sh_add">
+                                                        <span class="btn btn-danger btn-xs" ng-show="show" ng-disabled="delete" ng-click="deleteGrilla($index)">
+                                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            Remover
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="window-footer">
+        <ss-barra formulario="#traslado_controller"
+                  showbtn="showbtn"
+                  disabledbtn="disabledbtn"
+                  nuevo="nuevo()"
+                  editar="editar()"
+                  guardar="guardar()"
+                  actualizar="actualizar()"
+                  eliminar="eliminar()">
+        </ss-barra>
+        <ss-buscador data="dataBuscador_objeto" resultado="resultado_objeto"></ss-buscador>
+        <ss-buscador data="dataPresupuesto_fin" resultado="rsPresupuesto_fin"></ss-buscador>
+    </div>
+</div>

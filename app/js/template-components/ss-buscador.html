@@ -1,0 +1,90 @@
+﻿<div class="buscador-wrapper" ng-class="buscadorOpen ? 'buscador-wrapper-open' : ''">
+    <div class="buscador">
+        <div class="buscador-header">
+            <div class="col-xs-6 col-md-6"><h4 style="text-align:left;margin:0;margin-top:5px;">{{title}}</h4></div>
+            <div class="col-xs-6 col-md-6" style="padding: 0px;">
+                <button class="btn btn-xs"  id="closebuscador" type="button" style="float: right;margin: 5px;cursor:pointer" ng-click="close()"><b style="color:red">X</b></button>
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <h3 class="modal-title">
+                    <input type="text" id="campo" class="form-control" ng-model="filtro.campo" placeholder="Buscar..." ng-keypress='evtBuscar($event)' autofocus />
+                </h3>
+            </div>
+            <div class="col-xs-4" ng-show="false" style="margin-top:10px">
+                <select ng-model="filtro.combo" ng-bind-html="combo" class="form-control"></select>
+            </div>
+            <div class="col-xs-2" ng-show="false">
+                    <label>
+                        <input type="checkbox" ng-model="filtro.esp" ng-true-value="1" ng-false-value="0" />
+                        Busqueda Especializada
+                    </label>
+            </div>
+        </div>
+            <div class="buscador-body col-md-12" style="overflow-x:scroll">
+                <center><span style="color:red;font-size:1.0em;">{{noData}}</span></center>
+                <table class="table table-hover" ng-show="noData == ''">
+                    <thead id="{{id}}_head"><tr ng-bind-html="t_head"></tr></thead>
+                    <tbody id="{{id}}" style="text-align: left" ng-bind-html="t_body"></tbody>
+                </table>
+            </div>
+    </div>
+</div>
+
+
+<style>
+    .buscador-wrapper {
+        transition: all .2s;
+        z-index: 1100;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(255,255,255,0);
+        visibility: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .buscador-wrapper.buscador-wrapper-open {
+            visibility: visible;
+            background-color: rgba(255,255,255,.5);
+        }
+
+
+        .buscador-wrapper .buscador {
+            transition: all .2s;
+            background-color: #fff;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 700px;
+            height: 90%;
+            -webkit-box-shadow: 2px 2px 8px 0px rgba(122,122,122,1);
+            -moz-box-shadow: 2px 2px 8px 0px rgba(122,122,122,1);
+            box-shadow: 2px 2px 8px 0px rgba(122,122,122,1);
+            transform:scale(.2);
+            visibility:hidden;
+        }
+
+        .buscador-wrapper.buscador-wrapper-open .buscador {
+            transform:scale(1);
+            visibility:visible;
+        }
+
+            .buscador-wrapper .buscador .buscador-header {
+                overflow: hidden;
+            }
+
+            .buscador-wrapper .buscador .buscador-body {
+                height: calc(100% - 57px);
+                overflow: hidden;
+                overflow-y: auto;
+                padding: 10px;
+            }
+
+            .table tbody tr{
+                cursor:pointer;
+            }
+</style>
+

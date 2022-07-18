@@ -1,0 +1,528 @@
+﻿<div ng-controller="ConsumiblesController" class="window-wrapper">
+    <div class="window-body">
+        <form id="consumible" name="consumible" class="form-horizontal no-print" autocomplete="off">
+            <div class="col-xs-12">
+                <div class="col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" style="text-align:center">ACTA DE ENTREGA ELEMENTOS DEVOLUTIVOS</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-1">
+                                <label>Fecha:</label>
+                            </div>
+                            <div class="col-xs-2">
+                                <input class="form-control" type="date" ng-model="json.fecha" />
+                            </div>
+                            <div class="col-xs-2">
+                                <label>Centro de costo asignado:</label>
+                            </div>
+                            <div class="col-xs-1">
+                                <span>{{ccosto}}</span>
+                            </div>
+                            <div class="col-xs-2">
+                                <label>Centro de costo proveniente:</label>
+                            </div>
+                            <div class="col-xs-4">
+                                <span></span>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="col-xs-2">
+                                    <label class="radio-inline">
+                                        <input type="radio" id="act" ng-blur="validate_tipo()" name="tipo_ent" value="1" ng-model="json.tipo" />ENTREGA
+                                    </label>
+                                </div>
+                                <div class="col-xs-2">
+                                    <label class="radio-inline">
+                                        <input type="radio" id="devol" name="tipo_ent" value="2" ng-model="json.tipo" />DEVOLUCION
+                                    </label>
+                                </div>
+                                <div class="col-xs-2">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="tipo_ent" value="3" ng-model="json.tipo" />TRASLADO
+                                    </label>
+                                </div>
+                                <div class="col-xs-2">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="tipo_ent" value="4" ng-model="json.tipo" />REPARACION
+                                    </label>
+                                </div>
+                                <div class="col-xs-2">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="tipo_ent" value="5" ng-model="json.tipo" />PRESTAMO
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" style="text-align:center">DATOS DEL EMPLEADO</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-6">
+                                <div class="col-xs-4">
+                                    <label>CEDULA | NOMBRE:<span class="req">*</span></label>
+                                </div>
+                                <div class="col-xs-8">
+                                    <ss-busqueda-rapida data="dataNombre" resultado="rsNombre" key="key"></ss-busqueda-rapida>
+                                </div>
+                                <div class="col-xs-4">
+                                    <label>CARGO:<span class="req">*</span></label>
+                                </div>
+                                <div class="col-xs-8">
+                                    <input class="form-control" ng-required="true" type="text" ng-model="cargo" />
+                                </div>
+                            </div>
+                            <!--MOSTRAR TRALADO-->
+                            <div class="col-xs-6" ng-if="json.tipo == '3'">
+                                <div class="col-xs-4">
+                                    <label>CEDULA | NOMBRE:<span class="req">*</span></label>
+                                </div>
+                                <div class="col-xs-8">
+                                    <ss-busqueda-rapida data="dataNombretras" resultado="rsNombretras" key="key2"></ss-busqueda-rapida>
+                                </div>
+                                <div class="col-xs-4">
+                                    <label>CARGO:<span class="req">*</span></label>
+                                </div>
+                                <div class="col-xs-8">
+                                    <input class="form-control" ng-required="true" type="text" ng-model="cargo2" />
+                                </div>
+                            </div>
+                            <div class="col-xs-12"></div>
+                            <div class="col-xs-2">
+                                <label>JEFE INMEDIATO:<span class="req">*</span></label>
+                            </div>
+                            <div class="col-xs-4">
+                                <select class="form-control" ng-options="c.id as c.nombre for c in jefes" ng-model="json.autoriza">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div ng-if="json.tipo == '3'">
+                                <div class="col-xs-2">
+                                    <label>JEFE INMEDIATO:<span class="req">*</span></label>
+                                </div>
+                                <div class="col-xs-4">
+                                    <select class="form-control" ng-options="c.id as c.nombre for c in jefes" ng-model="json.autoriza_tras">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" style="text-align:center">DESCRIPCION</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>PRODUCTO/ELEMENTO</th>
+                                        <th>MARCA</th>
+                                        <th>IMEI/INV</th>
+                                        <th>ESTADO</th>
+                                        <th>CANTIDAD</th>
+                                        <th colspan="5">
+                                            <table>
+                                                <thead><spam style="margin-left:20px">ACCESORIOS</spam> </thead>
+                                                <tbody>
+                                                    <tr><td class="space-td">C</td><td class="space-td">L</td><td class="space-td">A</td><td class="space-td">V</td><td>F</td></tr>
+                                                </tbody>
+                                            </table>
+                                        </th>
+                                        <th width="110px">VALOR</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="height: 40px;" ng-class="trconf" ng-init="show=true;dell=false;trconf='';">
+                                        <td style="text-align: center"><input type="text" readonly class="form-control" id="object" ng-model="json2.elemento" /></td>
+                                        <td style="text-align: center"><input type="text" class="form-control" readonly ng-model="json2.marca" /></td>
+                                        <td style="text-align: center"><input readonly type="text" id="placa" class="form-control" ng-model="json2.imei_inv" /></td>
+                                        <td style="width:15px;">
+                                            <select class="form-control" ng-model="json2.estado">
+                                                <option value="B">B</option>
+                                                <option value="M">M</option>
+                                            </select>
+                                        </td>
+                                        <td style="text-align: center;width:15px;"><input type="text" class="form-control" ng-model="json2.cantidad" /></td>
+                                        <td ng-show="false" style="text-align: center"><input type="text" class="form-control" ng-model="json2.observacion" /></td>
+                                        <td class="space-check"><input type="checkbox" name="obs" ng-true-value="1" ng-false-value="0" ng-model="json2.c" /></td>
+                                        <td class="space-check"><input type="checkbox" name="obs" ng-true-value="1" ng-false-value="0" ng-model="json2.l" /></td>
+                                        <td class="space-check"><input type="checkbox" name="obs" ng-true-value="1" ng-false-value="0" ng-model="json2.a" /></td>
+                                        <td class="space-check"><input type="checkbox" name="obs" ng-true-value="1" ng-false-value="0" ng-model="json2.v" /></td>
+                                        <td class="space-check"><input type="checkbox" name="obs" ng-true-value="1" ng-false-value="0" ng-model="json2.f" /></td>
+                                        <td style="text-align: center"><input type="text" class="form-control" readonly ng-model="json2.valor" /></td>
+                                        <td style="text-align:center" ng-show="sh_add">
+                                            <button type="button" class="btn btn-primary btn-circle" ng-click="add()" id="add">
+                                                <i class="glyphicon glyphicon-plus"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr ng-repeat="item in grilla track by $index" ng-class="trdell" ng-init="show=true">
+                                        <td>{{item.elemento}}</td>
+                                        <td>{{item.marca}}</td>
+                                        <td>{{item.imei_inv}}</td>
+                                        <td>{{item.estado}}</td>
+                                        <td>{{item.cantidad}}</td>
+                                        <td><input type="checkbox" name="check" ng-true-value="1" ng-false-value="0" ng-model="item.c" /></td>
+                                        <td><input type="checkbox" name="check" ng-true-value="1" ng-false-value="0" ng-model="item.l" /></td>
+                                        <td><input type="checkbox" name="check" ng-true-value="1" ng-false-value="0" ng-model="item.a" /></td>
+                                        <td><input type="checkbox" name="check" ng-true-value="1" ng-false-value="0" ng-model="item.v" /></td>
+                                        <td><input type="checkbox" name="check" ng-true-value="1" ng-false-value="0" ng-model="item.f" /></td>
+                                        <td>{{item.valor}}</td>
+                                        <td style="text-align: center;" ng-show="sh_edit">
+                                            <button type="button" class="btn btn-primary btn-circle" ng-click="load_edit(item,$index)" id="add"><i class="glyphicon glyphicon-pencil"></i></button>
+                                        </td>
+                                        <td style="text-align: center;" ng-show="sh_add">
+                                            <span class="btn btn-danger btn-xs" ng-show="show" ng-disabled="delete" ng-click="deleteGrilla($index)">
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                Remover
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <span style="font-size:13px">C= Cargador - L= Lapiz - A= Audifonos - V= Vidrio templado - F=Forro</span>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" style="text-align:center">OBSERVACIONES<span class="req">*</span></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-12">
+                                <textarea class="form-control" ng-required="true" name="OBSERVACIONES" ng-model="json.observacion" ng-change="json.observacion = json.observacion.toUpperCase()"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <button ng-show="false" type="button" class="btn btn-primary btn-imprimir" ng-click="search_pro()" id="buscar_pro" style="width:90px"> Si </button>
+        <button ng-show="false" type="button" class="btn btn-primary btn-imprimir" ng-click="search_pro()" id="buscar_obj" style="width:90px"> Si </button>
+        <!--MODAL-->
+        <div class="sv-modal-wrapper no-print" ng-class="openModaConfirmar ? 'active':''">
+            <div class="sv-modal">
+                <div class="sv-modal-head">
+                    <label style="color:#fff">QUE TIPO DE ACTA DESEA EDITAR</label>
+                    <button ng-click="closemodal()" class="btn btn-default btn-xs">X</button>
+                </div>
+                <div class="sv-modal-body">
+                    <div class="sv-content">
+                        <div class="col-xs-12">
+                            <div class="col-xs-12" style="text-align:center">
+                                <label class="radio-inline">
+                                    <input type="radio" name="tipo" value="1" ng-model="radiotbnacta" />ENTREGA
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="tipo" value="2" ng-model="radiotbnacta" />DEVOLUCION
+                                </label>
+                            </div>
+                            <div class="col-xs-3"></div>
+                            <div class="col-xs-6" style="margin-top:20px;text-align:center">
+                                <button type="button" class="btn btn-primary btn-imprimir" ng-click="aceptar()" style="width:90px"> Aceptar </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="print">
+            <table id="bord" class="table-hover">
+                <tbody>
+                    <tr>
+                        <td id="bord" rowspan="4" style="text-align:center;width:20% "><img style="width:200px;padding:5px" src="{{ruta}}" /></td>
+
+                        <td id="bord" rowspan="4" style="text-align:center;width:52%"><h3><b>ACTA DE ENTREGA ELEMENTOS DEVOLUTIVOS</b></h3></td>
+                        <td id="bord"><b>Codigo:&nbsp;</b><span>{{cod_emp}}</span></td>
+                    </tr>
+
+                    <tr><td id="bord"><b>Version:&nbsp;</b><span>001</span></td></tr>
+                    <tr>
+                        <td id="bord"><b>Fecha Vigencia:</b><span>01/08/2018</span></td>
+                    </tr>
+                    <tr>
+                        <td id="bord"><b>Pag</b><span>1 de 1</span></td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <div class="col-xs-5" style="margin-top:10px">
+                <div class="col-xs-5">
+                    <label>FECHA:</label>
+                </div>
+                <div class="col-xs-7">
+                    <span>{{convert(json.fecha)}}</span>
+                </div>
+            </div>
+            <div class="col-xs-7" style="margin-top:10px;">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td id="bord" style="text-align:center">CENTRO DE COSTO ASIGNADO:</td>
+                            <td id="bord" style="text-align:center">{{ccosto}}</td>
+                        </tr>
+                        <tr>
+                            <td id="bord" style="text-align:center">CENTRO DE COSTO PROVENIENTE:</td>
+                            <td id="bord" style="text-align:center">{{ccosto_tras}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xs-12">
+                <div class="col-xs-2">
+                    <label class="radio-inline">
+                        <input type="radio" name="tipo_ent" value="1" ng-model="json.tipo" />ENTREGA
+                    </label>
+                </div>
+                <div class="col-xs-2">
+                    <label class="radio-inline">
+                        <input type="radio" name="tipo_ent" value="2" ng-model="json.tipo" />DEVOLUCION
+                    </label>
+                </div>
+                <div class="col-xs-2" style="margin-left:30px;">
+                    <label class="radio-inline">
+                        <input type="radio" name="tipo_ent" value="3" ng-model="json.tipo" />TRASLADO
+                    </label>
+                </div>
+                <div class="col-xs-2">
+                    <label class="radio-inline">
+                        <input type="radio" name="tipo_ent" value="4" ng-model="json.tipo" />REPARACION
+                    </label>
+                </div>
+                <div class="col-xs-2" style="margin-left:30px;">
+                    <label class="radio-inline">
+                        <input type="radio" name="tipo_ent" value="5" ng-model="json.tipo" />PRESTAMO
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-12"  ng-if="json.tipo != '3'">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="text-align:center"><b>DATOS DEL EMPLEADO</b></h3>
+                    </div>
+                    <div class="panel-body">
+                        <table>
+                            <tbody>
+                                <tr><td id="bord" style="width:200px"><b>NOMBRE COMPLETO:</b></td><td id="bord" style="width:600px">&nbsp;&nbsp;{{json.nombre_completo}}</td></tr>
+                                <tr><td id="bord"><b>CEDULA:</b></td><td id="bord">&nbsp;&nbsp;{{json.ced_empl}}</td></tr>
+                                <tr><td id="bord"><b>CARGO:</b></td><td id="bord">&nbsp;&nbsp;{{cargo}}</td></tr>
+                                <tr><td id="bord"><b>JEFE INMEDIATO:</b></td><td id="bord">&nbsp;&nbsp;{{jefe_inmediato}}</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                <div class="col-xs-6" ng-if="json.tipo == '3'">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" style="text-align:center"><b>DATOS DEL EMPLEADO ENTREGA</b></h3>
+                        </div>
+                        <div class="panel-body">
+                            <table>
+                                <tbody>
+                                    <tr><td id="bord" style="width:200px"><b>NOMBRE COMPLETO:</b></td><td id="bord" style="width:600px">&nbsp;&nbsp;{{json.nombre_completo}}</td></tr>
+                                    <tr><td id="bord"><b>CEDULA:</b></td><td id="bord">&nbsp;&nbsp;{{json.ced_empl}}</td></tr>
+                                    <tr><td id="bord"><b>CARGO:</b></td><td id="bord">&nbsp;&nbsp;{{cargo}}</td></tr>
+                                    <tr><td id="bord"><b>JEFE INMEDIATO:</b></td><td id="bord">&nbsp;&nbsp;{{jefe_inmediato}}</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6" ng-if="json.tipo == '3'">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" style="text-align:center"><b>DATOS DEL EMPLEADO RECIBE</b></h3>
+                        </div>
+                        <div class="panel-body">
+                            <table>
+                                <tbody>
+                                    <tr><td id="bord" style="width:200px"><b>NOMBRE COMPLETO:</b></td><td id="bord" style="width:600px">&nbsp;&nbsp;{{json.nombre_completo_tras}}</td></tr>
+                                    <tr><td id="bord"><b>CEDULA:</b></td><td id="bord">&nbsp;&nbsp;{{json.ced_empl_tras}}</td></tr>
+                                    <tr><td id="bord"><b>CARGO:</b></td><td id="bord">&nbsp;&nbsp;{{cargo2}}</td></tr>
+                                    <tr><td id="bord"><b>JEFE INMEDIATO:</b></td><td id="bord">&nbsp;&nbsp;{{autoriza_tras}}</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            <div class="col-xs-12">
+                <div class="panel panel-primary print-border" style="height:300px">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="text-align:center"><b>DESCRIPCION</b></h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-report">
+                            <thead>
+                                <tr>
+                                    <th id="bord">PRODUCTO/ELEMENTO</th>
+                                    <th id="bord">MARCA</th>
+                                    <th id="bord">IMEI/INV</th>
+                                    <th id="bord">ESTADO</th>
+                                    <th id="bord">CANTIDAD</th>
+                                    <th ng-show="false" id="bord">OBSERVACIONES</th>
+                                    <th id="bord" colspan="5">
+                                        <table>
+                                            <thead><spam style="margin-left:40px">ACCESORIOS</spam> </thead>
+                                            <tbody>
+                                                <tr><td class="space-td">C</td><td class="space-td">L</td><td class="space-td">A</td><td class="space-td">V</td><td>F</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </th>
+                                    <th width="110px" id="bord">Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in grilla track by $index" ng-class="trdell" ng-init="show=true">
+                                    <td id="bord">{{item.elemento}}</td>
+                                    <td id="bord">{{item.marca}}</td>
+                                    <td id="bord">{{item.imei_inv}}</td>
+                                    <td id="bord">{{item.estado}}</td>
+                                    <td id="bord">{{item.cantidad}}</td>
+                                    <td id="bord"><input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="item.c" /></td>
+                                    <td id="bord"><input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="item.l" /></td>
+                                    <td id="bord"><input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="item.a" /></td>
+                                    <td id="bord"><input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="item.v" /></td>
+                                    <td id="bord"><input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="item.f" /></td>
+                                    <td id="bord">{{item.valor}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6" style="margin-top:-10px;">
+                <span style="font-size:8px">C= Cargador - L= Lapiz - A= Audifonos - V= Vidrio templado - F=Forro</span>
+                <div class="panel-heading" style="margin-top:-10px;">
+                    <h3 class="panel-title" style="text-align:center"><b>OBSERVACIONES</b></h3>
+                </div>
+                <div class="panel-body" style="height:50px;">
+                    <textarea style="font-size:12px; " id="bord" class="form-control" ng-required="true" name="OBSERVACIONES" ng-model="json.observacion"></textarea>
+                </div>
+            </div>
+            <div class="col-xs-6" style="margin-top:15px;">
+                <h3 class="panel-title" style="text-align:center"><b>PORCENTAJES DE DESCUENTOS</b></h3>
+                <table class="table " style="margin-top:10px;">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center">1-6 Meses</th>
+                            <th style="text-align:center">7-12 Meses</th>
+                            <th style="text-align:center">13-18 Meses</th>
+                            <th style="text-align:center">14-24 Meses</th>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">90%</td>
+                            <td style="text-align:center">70%</td>
+                            <td style="text-align:center">50%</td>
+                            <td style="text-align:center">30%</td>
+                        </tr>
+                    </thead>
+                    <tr><td colspan="4"> <p style="text-align:justify;font-size:8px;line-height:1.1 !important;">En caso de hurto el funcionario tiene 72 horas para establecer la denuncia con las entidades pertinente y entregar al área encargada en la empresa. si se presenta perdida o daño se aplicaran los descuentos segun correnponde en la tabla basados en la fecha de compra del equipo</p></td></tr>
+                </table>
+            </div>
+            <table class="col-xs-12" style="margin-top:-20px;">
+                <tbody>
+                    <tr>
+                        <td style="text-align:justify;font-size:11px;line-height:1.5">
+                            En la presente acta quedaran consignados los equipos que est&aacute;n bajo mi responsabilidad y  para uso exclusivo de mis funciones laborales.
+                            De igual forma, autorizo a {{nombre_empresa}}, para que descuente de mi nomina, liquidaci&oacute;n de prestaciones sociales y/o indemnizaciones el
+                            valor del producto, equipo o elemento mencionado en el presente documento,  en caso de da&ntilde;o, uso incorrecto, perdida, no devoluci&oacute;n o no  restituci&oacute;n.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="col-xs-4">
+                <label style="border-top: 1px solid; margin-top: 80px; text-align: center;font-size:14px">ENTREGADO POR:</label>
+            </div>
+            <div class="col-xs-4"></div>
+            <div class="col-xs-4">
+                <label style="border-top: 1px solid; margin-top: 80px; text-align: center;font-size:14px">RECIBIDO POR:</label>
+            </div>
+        </div>
+    </div>
+    <div class="window-footer">
+        <ss-barra formulario="#consumible"
+                  showbtn="showbtn"
+                  disabledbtn="disabledbtn"
+                  nuevo="nuevo()"
+                  editar="editar()"
+                  guardar="guardar()"
+                  actualizar="actualizar()"
+                  eliminar="eliminar()"
+                  imprimir="imprimir()">
+        </ss-barra>
+        <ss-buscador data="dataEmpleado" resultado="rsEmpleado"></ss-buscador>
+        <ss-buscador data="dataBuscador_PRO" resultado="resultadoBRPRO"></ss-buscador>
+        <ss-buscador data="dataBuscador_objeto" resultado="resultado_objeto"></ss-buscador>
+        <ss-buscador data="dataBuscador_AF" resultado="rsBuscador_AF"></ss-buscador>
+        <ss-buscador data="data_consumible" resultado="rs_consumible"></ss-buscador>
+    </div>
+</div>
+<style>
+
+    #bord {
+        border: solid 1px;
+        line-height: 20px;
+    }
+
+    .table-report {
+        border: solid 1px;
+    }
+
+    .btn-custom {
+        display: block;
+        height: 25px;
+        text-align: center;
+        border: 1px solid;
+        border-color: #ccc;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+
+    .centermodal {
+        width: 50%;
+        max-width: 200px;
+        min-width: 100px;
+        margin: 0 auto;
+    }
+
+    .botonmodal {
+        margin-top: 18px;
+        display: block;
+        border: 3px solid;
+        border-color: #ccc;
+    }
+
+    .radios {
+    }
+
+    .in-line-content.title label {
+        color: #2196F3;
+    }
+
+        .in-line-content.title label.float-left {
+            padding-top: 0;
+        }
+
+    .in-line-content .border {
+        overflow: hidden;
+        padding-bottom: 5px;
+    }
+
+    .space-td {
+        width:40px;
+    }
+
+    .space-check {
+        width: 30px;
+    }
+</style>
