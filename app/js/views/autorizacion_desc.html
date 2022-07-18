@@ -1,0 +1,128 @@
+﻿<div ng-controller="DecuentosController" class="window-wrapper">
+    <div class="window-body">
+        <form id="descuentos" name="descuentos" class="form-horizontal no-print"  autocomplete="off">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-6">
+                <div class="col-xs-12" style="margin-top:60px;">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Autorizacion de descuento</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12">
+                                    <div class="col-xs-3">
+                                        <label>Fecha<span class="req">*</span></label>
+                                        <input type="date" ng-model="json.fecha" ng-required="true" name="FECHA" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-xs-8">
+                                    <label>CEDULA | NOMBRE:<span class="req">*</span></label>
+                                    <ss-busqueda-rapida data="dataEmpleado" resultado="rsEmpleado" key="key"></ss-busqueda-rapida>
+                                </div>
+                                <div class="col-xs-4">
+                                    <label>Empresa</label>
+                                    <select class="form-control" ng-options="c.id as c.nombre for c in empresa" ng-model="json.empresa">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-2">
+                                <label>Valor $<span class="req">*</span></label>
+                                <input type="number" class="form-control" ng-required="true" name="VALOR $" ng-model="json.valor" />
+                            </div>
+                            <div class="col-xs-1">
+                                <label>Cuotas.</label>
+                                <input type="number" class="form-control" ng-required="true" name="CUOTAS" ng-model="json.cuotas" />
+                            </div>
+                            <div class="col-xs-9">
+                                <label>Valor en letras<span class="req">*</span></label>
+                                <input type="text" class="form-control" ng-required="true" name="VALOR LETRAS" ng-model="numtoleters(json.valor)" readonly />
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="col-xs-5">
+                                    <label>Elemento descuento<span class="req">*</span></label>
+                                    <div class="col-xs-6">
+                                        <label class="radio-inline">
+                                            <input type="radio" id="acta" name="tipo_desc" value="1" ng-model="json.tipo_desc" />Articulo
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="tipo_desc" value="2" ng-model="json.tipo_desc" />Accesorio
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-xs-7" ng-if="json.tipo_desc == '1'">
+                                    <label>Articulo<span class="req">*</span></label>
+                                    <ss-busqueda-rapida data="dataArticulos" resultado="rsArticulos" key="key1"></ss-busqueda-rapida>
+                                </div>
+                            </div>
+                            <div class="col-xs-4" ng-if="json.tipo_desc == '1'">
+                                <label>Tipo descuento<span class="req">*</span></label>
+                                <select class="form-control" name="TIPO DESCUENTO" ng-model="json.forma_desc">
+                                    <option value=""></option>
+                                    <option value="REPARACION">REPARACION</option>
+                                    <option value="VENTA">VENTA</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-8">
+                                <label>Motivo<span class="req">*</span></label>
+                                <input type="text" class="form-control" ng-required="true" name="MOTIVO" ng-model="json.motivo" />
+                            </div>
+                        </div> 
+                        </div>
+                    </div>
+                </div>
+        </form>
+
+        <div class="print">
+            <p>Barranquilla,&nbsp;{{json.fech}}</p>
+            <br />
+            <br />
+            <h4 style="text-align:center"><b>AUTORIZACION DE DESCUENTO</b></h4>
+            <br />
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+                <p>
+                    Yo &nbsp;{{json.nombre }}&nbsp;identificado con Cedula de Ciudadanía Numero&nbsp;{{json.cedula}}&nbsp;,
+                    Autorizo expresamente a la empresa &nbsp;{{name_empresa}}&nbsp;, para que retenga o compense de mi salario mensual,
+                    la suma de dinero adeudada en favor de la empresa, por valor de &nbsp;{{numtoleters(json.valor)}}&nbsp;($&nbsp;{{json.valor}}).
+                </p>
+                <br />
+                <p> Autorizo a que el descuento sea realizado en &nbsp;{{json.cuotas}}&nbsp; Cuotas salariales.</p>
+                <br />
+                <p>
+                    Así mismo para que se descuente, retenga o compense una vez terminado mi contrato de trabajo, el saldo insoluto de la deuda con
+                    toda suma de dinero que me corresponda en la liquidación final de prestaciones sociales, salario e indemnizaciones de conformidad con lo disputado en el Art. 59 del Código Sustantivo del Trabajo.
+                </p>
+                <br />
+                <br />
+                <p>Atentamente,</p>
+                <br />
+                <br />
+                <br />
+                <p>
+                    NOMBRE:
+                    <br />
+                    FIRMA:
+                    <br />
+                    C.C.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="window-footer">
+        <ss-barra formulario="#descuentos"
+                  showbtn="showbtn"
+                  disabledbtn="disabledbtn"
+                  nuevo="nuevo()"
+                  editar="editar()"
+                  guardar="guardar()"
+                  actualizar="actualizar()"
+                  eliminar="eliminar()">
+        </ss-barra>
+    </div>
+</div>

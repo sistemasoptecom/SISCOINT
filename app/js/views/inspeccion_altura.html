@@ -1,0 +1,1731 @@
+<div ng-controller="InspeccionesController" class="window-wrapper">
+    <div class="window-body">
+        <form id="inspec_altura" name="inspec_altura" class="form-horizontal no-print" autocomplete="off">
+            <div class="col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">INSPECCION DE EQUIPOS DE ALTURA</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-xs-4">
+                            <label>TECNICO 1<span class="req">*</span></label>
+                            <ss-busqueda-rapida data="dataTecnico1" resultado="rsTecnico1" key="key"></ss-busqueda-rapida>
+                        </div>
+                        <div class="col-xs-4">
+                            <label>TECNICO 2<span class="req">*</span></label>
+                            <ss-busqueda-rapida data="dataTecnico2" resultado="rsTecnico2" key="key1"></ss-busqueda-rapida>
+                        </div>
+                        <div class="col-xs-2">
+                            <label>AREA<span class="req">*</span></label>
+                            <select class="form-control" ng-model="json.area" ng-required="true" name="AREA">
+                                <option value=""></option>
+                                <option value="INSTALACIONES">INSTALACIONES</option>
+                                <option value="MANTENIMIENTO">MANTENIMIENTO</option>
+                                <option value="RED EXTERNA">RED EXTERNA</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-2">
+                            <label>FECHA DE INSPECCION<span class="req">*</span></label>
+                            <input class="form-control" type="date" ng-model="json.f_inspeccion" ng-required="true" name="FECHA" />
+                        </div>
+                        <button ng-show="false" type="button" class="btn btn-primary btn-imprimir" ng-click="search_pro()" id="buscar_obj" style="width:90px"> Si </button>
+                        <div class="col-xs-12">
+                            <table class="table table-bordered table-hover" style="padding:3px">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="3" style="width:50px">ITEM</th>
+                                        <th rowspan="3" style="width: 200px"></th>
+                                        <th rowspan="3" style="width:500px">COMPOSICION ESTRUCTURAL</th>
+                                        <th colspan="6">ESTADO ESTRUCTURAL</th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="3">Tecnico 1</th>
+                                        <th colspan="3">Tecnico 2</th>
+                                    </tr>
+                                    <tr>
+                                        <th>B</th>
+                                        <th>R</th>
+                                        <th>M</th>
+                                        <th>B</th>
+                                        <th>R</th>
+                                        <th>M</th>
+                                    </tr>
+
+
+                                </thead>
+                                <tbody>
+                                    <!--BLOQUE-->
+                                    <tr>
+                                        <td rowspan="9"><label class="center-tableitem">1</label></td>
+                                        <td rowspan="9"><label class="center-table">ARNES</label></td>
+                                        <td>Codigo</td>
+                                        <td colspan="3"> <input class="form-control" type="text" readonly ng-model="json.arn_codigo1" ng-focus="validarcod(1,1.1,1)" /></td>
+                                        <td colspan="3"> <input class="form-control" type="text" readonly ng-model="json.arn_codigo2" ng-focus="validarcod(1,1.2,2)" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Serial</td>
+       
+                                        <td colspan="3"> <input class="form-control" type="text" readonly ng-model="json.arn_serial1" /></td>
+                                        <td colspan="3"> <input class="form-control" type="text" readonly ng-model="json.arn_serial2" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lote</td>
+                                        <td colspan="3"> <input class="form-control" type="text" readonly ng-model="json.arn_lote1" /></td>
+                                        <td colspan="3"> <input class="form-control" type="text" readonly ng-model="json.arn_lote2" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Reata</td>
+                                        <td class="radiobtn"><input type="radio" id="reata_arn1" name="reata_arn1" value="1" ng-model="json.est_re1_arn" /></td>
+                                        <td class="radiobtn"><input type="radio" id="reata_arn1" name="reata_arn1" value="2" ng-model="json.est_re1_arn" /></td>
+                                        <td class="radiobtn"><input type="radio" id="reata_arn1" name="reata_arn1" value="3" ng-model="json.est_re1_arn" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="reata_arn1" name="reata_arn1" value="5" ng-model="json.est_re1_arn" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="reata_arn2" name="reata_arn2" value="6" ng-model="json.est_re2_arn" /></td>
+                                        <td class="radiobtn"><input type="radio" id="reata_arn2" name="reata_arn2" value="7" ng-model="json.est_re2_arn" /></td>
+                                        <td class="radiobtn"><input type="radio" id="reata_arn2" name="reata_arn2" value="8" ng-model="json.est_re2_arn" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="reata_arn2" name="reata_arn2" value="9" ng-model="json.est_re2_arn" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.obs_reata1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_reata2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Etiqueta</td>
+                                        <td class="radiobtn"><input type="radio" id="etiqueta_arn1" name="etiqueta_arn1" value="1" ng-model="json.est_etq_arn1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="etiqueta_arn1" name="etiqueta_arn1" value="2" ng-model="json.est_etq_arn1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="etiqueta_arn1" name="etiqueta_arn1" value="3" ng-model="json.est_etq_arn1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="etiqueta_arn1" name="etiqueta_arn1" value="4" ng-model="json.est_etq_arn1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="etiqueta_arn2" name="etiqueta_arn2" value="5" ng-model="json.est_etq_arn2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="etiqueta_arn2" name="etiqueta_arn2" value="6" ng-model="json.est_etq_arn2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="etiqueta_arn2" name="etiqueta_arn2" value="7" ng-model="json.est_etq_arn2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="etiqueta_arn2" name="etiqueta_arn2" value="8" ng-model="json.est_etq_arn2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.obs_etq_arn1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_etq_arn2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Argollas,Hebillas</td>
+                                        <td class="radiobtn"><input type="radio" id="est_ah_arn1" name="est_ah_arn1" value="1" ng-model="json.est_ah_arn1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_ah_arn1" name="est_ah_arn1" value="2" ng-model="json.est_ah_arn1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_ah_arn1" name="est_ah_arn1" value="3" ng-model="json.est_ah_arn1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_ah_arn1" name="est_ah_arn1" value="4" ng-model="json.est_ah_arn1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_ah_arn2" name="est_ah_arn2" value="5" ng-model="json.est_ah_arn2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_ah_arn2" name="est_ah_arn2" value="6" ng-model="json.est_ah_arn2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_ah_arn2" name="est_ah_arn2" value="7" ng-model="json.est_ah_arn2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_ah_arn2" name="est_ah_arn2" value="8" ng-model="json.est_ah_arn2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.obs_hb_arn1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_hb_arn2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Costuras/Hilos</td>
+                                        <td class="radiobtn"><input type="radio" id="est_ch_arn1" name="est_ch_arn1" value="1" ng-model="json.est_ch_arn1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_ch_arn1" name="est_ch_arn1" value="2" ng-model="json.est_ch_arn1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_ch_arn1" name="est_ch_arn1" value="3" ng-model="json.est_ch_arn1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_ch_arn1" name="est_ch_arn1" value="4" ng-model="json.est_ch_arn1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_ch_arn2" name="est_ch_arn2" value="5" ng-model="json.est_ch_arn2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_ch_arn2" name="est_ch_arn2" value="6" ng-model="json.est_ch_arn2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_ch_arn2" name="est_ch_arn2" value="7" ng-model="json.est_ch_arn2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_ch_arn2" name="est_ch_arn2" value="8" ng-model="json.est_ch_arn2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.obs_ch_arn1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_ch_arn2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Ara&ntilde;a</td>
+                                        <td class="radiobtn"><input type="radio" id="est_ara_arn1" name="est_ara_arn1" value="1" ng-model="json.est_ara_arn1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_ara_arn1" name="est_ara_arn1" value="2" ng-model="json.est_ara_arn1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_ara_arn1" name="est_ara_arn1" value="3" ng-model="json.est_ara_arn1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_ara_arn1" name="est_ara_arn1" value="4" ng-model="json.est_ara_arn1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_ara_arn2" name="est_ara_arn2" value="5" ng-model="json.est_ara_arn2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_ara_arn2" name="est_ara_arn2" value="6" ng-model="json.est_ara_arn2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_ara_arn2" name="est_ara_arn2" value="7" ng-model="json.est_ara_arn2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_ara_arn2" name="est_ara_arn2" value="8" ng-model="json.est_ara_arn2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.obs_ara_arn1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_ara_arn2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Otro</td>
+                                        <td class="radiobtn"><input type="radio" id="est_otro_arn1" name="est_otro_arn1" value="1" ng-model="json.est_otro_arn1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_otro_arn1" name="est_otro_arn1" value="2" ng-model="json.est_otro_arn1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_otro_arn1" name="est_otro_arn1" value="3" ng-model="json.est_otro_arn1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_otro_arn1" name="est_otro_arn1" value="4" ng-model="json.est_otro_arn1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_otro_arn2" name="est_otro_arn2" value="5" ng-model="json.est_otro_arn2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_otro_arn2" name="est_otro_arn2" value="6" ng-model="json.est_otro_arn2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_otro_arn2" name="est_otro_arn2" value="7" ng-model="json.est_otro_arn2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_otro_arn2" name="est_otro_arn2" value="8" ng-model="json.est_otro_arn2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.obs_otro_arn1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_otro_arn2" /></td>-->
+                                    </tr>
+                                    <!--FIN BLOQUE-->
+                                    <!--BLOQUE-->
+                                    <tr>
+                                        <td rowspan="10"><label class="center-tableitem">2</label></td>
+                                        <td rowspan="10"><label class="center-table">ESLINGA PARA POSICIONAMIENTO Reata/Cuerda</label></td>
+                                        <td>Codigo</td>
+                                      
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.cod_erc1" readonly ng-focus="validarcod(2,2.1,1)" /></td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.cod_erc2" readonly ng-focus="validarcod(2,2.2,2)" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Serial</td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.serial_erc1" readonly /></td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.serial_erc2" readonly /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lote</td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.lote_erc1" readonly /></td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.lote_erc2" readonly /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Reata/Cuerda</td>
+                                        <td class="radiobtn"><input type="radio" id="est_eprc1" name="est_eprc1" value="1" ng-model="json.est_eprc1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eprc1" name="est_eprc1" value="2" ng-model="json.est_eprc1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eprc1" name="est_eprc1" value="3" ng-model="json.est_eprc1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_eprc1" name="est_eprc1" value="4" ng-model="json.est_eprc1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_eprc2" name="est_eprc2" value="5" ng-model="json.est_eprc2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eprc2" name="est_eprc2" value="6" ng-model="json.est_eprc2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eprc2" name="est_eprc2" value="7" ng-model="json.est_eprc2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_eprc2" name="est_eprc2" value="8" ng-model="json.est_eprc2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.obs_eprc1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_eprc2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Hebilla</td>
+                                        <td class="radiobtn"><input type="radio" id="est_eph1" name="est_eph1" value="1" ng-model="json.est_eph1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eph1" name="est_eph1" value="2" ng-model="json.est_eph1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eph1" name="est_eph1" value="3" ng-model="json.est_eph1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_eph1" name="est_eph1" value="4" ng-model="json.est_eph1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_eph2" name="est_eph2" value="5" ng-model="json.est_eph2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eph2" name="est_eph2" value="6" ng-model="json.est_eph2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eph2" name="est_eph2" value="7" ng-model="json.est_eph2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_eph2" name="est_eph2" value="8" ng-model="json.est_eph2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.obs_eph1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_eph2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Ganchos</td>
+                                        <td class="radiobtn"><input type="radio" id="est_epg1" name="est_epg1" value="1" ng-model="json.est_epg1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_epg1" name="est_epg1" value="2" ng-model="json.est_epg1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_epg1" name="est_epg1" value="3" ng-model="json.est_epg1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_epg1" name="est_epg1" value="4" ng-model="json.est_epg1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_epg2" name="est_epg2" value="5" ng-model="json.est_epg2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_epg2" name="est_epg2" value="6" ng-model="json.est_epg2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_epg2" name="est_epg2" value="7" ng-model="json.est_epg2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_epg2" name="est_epg2" value="8" ng-model="json.est_epg2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.obs_epg1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_epg2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Etiqueta</td>
+                                        <td class="radiobtn"><input type="radio" id="est_epe1" name="est_epe1" value="1" ng-model="json.est_epe1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_epe1" name="est_epe1" value="2" ng-model="json.est_epe1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_epe1" name="est_epe1" value="3" ng-model="json.est_epe1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_epe1" name="est_epe1" value="4" ng-model="json.est_epe1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_epe2" name="est_epe2" value="5" ng-model="json.est_epe2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_epe2" name="est_epe2" value="6" ng-model="json.est_epe2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_epe2" name="est_epe2" value="7" ng-model="json.est_epe2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_epe2" name="est_epe2" value="8" ng-model="json.est_epe2" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_epe1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_epe2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Costuras/Hilos</td>
+                                        <td class="radiobtn"><input type="radio" id="est_epch1" name="est_epch1" value="1" ng-model="json.est_epch1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_epch1" name="est_epch1" value="2" ng-model="json.est_epch1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_epch1" name="est_epch1" value="3" ng-model="json.est_epch1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_epch1" name="est_epch1" value="4" ng-model="json.est_epch1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_epch2" name="est_epch2" value="5" ng-model="json.est_epch2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_epch2" name="est_epch2" value="6" ng-model="json.est_epch2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_epch2" name="est_epch2" value="7" ng-model="json.est_epch2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_epch2" name="est_epch2" value="8" ng-model="json.est_epch2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.obs_epch1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_epch2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Guarda cabos</td>
+                                        <td class="radiobtn"><input type="radio" id="est_epgc1" name="est_epgc1" value="1" ng-model="json.est_epgc1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_epgc1" name="est_epgc1" value="2" ng-model="json.est_epgc1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_epgc1" name="est_epgc1" value="3" ng-model="json.est_epgc1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_epgc1" name="est_epgc1" value="4" ng-model="json.est_epgc1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_epgc2" name="est_epgc2" value="5" ng-model="json.est_epgc2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_epgc2" name="est_epgc2" value="6" ng-model="json.est_epgc2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_epgc2" name="est_epgc2" value="7" ng-model="json.est_epgc2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_epgc2" name="est_epgc2" value="8" ng-model="json.est_epgc2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.obs_epgc1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_epgc2" /></td>-->
+                                    </tr>
+                                    <tr>
+                                        <td>Otro</td>
+                                        <td class="radiobtn"><input type="radio" id="est_epotros1" name="est_epotros1" value="1" ng-model="json.est_epotros1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_epotros1" name="est_epotros1" value="2" ng-model="json.est_epotros1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_epotros1" name="est_epotros1" value="3" ng-model="json.est_epotros1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_epotros1" name="est_epotros1" value="4" ng-model="json.est_epotros1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_epotros2" name="est_epotros2" value="5" ng-model="json.est_epotros2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_epotros2" name="est_epotros2" value="6" ng-model="json.est_epotros2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_epotros2" name="est_epotros2" value="7" ng-model="json.est_epotros2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_epotros2" name="est_epotros2" value="8" ng-model="json.est_epotros2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.obs_epotros1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_epotros2" /></td>-->
+                                    </tr>
+                                    <!--FIN BLOQUE-->
+                                    <!--BLOQUE-->
+                                    <tr>
+                                        <td rowspan="10"><label class="center-tableitem">3</label></td>
+                                        <td rowspan="10"><label class="center-table">ESLINGA CON ABSORVEDOR DE IMPACTO</label></td>
+                                        <td>Codigo</td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.codigo_eai1" readonly ng-focus="validarcod(3,3.1,1)" /></td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.codigo_eai2" readonly ng-focus="validarcod(3,3.2,2)" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Serial</td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.serial_eai1" readonly /></td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.serial_eai2" readonly /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lote</td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.lote_eai1" readonly /></td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.lote_eai2" readonly /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Reata</td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairt1" name="est_eairt1" value="1" ng-model="json.est_eairt1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairt1" name="est_eairt1" value="2" ng-model="json.est_eairt1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairt1" name="est_eairt1" value="3" ng-model="json.est_eairt1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_eairt1" name="est_eairt1" value="4" ng-model="json.est_eairt1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_eairt2" name="est_eairt2" value="5" ng-model="json.est_eairt2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairt2" name="est_eairt2" value="6" ng-model="json.est_eairt2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairt2" name="est_eairt2" value="7" ng-model="json.est_eairt2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_eairt2" name="est_eairt2" value="8" ng-model="json.est_eairt2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.obs_eair1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_eair2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Costuras/Hilos</td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairch1" name="est_eairch1" value="1" ng-model="json.est_eairch1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairch1" name="est_eairch1" value="2" ng-model="json.est_eairch1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairch1" name="est_eairch1" value="3" ng-model="json.est_eairch1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_eairch1" name="est_eairch1" value="4" ng-model="json.est_eairch1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_eairch2" name="est_eairch2" value="5" ng-model="json.est_eairch2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairch2" name="est_eairch2" value="6" ng-model="json.est_eairch2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairch2" name="est_eairch2" value="7" ng-model="json.est_eairch2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_eairch2" name="est_eairch2" value="8" ng-model="json.est_eairch2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.obs_eairch1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_eairch2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Hebilla solo es es graduable</td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairhg1" name="est_eairhg1" value="1" ng-model="json.est_eairhg1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairhg1" name="est_eairhg1" value="2" ng-model="json.est_eairhg1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairhg1" name="est_eairhg1" value="3" ng-model="json.est_eairhg1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_eairhg1" name="est_eairhg1" value="4" ng-model="json.est_eairhg1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_eairhg2" name="est_eairhg2" value="5" ng-model="json.est_eairhg2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairhg2" name="est_eairhg2" value="6" ng-model="json.est_eairhg2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairhg2" name="est_eairhg2" value="7" ng-model="json.est_eairhg2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_eairhg2" name="est_eairhg2" value="8" ng-model="json.est_eairhg2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.obs_eairhg1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_eairhg2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Paquete reductor de impacto</td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairpri1" name="est_eairpri1" value="1" ng-model="json.est_eairpri1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairpri1" name="est_eairpri1" value="2" ng-model="json.est_eairpri1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairpri1" name="est_eairpri1" value="3" ng-model="json.est_eairpri1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_eairpri1" name="est_eairpri1" value="4" ng-model="json.est_eairpri1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_eairpri2" name="est_eairpri2" value="5" ng-model="json.est_eairpri2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairpri2" name="est_eairpri2" value="6" ng-model="json.est_eairpri2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairpri2" name="est_eairpri2" value="7" ng-model="json.est_eairpri2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_eairpri2" name="est_eairpri2" value="8" ng-model="json.est_eairpri2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.obs_eairpri1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_eairpri2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Ganchos</td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairgan1" name="est_eairgan1" value="1" ng-model="json.est_eairgan1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairgan1" name="est_eairgan1" value="2" ng-model="json.est_eairgan1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairgan1" name="est_eairgan1" value="3" ng-model="json.est_eairgan1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_eairgan1" name="est_eairgan1" value="4" ng-model="json.est_eairgan1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_eairgan2" name="est_eairgan2" value="5" ng-model="json.est_eairgan2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairgan2" name="est_eairgan2" value="6" ng-model="json.est_eairgan2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairgan2" name="est_eairgan2" value="7" ng-model="json.est_eairgan2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_eairgan2" name="est_eairgan2" value="8" ng-model="json.est_eairgan2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.obs_eairgan1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_eairgan2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Etiqueta</td>
+                                        <td class="radiobtn"><input type="radio" id="est_eaire1" name="est_eaire1" value="1" ng-model="json.est_eaire1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eaire1" name="est_eaire1" value="2" ng-model="json.est_eaire1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eaire1" name="est_eaire1" value="3" ng-model="json.est_eaire1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_eaire1" name="est_eaire1" value="4" ng-model="json.est_eaire1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_eaire2" name="est_eaire2" value="5" ng-model="json.est_eaire2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eaire2" name="est_eaire2" value="6" ng-model="json.est_eaire2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eaire2" name="est_eaire2" value="7" ng-model="json.est_eaire2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_eaire2" name="est_eaire2" value="8" ng-model="json.est_eaire2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="jsoon.obs_eaire1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="jsoon.obs_eaire2" /></td>-->
+                                    </tr>
+                                    <tr>
+                                        <td>Otro</td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairotro1" name="est_eairotro1" value="1" ng-model="json.est_eairotro1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairotro1" name="est_eairotro1" value="2" ng-model="json.est_eairotro1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairotro1" name="est_eairotro1" value="3" ng-model="json.est_eairotro1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_eairotro1" name="est_eairotro1" value="4" ng-model="json.est_eairotro1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_eairotro2" name="est_eairotro2" value="5" ng-model="json.est_eairotro2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairotro2" name="est_eairotro2" value="6" ng-model="json.est_eairotro2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_eairotro2" name="est_eairotro2" value="7" ng-model="json.est_eairotro2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_eairotro2" name="est_eairotro2" value="8" ng-model="json.est_eairotro2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.obs_eairotro1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_eairotro2" /></td>-->
+                                    </tr>
+                                    <!--FIN BLOQUE-->
+                                    <!--BLOQUE-->
+                                    <tr>
+                                        <td rowspan="8"><label class="center-tableitem">4</label></td>
+                                        <td rowspan="8"><label class="center-table">TIE OFF ADAPTADOR DE ANCLAJE</label></td>
+                                        <td>Codigo</td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.codigo_tieoff1" readonly ng-focus="validarcod(4,4.1,1)" /></td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.codigo_tieoff2" readonly ng-focus="validarcod(4,4.2,2)" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Serial</td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.serial_tieoff1" readonly /></td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.serial_tieoff2" readonly /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lote</td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.lote_tieoff1" readonly /></td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.lote_tieoff2" readonly /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Reata</td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_tr1" name="est_tieoff_tr1" value="1" ng-model="json.est_tieoff_tr1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_tr1" name="est_tieoff_tr1" value="2" ng-model="json.est_tieoff_tr1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_tr1" name="est_tieoff_tr1" value="3" ng-model="json.est_tieoff_tr1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_tieoff_tr1" name="est_tieoff_tr1" value="4" ng-model="json.est_tieoff_tr1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_tr2" name="est_tieoff_tr2" value="5" ng-model="json.est_tieoff_tr2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_tr2" name="est_tieoff_tr2" value="6" ng-model="json.est_tieoff_tr2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_tr2" name="est_tieoff_tr2" value="7" ng-model="json.est_tieoff_tr2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_tieoff_tr2" name="est_tieoff_tr2" value="8" ng-model="json.est_tieoff_tr2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.obs_tieoff_rt1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_tieoff_rt2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Hilos/Costuras</td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoffhc1" name="est_tieoffhc1" value="1" ng-model="json.est_tieoffhc1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoffhc1" name="est_tieoffhc1" value="2" ng-model="json.est_tieoffhc1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoffhc1" name="est_tieoffhc1" value="3" ng-model="json.est_tieoffhc1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_tieoffhc1" name="est_tieoffhc1" value="4" ng-model="json.est_tieoffhc1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_tieoffhc2" name="est_tieoffhc2" value="5" ng-model="json.est_tieoffhc2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoffhc2" name="est_tieoffhc2" value="6" ng-model="json.est_tieoffhc2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoffhc2" name="est_tieoffhc2" value="7" ng-model="json.est_tieoffhc2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_tieoffhc2" name="est_tieoffhc2" value="8" ng-model="json.est_tieoffhc2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.obs_tieoffhc1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_tieoffhc2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Argollas en O y En D</td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_aod1" name="est_tieoff_aod1" value="1" ng-model="json.est_tieoff_aod1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_aod1" name="est_tieoff_aod1" value="2" ng-model="json.est_tieoff_aod1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_aod1" name="est_tieoff_aod1" value="3" ng-model="json.est_tieoff_aod1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_tieoff_aod1" name="est_tieoff_aod1" value="4" ng-model="json.est_tieoff_aod1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_aod2" name="est_tieoff_aod2" value="5" ng-model="json.est_tieoff_aod2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_aod2" name="est_tieoff_aod2" value="6" ng-model="json.est_tieoff_aod2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_aod2" name="est_tieoff_aod2" value="7" ng-model="json.est_tieoff_aod2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_tieoff_aod2" name="est_tieoff_aod2" value="8" ng-model="json.est_tieoff_aod2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.obs_tieoff_aod1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_tieoff_aod2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Etiqueta</td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_etq1" name="est_tieoff_etq1" value="1" ng-model="json.est_tieoff_etq1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_etq1" name="est_tieoff_etq1" value="2" ng-model="json.est_tieoff_etq1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_etq1" name="est_tieoff_etq1" value="3" ng-model="json.est_tieoff_etq1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_tieoff_etq1" name="est_tieoff_etq1" value="4" ng-model="json.est_tieoff_etq1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_etq2" name="est_tieoff_etq2" value="5" ng-model="json.est_tieoff_etq2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_etq2" name="est_tieoff_etq2" value="6" ng-model="json.est_tieoff_etq2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_etq2" name="est_tieoff_etq2" value="7" ng-model="json.est_tieoff_etq2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_tieoff_etq2" name="est_tieoff_etq2" value="8" ng-model="json.est_tieoff_etq2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.obs_tieoff_etq1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_tieoff_etq2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Otro</td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_otro1" name="est_tieoff_otro1" value="1" ng-model="json.est_tieoff_otro1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_otro1" name="est_tieoff_otro1" value="2" ng-model="json.est_tieoff_otro1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_otro1" name="est_tieoff_otro1" value="3" ng-model="json.est_tieoff_otro1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_tieoff_otro1" name="est_tieoff_otro1" value="4" ng-model="json.est_tieoff_otro1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_otro2" name="est_tieoff_otro2" value="5" ng-model="json.est_tieoff_otro2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_otro2" name="est_tieoff_otro2" value="6" ng-model="json.est_tieoff_otro2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_tieoff_otro2" name="est_tieoff_otro2" value="7" ng-model="json.est_tieoff_otro2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_tieoff_otro2" name="est_tieoff_otro2" value="8" ng-model="json.est_tieoff_otro2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.obs_tieoff_otro1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs_tieoff_otro2" /></td>-->
+
+                                    </tr>
+                                    <!--FIN BLOQUE-->
+                                    <!--BLOQUE-->
+                                    <tr>
+                                        <td rowspan="8"><label class="center-tableitem">5</label></td>
+                                        <td rowspan="8"><label class="center-table">ARRESTADOR</label></td>
+                                        <td>Codigo</td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.cod_arrest1" readonly ng-focus="validarcod(5,5.1,1)" /></td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.cod_arrest2" readonly ng-focus="validarcod(5,5.2,2)" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Serial</td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.serial_arrest1" readonly /></td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.serial_arrest2" readonly /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lote</td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.lote_arrest1" readonly /></td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.lote_arrest2" readonly /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mecanismo de apertura</td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_ma1" name="est_arrest_ma1" value="1" ng-model="json.est_arrest_ma1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_ma1" name="est_arrest_ma1" value="2" ng-model="json.est_arrest_ma1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_ma1" name="est_arrest_ma1" value="3" ng-model="json.est_arrest_ma1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_arrest_ma1" name="est_arrest_ma1" value="4" ng-model="json.est_arrest_ma1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_ma2" name="est_arrest_ma2" value="5" ng-model="json.est_arrest_ma2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_ma2" name="est_arrest_ma2" value="6" ng-model="json.est_arrest_ma2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_ma2" name="est_arrest_ma2" value="7" ng-model="json.est_arrest_ma2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_arrest_ma2" name="est_arrest_ma2" value="8" ng-model="json.est_arrest_ma2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.est_arrest_ma_obs1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.est_arrest_ma_obs2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Corrosion</td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_co1" name="est_arrest_co1" value="1" ng-model="json.est_arrest_co1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_co1" name="est_arrest_co1" value="2" ng-model="json.est_arrest_co1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_co1" name="est_arrest_co1" value="3" ng-model="json.est_arrest_co1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_arrest_co1" name="est_arrest_co1" value="4" ng-model="json.est_arrest_co1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_co2" name="est_arrest_co2" value="5" ng-model="json.est_arrest_co2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_co2" name="est_arrest_co2" value="6" ng-model="json.est_arrest_co2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_co2" name="est_arrest_co2" value="7" ng-model="json.est_arrest_co2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_arrest_co2" name="est_arrest_co2" value="8" ng-model="json.est_arrest_co2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.est_arrest_co_obs1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.est_arrest_co_obs2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Deformaciones(dobladuras)</td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_def1" name="est_arrest_def1" value="1" ng-model="json.est_arrest_def1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_def1" name="est_arrest_def1" value="2" ng-model="json.est_arrest_def1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_def1" name="est_arrest_def1" value="3" ng-model="json.est_arrest_def1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_arrest_def1" name="est_arrest_def1" value="4" ng-model="json.est_arrest_def1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_def2" name="est_arrest_def2" value="5" ng-model="json.est_arrest_def2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_def2" name="est_arrest_def2" value="6" ng-model="json.est_arrest_def2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_def2" name="est_arrest_def2" value="7" ng-model="json.est_arrest_def2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_arrest_def2" name="est_arrest_def2" value="8" ng-model="json.est_arrest_def2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.est_arrest_def_obs1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.est_arrest_def_obs2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Grietas</td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_gri1" name="est_arrest_gri1" value="1" ng-model="json.est_arrest_gri1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_gri1" name="est_arrest_gri1" value="2" ng-model="json.est_arrest_gri1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_gri1" name="est_arrest_gri1" value="3" ng-model="json.est_arrest_gri1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_arrest_gri1" name="est_arrest_gri1" value="4" ng-model="json.est_arrest_gri1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_gri2" name="est_arrest_gri2" value="5" ng-model="json.est_arrest_gri2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_gri2" name="est_arrest_gri2" value="6" ng-model="json.est_arrest_gri2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_gri2" name="est_arrest_gri2" value="7" ng-model="json.est_arrest_gri2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_arrest_gri2" name="est_arrest_gri2" value="8" ng-model="json.est_arrest_gri2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.est_arrest_gri_obs1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.est_arrest_gri_obs2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Otro</td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_otro1" name="est_arrest_otro1" value="1" ng-model="json.est_arrest_otro1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_otro1" name="est_arrest_otro1" value="2" ng-model="json.est_arrest_otro1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_otro1" name="est_arrest_otro1" value="3" ng-model="json.est_arrest_otro1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_arrest_otro1" name="est_arrest_otro1" value="4" ng-model="json.est_arrest_otro1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_otro2" name="est_arrest_otro2" value="5" ng-model="json.est_arrest_otro2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_otro2" name="est_arrest_otro2" value="6" ng-model="json.est_arrest_otro2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_arrest_otro2" name="est_arrest_otro2" value="7" ng-model="json.est_arrest_otro2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_arrest_otro2" name="est_arrest_otro2" value="8" ng-model="json.est_arrest_otro2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.est_arrest_otro_obs1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.est_arrest_otro_obs2" /></td>-->
+
+                                    </tr>
+                                    <!--FIN BLOQUE-->
+                                    <!--BLOQUE-->
+                                    <tr>
+                                        <td rowspan="8"><label class="center-tableitem">6</label></td>
+                                        <td rowspan="8"><label class="center-table">LINEA DE VIDA</label></td>
+                                        <td>Codigo</td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.codigo_lv1" readonly ng-focus="validarcod(6,6.1,1)" /></td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.codigo_lv2" readonly ng-focus="validarcod(6,6.2,2)" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Serial</td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.serial_lv1" readonly /></td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.serial_lv2" readonly /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lote</td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.lote_lv1" readonly /></td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.lote_lv2" readonly /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mecanismo de apertura</td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_ma1" name="est_lv_ma1" value="1" ng-model="json.est_lv_ma1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_ma1" name="est_lv_ma1" value="2" ng-model="json.est_lv_ma1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_ma1" name="est_lv_ma1" value="3" ng-model="json.est_lv_ma1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_lv_ma1" name="est_lv_ma1" value="4" ng-model="json.est_lv_ma1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_lv_ma2" name="est_lv_ma2" value="5" ng-model="json.est_lv_ma2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_ma2" name="est_lv_ma2" value="6" ng-model="json.est_lv_ma2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_ma2" name="est_lv_ma2" value="7" ng-model="json.est_lv_ma2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_lv_ma2" name="est_lv_ma2" value="8" ng-model="json.est_lv_ma2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.est_lv_ma_obs1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.est_lv_ma_obs2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Corrosion</td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_corr1" name="est_lv_corr1" value="1" ng-model="json.est_lv_corr1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_corr1" name="est_lv_corr1" value="2" ng-model="json.est_lv_corr1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_corr1" name="est_lv_corr1" value="3" ng-model="json.est_lv_corr1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_lv_corr1" name="est_lv_corr1" value="4" ng-model="json.est_lv_corr1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_lv_corr2" name="est_lv_corr2" value="5" ng-model="json.est_lv_corr2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_corr2" name="est_lv_corr2" value="6" ng-model="json.est_lv_corr2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_corr2" name="est_lv_corr2" value="7" ng-model="json.est_lv_corr2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_lv_corr2" name="est_lv_corr2" value="8" ng-model="json.est_lv_corr2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.est_lv_corr_obs1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.est_lv_corr_obs2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Cuerda</td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_cuer1" name="est_lv_cuer1" value="1" ng-model="json.est_lv_cuer1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_cuer1" name="est_lv_cuer1" value="2" ng-model="json.est_lv_cuer1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_cuer1" name="est_lv_cuer1" value="3" ng-model="json.est_lv_cuer1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_lv_cuer1" name="est_lv_cuer1" value="4" ng-model="json.est_lv_cuer1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_lv_cuer2" name="est_lv_cuer2" value="5" ng-model="json.est_lv_cuer2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_cuer2" name="est_lv_cuer2" value="6" ng-model="json.est_lv_cuer2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_cuer2" name="est_lv_cuer2" value="7" ng-model="json.est_lv_cuer2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_lv_cuer2" name="est_lv_cuer2" value="8" ng-model="json.est_lv_cuer2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.est_lv_cuer_obs1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.est_lv_cuer_obs2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Etiqueta</td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_etq1" name="est_lv_etq1" value="1" ng-model="json.est_lv_etq1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_etq1" name="est_lv_etq1" value="2" ng-model="json.est_lv_etq1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_etq1" name="est_lv_etq1" value="3" ng-model="json.est_lv_etq1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_lv_etq1" name="est_lv_etq1" value="4" ng-model="json.est_lv_etq1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_lv_etq2" name="est_lv_etq2" value="5" ng-model="json.est_lv_etq2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_etq2" name="est_lv_etq2" value="6" ng-model="json.est_lv_etq2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_etq2" name="est_lv_etq2" value="7" ng-model="json.est_lv_etq2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_lv_etq2" name="est_lv_etq2" value="8" ng-model="json.est_lv_etq2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.est_lv_etq_obs1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.est_lv_etq_obs2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Otro</td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_otro1" name="est_lv_otro1" value="1" ng-model="json.est_lv_otro1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_otro1" name="est_lv_otro1" value="2" ng-model="json.est_lv_otro1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_otro1" name="est_lv_otro1" value="3" ng-model="json.est_lv_otro1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_lv_otro1" name="est_lv_otro1" value="4" ng-model="json.est_lv_otro1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_lv_otro2" name="est_lv_otro2" value="5" ng-model="json.est_lv_otro2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_otro2" name="est_lv_otro2" value="6" ng-model="json.est_lv_otro2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_lv_otro2" name="est_lv_otro2" value="7" ng-model="json.est_lv_otro2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_lv_otro2" name="est_lv_otro2" value="8" ng-model="json.est_lv_otro2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.est_lv_otro_obs1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.est_lv_otro_obs2" /></td>-->
+
+                                    </tr>
+                                    <!--FIN BLOQUE-->
+                                    <!--BLOQUE-->
+                                    <tr>
+                                        <td rowspan="8"><label class="center-tableitem">7</label></td>
+                                        <td rowspan="8"><label class="center-table">MOSQUETON</label></td>
+                                        <td>Codigo</td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.codigo_mosq1" readonly ng-focus="validarcod(7,7.1,1)" /></td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.codigo_mosq2" readonly ng-focus="validarcod(7,7.2,2)" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Serial</td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.serial_mosq1" readonly /></td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.serial_mosq2" readonly /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lote</td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.lote_mosq1" readonly /></td>
+                                        <td colspan="3"> <input class="form-control" type="text" ng-model="json.lote_mosq2" readonly /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mecanismo de apertura</td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_ma1" name="est_mosq_ma1" value="1" ng-model="json.est_mosq_ma1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_ma1" name="est_mosq_ma1" value="2" ng-model="json.est_mosq_ma1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_ma1" name="est_mosq_ma1" value="3" ng-model="json.est_mosq_ma1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_mosq_ma1" name="est_mosq_ma1" value="4" ng-model="json.est_mosq_ma1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_ma2" name="est_mosq_ma2" value="5" ng-model="json.est_mosq_ma2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_ma2" name="est_mosq_ma2" value="6" ng-model="json.est_mosq_ma2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_ma2" name="est_mosq_ma2" value="7" ng-model="json.est_mosq_ma2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_mosq_ma2" name="est_mosq_ma2" value="8" ng-model="json.est_mosq_ma2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.est_mosq_ma_obs1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.est_mosq_ma_obs2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Corrosion</td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_corr1" name="est_mosq_corr1" value="1" ng-model="json.est_mosq_corr1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_corr1" name="est_mosq_corr1" value="2" ng-model="json.est_mosq_corr1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_corr1" name="est_mosq_corr1" value="3" ng-model="json.est_mosq_corr1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_mosq_corr1" name="est_mosq_corr1" value="4" ng-model="json.est_mosq_corr1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_corr2" name="est_mosq_corr2" value="5" ng-model="json.est_mosq_corr2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_corr2" name="est_mosq_corr2" value="6" ng-model="json.est_mosq_corr2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_corr2" name="est_mosq_corr2" value="7" ng-model="json.est_mosq_corr2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_mosq_corr2" name="est_mosq_corr2" value="8" ng-model="json.est_mosq_corr2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.est_mosq_corr_obs1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.est_mosq_corr_obs2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Deformaciones (dobladuras)</td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_def1" name="est_mosq_def1" value="1" ng-model="json.est_mosq_def1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_def1" name="est_mosq_def1" value="2" ng-model="json.est_mosq_def1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_def1" name="est_mosq_def1" value="3" ng-model="json.est_mosq_def1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_mosq_def1" name="est_mosq_def1" value="4" ng-model="json.est_mosq_def1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_def2" name="est_mosq_def2" value="5" ng-model="json.est_mosq_def2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_def2" name="est_mosq_def2" value="6" ng-model="json.est_mosq_def2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_def2" name="est_mosq_def2" value="7" ng-model="json.est_mosq_def2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_mosq_def2" name="est_mosq_def2" value="8" ng-model="json.est_mosq_def2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.est_mosq_def_obs1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.est_mosq_def_obs2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Grietas</td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_gri1" name="est_mosq_gri1" value="1" ng-model="json.est_mosq_gri1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_gri1" name="est_mosq_gri1" value="2" ng-model="json.est_mosq_gri1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_gri1" name="est_mosq_gri1" value="3" ng-model="json.est_mosq_gri1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_mosq_gri1" name="est_mosq_gri1" value="4" ng-model="json.est_mosq_gri1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_gri2" name="est_mosq_gri2" value="5" ng-model="json.est_mosq_gri2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_gri2" name="est_mosq_gri2" value="6" ng-model="json.est_mosq_gri2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_gri2" name="est_mosq_gri2" value="7" ng-model="json.est_mosq_gri2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_mosq_gri2" name="est_mosq_gri2" value="8" ng-model="json.est_mosq_gri2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.est_mosq_gri_obs1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.est_mosq_gri_obs2" /></td>-->
+
+                                    </tr>
+                                    <tr>
+                                        <td>Otro</td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_otro1" name="est_mosq_otro1" value="1" ng-model="json.est_mosq_otro1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_otro1" name="est_mosq_otro1" value="2" ng-model="json.est_mosq_otro1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_otro1" name="est_mosq_otro1" value="3" ng-model="json.est_mosq_otro1" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_mosq_otro1" name="est_mosq_otro1" value="4" ng-model="json.est_mosq_otro1" /></td>-->
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_otro2" name="est_mosq_otro2" value="5" ng-model="json.est_mosq_otro2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_otro2" name="est_mosq_otro2" value="6" ng-model="json.est_mosq_otro2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="est_mosq_otro2" name="est_mosq_otro2" value="7" ng-model="json.est_mosq_otro2" /></td>
+                                        <!--<td class="radiobtn"><input type="radio" id="est_mosq_otro2" name="est_mosq_otro2" value="8" ng-model="json.est_mosq_otro2" /></td>-->
+                                        <!--<td> <input class="form-control" type="text" ng-model="json.est_mosq_otro_obs1" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.est_mosq_otro_obs2" /></td>-->
+
+                                    </tr>
+                                    <!--FIN BLOQUE-->
+                                    <!--BLOQUE PARRAFO-->
+                                    <tr>
+                                        <td colspan="13">
+                                            <p style="text-align:justify; font-size:12px">
+                                                <b><u>RESPONSABILIDADES DEL TRABAJADOR:</u></b>
+                                                <br />
+                                                1.Reportar al supervisor o al area de seguridad en el trabajo (SST) el deterioro o da&ntilde;o de los sistemas individuales o colectivos de prevencion y proteccion contra caidas.
+                                                <br />
+                                                2.Inspeccionar antes de cada uso los sistemas individuales o colectivos de proteccion contra caidas, Sistemas de acceso.
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="col-xs-12">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">OBSERVACIONES GENERALES</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-xs-12">
+                                            <textarea class="form-control" ng-model="json.observaciones_gen"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <button type="button" class="btn btn-primary btn-imprimir" ng-click="openfirmas()" id="buscar_pro" style="width:90px">Firmar</button>
+                            </div>
+                            <!--MODAL-->
+                            <div class="sv-modal-wrapper no-print" ng-class="openModalPRO ? 'active':''">
+                                <div class="sv-modal">
+                                    <div class="sv-modal-head">
+                                        <label style="color:#fff">FIRMA DIGITAL</label>
+                                        <button ng-click="closePRO()" class="btn btn-default btn-xs">X</button>
+                                    </div>
+                                    <div class="sv-modal-body">
+                                        <div class="sv-content">
+                                            <div class="col-xs-6">
+                                                <label>Tecnico 1</label>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <label>Tecnico 2</label>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <canvas id="sig-canvas" width="300" height="100" style="border:solid">
+                                                    Get a better browser, bro.
+                                                </canvas>
+                                                <canvas id="sig-canvas2" width="300" height="100" style="border:solid">
+                                                    Get a better browser, bro.
+                                                </canvas>
+                                                <div class="col-xs-6">
+                                                    <button type="button" class="btn btn-primary btn-imprimir" ng-click="limpiarfirma1()" id="buscar_pro" style="width:90px">Limpiar</button>
+                                                </div>
+                                                <div class="col-xs-4">
+                                                    <button type="button" class="btn btn-primary btn-imprimir" ng-click="limpiarfirma2()" style="width:90px">Limpiar</button>
+                                                </div>
+                                                <div class="col-xs-2">
+                                                    <button type="button" class="btn btn-primary btn-imprimir" ng-click="guardarfirmas()" style="width:90px">Guardar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+        <div class="print">
+            <table id="bord" class="table-hover">
+                <tbody>
+                    <tr>
+                        <td id="bord" rowspan="4" style="text-align:center;width:20% "><img style="width:200px;padding:5px" src="img/logo_optecom.jpg" /></td>
+
+                        <td id="bord" rowspan="4" style="text-align:center;width:52%"><h3><b>INSPECCION DE EQUIPOS DE ALTURA</b></h3></td>
+                        <td id="bord"><b>Codigo:&nbsp;</b><span>R-GHU-041</span></td>
+                    </tr>
+
+                    <tr><td id="bord"><b>Version:&nbsp;</b><span>001</span></td></tr>
+                    <tr>
+                        <td id="bord"><b>Fecha Vigencia:</b><span>16/09/2015</span></td>
+                    </tr>
+                    <tr>
+                        <td id="bord"><b>Pag</b><span>1 de 1</span></td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <div>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td><label>Tecnico 1</label></td>
+                            <td>{{json.cedulatec1}}&nbsp;{{json.nombre_completo1}}</td>
+                            <td><label>Tecnico 2</label></td>
+                            <td>{{json.cedulatec2}}&nbsp;{{json.nombre_completo2}}</td>
+                        </tr>
+                        <tr>
+                            <td><label>Fecha de inspeccion</label></td>
+                            <td><label>{{json.f_inspeccion}}</label></td>
+                            <td><label>Area</label></td>
+                            <td>{{json.area}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="panel panel-primary" style="margin-top:-25px;">
+                <div class="panel-body">
+                    <div class="col-xs-12">
+                        <table class="table table-bordered table-hover" style="padding:3px">
+                            <thead>
+                                <tr>
+                                    <th rowspan="3" style="width:40px">ITEM</th>
+                                    <th rowspan="3" style="width: 80px"></th>
+                                    <th rowspan="3" style="width: 320px">DESCRIPCION</th>
+                                    <!--<th colspan="6">ESTADO ESTRUCTURAL</th>-->
+                                    <!--<th rowspan="2" colspan="2">OBSERVACIONES</th>-->
+                                </tr>
+                                <tr>
+                                    <th colspan="3">Tecnico 1</th>
+                                    <th colspan="3">Tecnico 2</th>
+                                </tr>
+                                <tr>
+                                    <th>B</th>
+                                    <th>R</th>
+                                    <th>M</th>
+                                    <th>B</th>
+                                    <th>R</th>
+                                    <th>M</th>
+                                    <!--<th>Tecnico 1</th>
+                            <th>Tecnico 2</th>-->
+                                </tr>
+
+
+                            </thead>
+                            <tbody>
+                                <!--BLOQUE-->
+                                <tr>
+                                    <td rowspan="9"><label class="center-tableitem">1</label></td>
+                                    <td rowspan="9"><label class="center-table">ARNES</label></td>
+                                    <td>Codigo</td>
+                                    <td colspan="3">{{json.arn_codigo1}}</td>
+                                    <td colspan="3">{{json.arn_codigo2}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Serial</td>
+                                    <td colspan="3">{{json.arn_serial1}}</td>
+                                    <td colspan="3">{{json.arn_serial2}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Lote</td>
+                                    <td colspan="3">{{json.arn_lote1}}</td>
+                                    <td colspan="3">{{json.arn_lote2}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Reata</td>
+                                    <td class="radiobtn"><input type="radio" id="reata_arn1" name="reata_arn1" value="1" ng-model="json.est_re1_arn" /></td>
+                                    <td class="radiobtn"><input type="radio" id="reata_arn1" name="reata_arn1" value="2" ng-model="json.est_re1_arn" /></td>
+                                    <td class="radiobtn"><input type="radio" id="reata_arn1" name="reata_arn1" value="3" ng-model="json.est_re1_arn" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="reata_arn1" name="reata_arn1" value="4" ng-model="json.est_re1_arn" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="reata_arn2" name="reata_arn2" value="5" ng-model="json.est_re2_arn" /></td>
+                                    <td class="radiobtn"><input type="radio" id="reata_arn2" name="reata_arn2" value="6" ng-model="json.est_re2_arn" /></td>
+                                    <td class="radiobtn"><input type="radio" id="reata_arn2" name="reata_arn2" value="7" ng-model="json.est_re2_arn" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="reata_arn2" name="reata_arn2" value="8" ng-model="json.est_re2_arn" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_reata1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_reata2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Etiqueta</td>
+                                    <td class="radiobtn"><input type="radio" id="etiqueta_arn1" name="etiqueta_arn1" value="1" ng-model="json.est_etq_arn1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="etiqueta_arn1" name="etiqueta_arn1" value="2" ng-model="json.est_etq_arn1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="etiqueta_arn1" name="etiqueta_arn1" value="3" ng-model="json.est_etq_arn1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="etiqueta_arn1" name="etiqueta_arn1" value="4" ng-model="json.est_etq_arn1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="etiqueta_arn2" name="etiqueta_arn2" value="5" ng-model="json.est_etq_arn2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="etiqueta_arn2" name="etiqueta_arn2" value="6" ng-model="json.est_etq_arn2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="etiqueta_arn2" name="etiqueta_arn2" value="7" ng-model="json.est_etq_arn2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="etiqueta_arn2" name="etiqueta_arn2" value="8" ng-model="json.est_etq_arn2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_etq_arn1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_etq_arn2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Argollas,Hebillas</td>
+                                    <td class="radiobtn"><input type="radio" id="est_ah_arn1" name="est_ah_arn1" value="1" ng-model="json.est_ah_arn1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_ah_arn1" name="est_ah_arn1" value="2" ng-model="json.est_ah_arn1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_ah_arn1" name="est_ah_arn1" value="3" ng-model="json.est_ah_arn1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_ah_arn1" name="est_ah_arn1" value="4" ng-model="json.est_ah_arn1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_ah_arn2" name="est_ah_arn2" value="5" ng-model="json.est_ah_arn2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_ah_arn2" name="est_ah_arn2" value="6" ng-model="json.est_ah_arn2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_ah_arn2" name="est_ah_arn2" value="7" ng-model="json.est_ah_arn2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_ah_arn2" name="est_ah_arn2" value="8" ng-model="json.est_ah_arn2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_hb_arn1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_hb_arn2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Costuras/Hilos</td>
+                                    <td class="radiobtn"><input type="radio" id="est_ch_arn1" name="est_ch_arn1" value="1" ng-model="json.est_ch_arn1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_ch_arn1" name="est_ch_arn1" value="2" ng-model="json.est_ch_arn1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_ch_arn1" name="est_ch_arn1" value="3" ng-model="json.est_ch_arn1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_ch_arn1" name="est_ch_arn1" value="4" ng-model="json.est_ch_arn1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_ch_arn2" name="est_ch_arn2" value="5" ng-model="json.est_ch_arn2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_ch_arn2" name="est_ch_arn2" value="6" ng-model="json.est_ch_arn2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_ch_arn2" name="est_ch_arn2" value="7" ng-model="json.est_ch_arn2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_ch_arn2" name="est_ch_arn2" value="8" ng-model="json.est_ch_arn2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_ch_arn1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_ch_arn2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Ara&ntilde;a</td>
+                                    <td class="radiobtn"><input type="radio" id="est_ara_arn1" name="est_ara_arn1" value="1" ng-model="json.est_ara_arn1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_ara_arn1" name="est_ara_arn1" value="2" ng-model="json.est_ara_arn1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_ara_arn1" name="est_ara_arn1" value="3" ng-model="json.est_ara_arn1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_ara_arn1" name="est_ara_arn1" value="4" ng-model="json.est_ara_arn1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_ara_arn2" name="est_ara_arn2" value="5" ng-model="json.est_ara_arn2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_ara_arn2" name="est_ara_arn2" value="6" ng-model="json.est_ara_arn2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_ara_arn2" name="est_ara_arn2" value="7" ng-model="json.est_ara_arn2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_ara_arn2" name="est_ara_arn2" value="8" ng-model="json.est_ara_arn2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_ara_arn1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_ara_arn2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Otro</td>
+                                    <td class="radiobtn"><input type="radio" id="est_otro_arn1" name="est_otro_arn1" value="1" ng-model="json.est_otro_arn1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_otro_arn1" name="est_otro_arn1" value="2" ng-model="json.est_otro_arn1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_otro_arn1" name="est_otro_arn1" value="3" ng-model="json.est_otro_arn1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_otro_arn1" name="est_otro_arn1" value="4" ng-model="json.est_otro_arn1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_otro_arn2" name="est_otro_arn2" value="5" ng-model="json.est_otro_arn2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_otro_arn2" name="est_otro_arn2" value="6" ng-model="json.est_otro_arn2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_otro_arn2" name="est_otro_arn2" value="7" ng-model="json.est_otro_arn2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_otro_arn2" name="est_otro_arn2" value="8" ng-model="json.est_otro_arn2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_otro_arn1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_otro_arn2" /></td>-->
+                                </tr>
+                                <!--FIN BLOQUE-->
+                                <!--BLOQUE-->
+                                <tr>
+                                    <td rowspan="10"><label class="center-tableitem">2</label></td>
+                                    <td rowspan="10"><label class="center-table">ESLINGA PARA POSICIONAMIENTO Reata/Cuerda</label></td>
+                                    <td>Codigo</td>
+                                    <td colspan="3">{{json.cod_erc1}}</td>
+                                    <td colspan="3">{{json.cod_erc2}}</td>
+                                    <!--<td> <input class="form-control" type="text" ng-model="" readonly ng-focus="validarcod(2,2.1,1)" /></td>
+                            <td> <input class="form-control" type="text" ng-model="" readonly ng-focus="validarcod(2,2.2,2)" /></td>-->
+                                </tr>
+                                <tr>
+                                    <td>Serial</td>
+                                    <td colspan="3">{{json.serial_erc1}}</td>
+                                    <td colspan="3">{{json.serial_erc2}}</td>
+                                    <!--<td> <input class="form-control" type="text" ng-model="" readonly /></td>
+                            <td> <input class="form-control" type="text" ng-model="" readonly /></td>-->
+                                </tr>
+                                <tr>
+                                    <td>Lote</td>
+                                    <td colspan="3">{{json.lote_erc1}}</td>
+                                    <td colspan="3">{{json.lote_erc2}}</td>
+                                    <!--<td> <input class="form-control" type="text" ng-model="" readonly /></td>
+                            <td> <input class="form-control" type="text" ng-model="" readonly /></td>-->
+                                </tr>
+                                <tr>
+                                    <td>Reata/Cuerda</td>
+                                    <td class="radiobtn"><input type="radio" id="est_eprc1" name="est_eprc1" value="1" ng-model="json.est_eprc1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eprc1" name="est_eprc1" value="2" ng-model="json.est_eprc1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eprc1" name="est_eprc1" value="3" ng-model="json.est_eprc1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_eprc1" name="est_eprc1" value="4" ng-model="json.est_eprc1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_eprc2" name="est_eprc2" value="5" ng-model="json.est_eprc2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eprc2" name="est_eprc2" value="6" ng-model="json.est_eprc2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eprc2" name="est_eprc2" value="7" ng-model="json.est_eprc2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_eprc2" name="est_eprc2" value="8" ng-model="json.est_eprc2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_eprc1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_eprc2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Hebilla</td>
+                                    <td class="radiobtn"><input type="radio" id="est_eph1" name="est_eph1" value="1" ng-model="json.est_eph1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eph1" name="est_eph1" value="2" ng-model="json.est_eph1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eph1" name="est_eph1" value="3" ng-model="json.est_eph1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_eph1" name="est_eph1" value="4" ng-model="json.est_eph1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_eph2" name="est_eph2" value="5" ng-model="json.est_eph2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eph2" name="est_eph2" value="6" ng-model="json.est_eph2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eph2" name="est_eph2" value="7" ng-model="json.est_eph2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_eph2" name="est_eph2" value="8" ng-model="json.est_eph2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_eph1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_eph2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Ganchos</td>
+                                    <td class="radiobtn"><input type="radio" id="est_epg1" name="est_epg1" value="1" ng-model="json.est_epg1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_epg1" name="est_epg1" value="2" ng-model="json.est_epg1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_epg1" name="est_epg1" value="3" ng-model="json.est_epg1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_epg1" name="est_epg1" value="4" ng-model="json.est_epg1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_epg2" name="est_epg2" value="5" ng-model="json.est_epg2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_epg2" name="est_epg2" value="6" ng-model="json.est_epg2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_epg2" name="est_epg2" value="7" ng-model="json.est_epg2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_epg2" name="est_epg2" value="8" ng-model="json.est_epg2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_epg1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_epg2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Etiqueta</td>
+                                    <td class="radiobtn"><input type="radio" id="est_epe1" name="est_epe1" value="1" ng-model="json.est_epe1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_epe1" name="est_epe1" value="2" ng-model="json.est_epe1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_epe1" name="est_epe1" value="3" ng-model="json.est_epe1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_epe1" name="est_epe1" value="4" ng-model="json.est_epe1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_epe2" name="est_epe2" value="5" ng-model="json.est_epe2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_epe2" name="est_epe2" value="6" ng-model="json.est_epe2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_epe2" name="est_epe2" value="7" ng-model="json.est_epe2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_epe2" name="est_epe2" value="8" ng-model="json.est_epe2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_epe1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_epe2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Costuras/Hilos</td>
+                                    <td class="radiobtn"><input type="radio" id="est_epch1" name="est_epch1" value="1" ng-model="json.est_epch1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_epch1" name="est_epch1" value="2" ng-model="json.est_epch1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_epch1" name="est_epch1" value="3" ng-model="json.est_epch1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_epch1" name="est_epch1" value="4" ng-model="json.est_epch1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_epch2" name="est_epch2" value="5" ng-model="json.est_epch2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_epch2" name="est_epch2" value="6" ng-model="json.est_epch2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_epch2" name="est_epch2" value="7" ng-model="json.est_epch2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_epch2" name="est_epch2" value="8" ng-model="json.est_epch2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_epch1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_epch2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Guarda cabos</td>
+                                    <td class="radiobtn"><input type="radio" id="est_epgc1" name="est_epgc1" value="1" ng-model="json.est_epgc1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_epgc1" name="est_epgc1" value="2" ng-model="json.est_epgc1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_epgc1" name="est_epgc1" value="3" ng-model="json.est_epgc1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_epgc1" name="est_epgc1" value="4" ng-model="json.est_epgc1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_epgc2" name="est_epgc2" value="5" ng-model="json.est_epgc2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_epgc2" name="est_epgc2" value="6" ng-model="json.est_epgc2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_epgc2" name="est_epgc2" value="7" ng-model="json.est_epgc2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_epgc2" name="est_epgc2" value="8" ng-model="json.est_epgc2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_epgc1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_epgc2" /></td>-->
+                                </tr>
+                                <tr>
+                                    <td>Otro</td>
+                                    <td class="radiobtn"><input type="radio" id="est_epotros1" name="est_epotros1" value="1" ng-model="json.est_epotros1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_epotros1" name="est_epotros1" value="2" ng-model="json.est_epotros1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_epotros1" name="est_epotros1" value="3" ng-model="json.est_epotros1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_epotros1" name="est_epotros1" value="4" ng-model="json.est_epotros1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_epotros2" name="est_epotros2" value="5" ng-model="json.est_epotros2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_epotros2" name="est_epotros2" value="6" ng-model="json.est_epotros2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_epotros2" name="est_epotros2" value="7" ng-model="json.est_epotros2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_epotros2" name="est_epotros2" value="8" ng-model="json.est_epotros2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_epotros1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_epotros2" /></td>-->
+                                </tr>
+                                <!--FIN BLOQUE-->
+                                <!--BLOQUE-->
+                                <tr>
+                                    <td rowspan="10"><label class="center-tableitem">3</label></td>
+                                    <td rowspan="10"><label class="center-table">ESLINGA CON ABSORVEDOR DE IMPACTO</label></td>
+                                    <td>Codigo</td>
+                                    <td colspan="3">{{json.codigo_eai1}}</td>
+                                    <td colspan="3">{{json.codigo_eai2}}</td>
+                                    <!--<td> <input class="form-control" type="text" ng-model="" readonly ng-focus="validarcod(6,3.1,1)" /></td>
+                            <td> <input class="form-control" type="text" ng-model="" readonly ng-focus="validarcod(6,3.2,2)" /></td>-->
+                                </tr>
+                                <tr>
+                                    <td>Serial</td>
+                                    <td colspan="3">{{json.serial_eai1}}</td>
+                                    <td colspan="3">{{json.serial_eai2}}</td>
+                                    <!--<td> <input class="form-control" type="text" ng-model="" readonly /></td>
+                            <td> <input class="form-control" type="text" ng-model="" readonly /></td>-->
+                                </tr>
+                                <tr>
+                                    <td>Lote</td>
+                                    <td colspan="3">{{json.lote_eai1}}</td>
+                                    <td colspan="3">{{json.lote_eai2}}</td>
+                                    <!--<td> <input class="form-control" type="text" ng-model="" readonly /></td>
+                            <td> <input class="form-control" type="text" ng-model="" readonly /></td>-->
+                                </tr>
+                                <tr>
+                                    <td>Reata</td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairt1" name="est_eairt1" value="1" ng-model="json.est_eairt1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairt1" name="est_eairt1" value="2" ng-model="json.est_eairt1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairt1" name="est_eairt1" value="3" ng-model="json.est_eairt1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_eairt1" name="est_eairt1" value="4" ng-model="json.est_eairt1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_eairt2" name="est_eairt2" value="5" ng-model="json.est_eairt2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairt2" name="est_eairt2" value="6" ng-model="json.est_eairt2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairt2" name="est_eairt2" value="7" ng-model="json.est_eairt2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_eairt2" name="est_eairt2" value="8" ng-model="json.est_eairt2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_eair1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_eair2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Costuras/Hilos</td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairch1" name="est_eairch1" value="1" ng-model="json.est_eairch1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairch1" name="est_eairch1" value="2" ng-model="json.est_eairch1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairch1" name="est_eairch1" value="3" ng-model="json.est_eairch1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_eairch1" name="est_eairch1" value="4" ng-model="json.est_eairch1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_eairch2" name="est_eairch2" value="5" ng-model="json.est_eairch2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairch2" name="est_eairch2" value="6" ng-model="json.est_eairch2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairch2" name="est_eairch2" value="7" ng-model="json.est_eairch2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_eairch2" name="est_eairch2" value="8" ng-model="json.est_eairch2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_eairch1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_eairch2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Hebilla solo es es graduable</td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairhg1" name="est_eairhg1" value="1" ng-model="json.est_eairhg1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairhg1" name="est_eairhg1" value="2" ng-model="json.est_eairhg1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairhg1" name="est_eairhg1" value="3" ng-model="json.est_eairhg1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_eairhg1" name="est_eairhg1" value="4" ng-model="json.est_eairhg1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_eairhg2" name="est_eairhg2" value="5" ng-model="json.est_eairhg2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairhg2" name="est_eairhg2" value="6" ng-model="json.est_eairhg2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairhg2" name="est_eairhg2" value="7" ng-model="json.est_eairhg2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_eairhg2" name="est_eairhg2" value="8" ng-model="json.est_eairhg2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_eairhg1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_eairhg2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Paquete reductor de impacto</td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairpri1" name="est_eairpri1" value="1" ng-model="json.est_eairpri1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairpri1" name="est_eairpri1" value="2" ng-model="json.est_eairpri1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairpri1" name="est_eairpri1" value="3" ng-model="json.est_eairpri1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_eairpri1" name="est_eairpri1" value="4" ng-model="json.est_eairpri1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_eairpri2" name="est_eairpri2" value="5" ng-model="json.est_eairpri2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairpri2" name="est_eairpri2" value="6" ng-model="json.est_eairpri2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairpri2" name="est_eairpri2" value="7" ng-model="json.est_eairpri2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_eairpri2" name="est_eairpri2" value="8" ng-model="json.est_eairpri2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_eairpri1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_eairpri2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Ganchos</td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairgan1" name="est_eairgan1" value="1" ng-model="json.est_eairgan1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairgan1" name="est_eairgan1" value="2" ng-model="json.est_eairgan1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairgan1" name="est_eairgan1" value="3" ng-model="json.est_eairgan1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_eairgan1" name="est_eairgan1" value="4" ng-model="json.est_eairgan1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_eairgan2" name="est_eairgan2" value="5" ng-model="json.est_eairgan2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairgan2" name="est_eairgan2" value="6" ng-model="json.est_eairgan2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairgan2" name="est_eairgan2" value="7" ng-model="json.est_eairgan2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_eairgan2" name="est_eairgan2" value="8" ng-model="json.est_eairgan2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_eairgan1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_eairgan2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Etiqueta</td>
+                                    <td class="radiobtn"><input type="radio" id="est_eaire1" name="est_eaire1" value="1" ng-model="json.est_eaire1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eaire1" name="est_eaire1" value="2" ng-model="json.est_eaire1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eaire1" name="est_eaire1" value="3" ng-model="json.est_eaire1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_eaire1" name="est_eaire1" value="4" ng-model="json.est_eaire1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_eaire2" name="est_eaire2" value="5" ng-model="json.est_eaire2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eaire2" name="est_eaire2" value="6" ng-model="json.est_eaire2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eaire2" name="est_eaire2" value="7" ng-model="json.est_eaire2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_eaire2" name="est_eaire2" value="8" ng-model="json.est_eaire2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="jsoon.obs_eaire1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="jsoon.obs_eaire2" /></td>-->
+                                </tr>
+                                <tr>
+                                    <td>Otro</td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairotro1" name="est_eairotro1" value="1" ng-model="json.est_eairotro1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairotro1" name="est_eairotro1" value="2" ng-model="json.est_eairotro1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairotro1" name="est_eairotro1" value="3" ng-model="json.est_eairotro1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_eairotro1" name="est_eairotro1" value="4" ng-model="json.est_eairotro1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_eairotro2" name="est_eairotro2" value="5" ng-model="json.est_eairotro2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairotro2" name="est_eairotro2" value="6" ng-model="json.est_eairotro2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_eairotro2" name="est_eairotro2" value="7" ng-model="json.est_eairotro2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_eairotro2" name="est_eairotro2" value="8" ng-model="json.est_eairotro2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_eairotro1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_eairotro2" /></td>-->
+                                </tr>
+                                <!--FIN BLOQUE-->
+                                <!--BLOQUE-->
+                                <tr>
+                                    <td rowspan="8"><label class="center-tableitem">4</label></td>
+                                    <td rowspan="8"><label class="center-table">TIE OFF ADAPTADOR DE ANCLAJE</label></td>
+                                    <td>Codigo</td>
+                                    <td colspan="3">{{json.codigo_tieoff1}}</td>
+                                    <td colspan="3">{{json.codigo_tieoff2}}</td>
+                                    <!--<td> <input class="form-control" type="text" ng-model="" readonly ng-focus="validarcod(4,4.1,1)" /></td>
+                            <td> <input class="form-control" type="text" ng-model="" readonly ng-focus="validarcod(4,4.2,2)" /></td>-->
+                                </tr>
+                                <tr>
+                                    <td>Serial</td>
+                                    <td colspan="3">{{json.serial_tieoff1}}</td>
+                                    <td colspan="3">{{json.serial_tieoff2}}</td>
+                                    <!--<td> <input class="form-control" type="text" ng-model="" readonly /></td>
+                            <td> <input class="form-control" type="text" ng-model="" readonly /></td>-->
+                                </tr>
+                                <tr>
+                                    <td>Lote</td>
+                                    <td colspan="3">{{json.lote_tieoff1}}</td>
+                                    <td colspan="3">{{json.lote_tieoff2}}</td>
+                                    <!--<td> <input class="form-control" type="text" ng-model="" readonly /></td>
+                            <td> <input class="form-control" type="text" ng-model="" readonly /></td>-->
+                                </tr>
+                                <tr>
+                                    <td>Reata</td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_tr1" name="est_tieoff_tr1" value="1" ng-model="json.est_tieoff_tr1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_tr1" name="est_tieoff_tr1" value="2" ng-model="json.est_tieoff_tr1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_tr1" name="est_tieoff_tr1" value="3" ng-model="json.est_tieoff_tr1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_tieoff_tr1" name="est_tieoff_tr1" value="4" ng-model="json.est_tieoff_tr1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_tr2" name="est_tieoff_tr2" value="5" ng-model="json.est_tieoff_tr2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_tr2" name="est_tieoff_tr2" value="6" ng-model="json.est_tieoff_tr2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_tr2" name="est_tieoff_tr2" value="7" ng-model="json.est_tieoff_tr2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_tieoff_tr2" name="est_tieoff_tr2" value="8" ng-model="json.est_tieoff_tr2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_tieoff_rt1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_tieoff_rt2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Hilos/Costuras</td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoffhc1" name="est_tieoffhc1" value="1" ng-model="json.est_tieoffhc1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoffhc1" name="est_tieoffhc1" value="2" ng-model="json.est_tieoffhc1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoffhc1" name="est_tieoffhc1" value="3" ng-model="json.est_tieoffhc1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_tieoffhc1" name="est_tieoffhc1" value="4" ng-model="json.est_tieoffhc1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_tieoffhc2" name="est_tieoffhc2" value="5" ng-model="json.est_tieoffhc2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoffhc2" name="est_tieoffhc2" value="6" ng-model="json.est_tieoffhc2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoffhc2" name="est_tieoffhc2" value="7" ng-model="json.est_tieoffhc2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_tieoffhc2" name="est_tieoffhc2" value="8" ng-model="json.est_tieoffhc2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_tieoffhc1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_tieoffhc2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Argollas en O y En D</td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_aod1" name="est_tieoff_aod1" value="1" ng-model="json.est_tieoff_aod1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_aod1" name="est_tieoff_aod1" value="2" ng-model="json.est_tieoff_aod1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_aod1" name="est_tieoff_aod1" value="3" ng-model="json.est_tieoff_aod1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_tieoff_aod1" name="est_tieoff_aod1" value="4" ng-model="json.est_tieoff_aod1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_aod2" name="est_tieoff_aod2" value="5" ng-model="json.est_tieoff_aod2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_aod2" name="est_tieoff_aod2" value="6" ng-model="json.est_tieoff_aod2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_aod2" name="est_tieoff_aod2" value="7" ng-model="json.est_tieoff_aod2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_tieoff_aod2" name="est_tieoff_aod2" value="8" ng-model="json.est_tieoff_aod2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_tieoff_aod1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_tieoff_aod2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Etiqueta</td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_etq1" name="est_tieoff_etq1" value="1" ng-model="json.est_tieoff_etq1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_etq1" name="est_tieoff_etq1" value="2" ng-model="json.est_tieoff_etq1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_etq1" name="est_tieoff_etq1" value="3" ng-model="json.est_tieoff_etq1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_tieoff_etq1" name="est_tieoff_etq1" value="4" ng-model="json.est_tieoff_etq1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_etq2" name="est_tieoff_etq2" value="5" ng-model="json.est_tieoff_etq2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_etq2" name="est_tieoff_etq2" value="6" ng-model="json.est_tieoff_etq2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_etq2" name="est_tieoff_etq2" value="7" ng-model="json.est_tieoff_etq2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_tieoff_etq2" name="est_tieoff_etq2" value="8" ng-model="json.est_tieoff_etq2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_tieoff_etq1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_tieoff_etq2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Otro</td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_otro1" name="est_tieoff_otro1" value="1" ng-model="json.est_tieoff_otro1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_otro1" name="est_tieoff_otro1" value="2" ng-model="json.est_tieoff_otro1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_otro1" name="est_tieoff_otro1" value="3" ng-model="json.est_tieoff_otro1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_tieoff_otro1" name="est_tieoff_otro1" value="4" ng-model="json.est_tieoff_otro1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_otro2" name="est_tieoff_otro2" value="5" ng-model="json.est_tieoff_otro2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_otro2" name="est_tieoff_otro2" value="6" ng-model="json.est_tieoff_otro2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_tieoff_otro2" name="est_tieoff_otro2" value="7" ng-model="json.est_tieoff_otro2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_tieoff_otro2" name="est_tieoff_otro2" value="8" ng-model="json.est_tieoff_otro2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.obs_tieoff_otro1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs_tieoff_otro2" /></td>-->
+
+                                </tr>
+                                <!--FIN BLOQUE-->
+                                <!--BLOQUE-->
+                                <tr>
+                                    <td rowspan="8"><label class="center-tableitem">5</label></td>
+                                    <td rowspan="8"><label class="center-table">ARRESTADOR</label></td>
+                                    <td>Codigo</td>
+                                    <td colspan="3">{{json.cod_arrest1}}</td>
+                                    <td colspan="3">{{json.cod_arrest2}}</td>
+                                    <!--<td> <input class="form-control" type="text" ng-model="" readonly ng-focus="validarcod(7,5.1,1)" /></td>
+                            <td> <input class="form-control" type="text" ng-model="" readonly ng-focus="validarcod(7,5.2,2)" /></td>-->
+                                </tr>
+                                <tr>
+                                    <td>Serial</td>
+                                    <td colspan="3">{{json.serial_arrest1}}</td>
+                                    <td colspan="3">{{json.serial_arrest2}}</td>
+                                    <!--<td> <input class="form-control" type="text" ng-model="" readonly /></td>
+                            <td> <input class="form-control" type="text" ng-model="" readonly /></td>-->
+                                </tr>
+                                <tr>
+                                    <td>Lote</td>
+                                    <td colspan="3">{{json.lote_arrest1}}</td>
+                                    <td colspan="3">{{json.lote_arrest2}}</td>
+                                    <!--<td> <input class="form-control" type="text" ng-model="" readonly /></td>
+                            <td> <input class="form-control" type="text" ng-model="" readonly /></td>-->
+                                </tr>
+                                <tr>
+                                    <td>Mecanismo de apertura</td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_ma1" name="est_arrest_ma1" value="1" ng-model="json.est_arrest_ma1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_ma1" name="est_arrest_ma1" value="2" ng-model="json.est_arrest_ma1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_ma1" name="est_arrest_ma1" value="3" ng-model="json.est_arrest_ma1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_arrest_ma1" name="est_arrest_ma1" value="4" ng-model="json.est_arrest_ma1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_ma2" name="est_arrest_ma2" value="5" ng-model="json.est_arrest_ma2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_ma2" name="est_arrest_ma2" value="6" ng-model="json.est_arrest_ma2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_ma2" name="est_arrest_ma2" value="7" ng-model="json.est_arrest_ma2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_arrest_ma2" name="est_arrest_ma2" value="8" ng-model="json.est_arrest_ma2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.est_arrest_ma_obs1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.est_arrest_ma_obs2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Corrosion</td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_co1" name="est_arrest_co1" value="1" ng-model="json.est_arrest_co1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_co1" name="est_arrest_co1" value="2" ng-model="json.est_arrest_co1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_co1" name="est_arrest_co1" value="3" ng-model="json.est_arrest_co1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_arrest_co1" name="est_arrest_co1" value="4" ng-model="json.est_arrest_co1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_co2" name="est_arrest_co2" value="5" ng-model="json.est_arrest_co2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_co2" name="est_arrest_co2" value="6" ng-model="json.est_arrest_co2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_co2" name="est_arrest_co2" value="7" ng-model="json.est_arrest_co2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_arrest_co2" name="est_arrest_co2" value="8" ng-model="json.est_arrest_co2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.est_arrest_co_obs1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.est_arrest_co_obs2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Deformaciones(dobladuras)</td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_def1" name="est_arrest_def1" value="1" ng-model="json.est_arrest_def1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_def1" name="est_arrest_def1" value="2" ng-model="json.est_arrest_def1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_def1" name="est_arrest_def1" value="3" ng-model="json.est_arrest_def1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_arrest_def1" name="est_arrest_def1" value="4" ng-model="json.est_arrest_def1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_def2" name="est_arrest_def2" value="5" ng-model="json.est_arrest_def2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_def2" name="est_arrest_def2" value="6" ng-model="json.est_arrest_def2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_def2" name="est_arrest_def2" value="7" ng-model="json.est_arrest_def2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_arrest_def2" name="est_arrest_def2" value="8" ng-model="json.est_arrest_def2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.est_arrest_def_obs1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.est_arrest_def_obs2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Grietas</td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_gri1" name="est_arrest_gri1" value="1" ng-model="json.est_arrest_gri1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_gri1" name="est_arrest_gri1" value="2" ng-model="json.est_arrest_gri1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_gri1" name="est_arrest_gri1" value="3" ng-model="json.est_arrest_gri1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_arrest_gri1" name="est_arrest_gri1" value="4" ng-model="json.est_arrest_gri1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_gri2" name="est_arrest_gri2" value="5" ng-model="json.est_arrest_gri2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_gri2" name="est_arrest_gri2" value="6" ng-model="json.est_arrest_gri2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_gri2" name="est_arrest_gri2" value="7" ng-model="json.est_arrest_gri2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_arrest_gri2" name="est_arrest_gri2" value="8" ng-model="json.est_arrest_gri2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.est_arrest_gri_obs1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.est_arrest_gri_obs2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Otro</td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_otro1" name="est_arrest_otro1" value="1" ng-model="json.est_arrest_otro1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_otro1" name="est_arrest_otro1" value="2" ng-model="json.est_arrest_otro1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_otro1" name="est_arrest_otro1" value="3" ng-model="json.est_arrest_otro1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_arrest_otro1" name="est_arrest_otro1" value="4" ng-model="json.est_arrest_otro1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_otro2" name="est_arrest_otro2" value="5" ng-model="json.est_arrest_otro2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_otro2" name="est_arrest_otro2" value="6" ng-model="json.est_arrest_otro2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_arrest_otro2" name="est_arrest_otro2" value="7" ng-model="json.est_arrest_otro2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_arrest_otro2" name="est_arrest_otro2" value="8" ng-model="json.est_arrest_otro2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.est_arrest_otro_obs1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.est_arrest_otro_obs2" /></td>-->
+
+                                </tr>
+                                <!--FIN BLOQUE-->
+                                <!--BLOQUE-->
+                                <tr>
+                                    <td rowspan="8"><label class="center-tableitem">6</label></td>
+                                    <td rowspan="8"><label class="center-table">LINEA DE VIDA</label></td>
+                                    <td>Codigo</td>
+                                    <td colspan="3">{{json.codigo_lv1}}</td>
+                                    <td colspan="3">{{json.codigo_lv2}}</td>
+                                    <!--<td> <input class="form-control" type="text" ng-model="" readonly ng-focus="validarcod(5,6.1,1)" /></td>
+                            <td> <input class="form-control" type="text" ng-model="" readonly ng-focus="validarcod(5,6.2,2)" /></td>-->
+                                </tr>
+                                <tr>
+                                    <td>Serial</td>
+                                    <td colspan="3">{{json.serial_lv1}}</td>
+                                    <td colspan="3">{{json.serial_lv2}}</td>
+                                    <!--<td> <input class="form-control" type="text" ng-model="" readonly /></td>
+                            <td> <input class="form-control" type="text" ng-model="" readonly /></td>-->
+                                </tr>
+                                <tr>
+                                    <td>Lote</td>
+                                    <td colspan="3">{{json.lote_lv1}}</td>
+                                    <td colspan="3">{{json.lote_lv2}}</td>
+                                    <!--<td> <input class="form-control" type="text" ng-model="" readonly /></td>
+                            <td> <input class="form-control" type="text" ng-model="" readonly /></td>-->
+                                </tr>
+                                <tr>
+                                    <td>Mecanismo de apertura</td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_ma1" name="est_lv_ma1" value="1" ng-model="json.est_lv_ma1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_ma1" name="est_lv_ma1" value="2" ng-model="json.est_lv_ma1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_ma1" name="est_lv_ma1" value="3" ng-model="json.est_lv_ma1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_lv_ma1" name="est_lv_ma1" value="4" ng-model="json.est_lv_ma1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_lv_ma2" name="est_lv_ma2" value="5" ng-model="json.est_lv_ma2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_ma2" name="est_lv_ma2" value="6" ng-model="json.est_lv_ma2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_ma2" name="est_lv_ma2" value="7" ng-model="json.est_lv_ma2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_lv_ma2" name="est_lv_ma2" value="8" ng-model="json.est_lv_ma2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.est_lv_ma_obs1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.est_lv_ma_obs2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Corrosion</td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_corr1" name="est_lv_corr1" value="1" ng-model="json.est_lv_corr1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_corr1" name="est_lv_corr1" value="2" ng-model="json.est_lv_corr1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_corr1" name="est_lv_corr1" value="3" ng-model="json.est_lv_corr1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_lv_corr1" name="est_lv_corr1" value="4" ng-model="json.est_lv_corr1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_lv_corr2" name="est_lv_corr2" value="5" ng-model="json.est_lv_corr2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_corr2" name="est_lv_corr2" value="6" ng-model="json.est_lv_corr2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_corr2" name="est_lv_corr2" value="7" ng-model="json.est_lv_corr2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_lv_corr2" name="est_lv_corr2" value="8" ng-model="json.est_lv_corr2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.est_lv_corr_obs1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.est_lv_corr_obs2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Cuerda</td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_cuer1" name="est_lv_cuer1" value="1" ng-model="json.est_lv_cuer1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_cuer1" name="est_lv_cuer1" value="2" ng-model="json.est_lv_cuer1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_cuer1" name="est_lv_cuer1" value="3" ng-model="json.est_lv_cuer1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_lv_cuer1" name="est_lv_cuer1" value="4" ng-model="json.est_lv_cuer1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_lv_cuer2" name="est_lv_cuer2" value="5" ng-model="json.est_lv_cuer2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_cuer2" name="est_lv_cuer2" value="6" ng-model="json.est_lv_cuer2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_cuer2" name="est_lv_cuer2" value="7" ng-model="json.est_lv_cuer2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_lv_cuer2" name="est_lv_cuer2" value="8" ng-model="json.est_lv_cuer2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.est_lv_cuer_obs1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.est_lv_cuer_obs2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Etiqueta</td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_etq1" name="est_lv_etq1" value="1" ng-model="json.est_lv_etq1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_etq1" name="est_lv_etq1" value="2" ng-model="json.est_lv_etq1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_etq1" name="est_lv_etq1" value="3" ng-model="json.est_lv_etq1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_lv_etq1" name="est_lv_etq1" value="4" ng-model="json.est_lv_etq1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_lv_etq2" name="est_lv_etq2" value="5" ng-model="json.est_lv_etq2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_etq2" name="est_lv_etq2" value="6" ng-model="json.est_lv_etq2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_etq2" name="est_lv_etq2" value="7" ng-model="json.est_lv_etq2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_lv_etq2" name="est_lv_etq2" value="8" ng-model="json.est_lv_etq2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.est_lv_etq_obs1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.est_lv_etq_obs2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Otro</td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_otro1" name="est_lv_otro1" value="1" ng-model="json.est_lv_otro1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_otro1" name="est_lv_otro1" value="2" ng-model="json.est_lv_otro1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_otro1" name="est_lv_otro1" value="3" ng-model="json.est_lv_otro1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_lv_otro1" name="est_lv_otro1" value="4" ng-model="json.est_lv_otro1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_lv_otro2" name="est_lv_otro2" value="5" ng-model="json.est_lv_otro2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_otro2" name="est_lv_otro2" value="6" ng-model="json.est_lv_otro2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_lv_otro2" name="est_lv_otro2" value="7" ng-model="json.est_lv_otro2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_lv_otro2" name="est_lv_otro2" value="8" ng-model="json.est_lv_otro2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.est_lv_otro_obs1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.est_lv_otro_obs2" /></td>-->
+
+                                </tr>
+                                <!--FIN BLOQUE-->
+                                <!--BLOQUE-->
+                                <tr>
+                                    <td rowspan="8"><label class="center-tableitem">7</label></td>
+                                    <td rowspan="8"><label class="center-table">MOSQUETON</label></td>
+                                    <td>Codigo</td>
+                                    <td colspan="3">{{json.codigo_mosq1}}</td>
+                                    <td colspan="3">{{json.codigo_mosq2}}</td>
+                                    <!--<td> <input class="form-control" type="text" ng-model="" readonly ng-focus="validarcod(8,7.1,1)" /></td>
+                            <td> <input class="form-control" type="text" ng-model="" readonly ng-focus="validarcod(8,7.2,2)" /></td>-->
+                                </tr>
+                                <tr>
+                                    <td>Serial</td>
+                                    <td colspan="3">{{json.serial_mosq1}}</td>
+                                    <td colspan="3">{{json.serial_mosq2}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Lote</td>
+                                    <td colspan="3">{{json.lote_mosq1}}</td>
+                                    <td colspan="3">{{json.lote_mosq2}}</td>
+                                    <!--<td> <input class="form-control" type="text" ng-model="" readonly /></td>
+                            <td> <input class="form-control" type="text" ng-model="" readonly /></td>-->
+                                </tr>
+                                <tr>
+                                    <td>Mecanismo de apertura</td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_ma1" name="est_mosq_ma1" value="1" ng-model="json.est_mosq_ma1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_ma1" name="est_mosq_ma1" value="2" ng-model="json.est_mosq_ma1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_ma1" name="est_mosq_ma1" value="3" ng-model="json.est_mosq_ma1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_mosq_ma1" name="est_mosq_ma1" value="4" ng-model="json.est_mosq_ma1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_ma2" name="est_mosq_ma2" value="5" ng-model="json.est_mosq_ma2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_ma2" name="est_mosq_ma2" value="6" ng-model="json.est_mosq_ma2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_ma2" name="est_mosq_ma2" value="7" ng-model="json.est_mosq_ma2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_mosq_ma2" name="est_mosq_ma2" value="8" ng-model="json.est_mosq_ma2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.est_mosq_ma_obs1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.est_mosq_ma_obs2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Corrosion</td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_corr1" name="est_mosq_corr1" value="1" ng-model="json.est_mosq_corr1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_corr1" name="est_mosq_corr1" value="2" ng-model="json.est_mosq_corr1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_corr1" name="est_mosq_corr1" value="3" ng-model="json.est_mosq_corr1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_mosq_corr1" name="est_mosq_corr1" value="4" ng-model="json.est_mosq_corr1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_corr2" name="est_mosq_corr2" value="5" ng-model="json.est_mosq_corr2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_corr2" name="est_mosq_corr2" value="6" ng-model="json.est_mosq_corr2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_corr2" name="est_mosq_corr2" value="7" ng-model="json.est_mosq_corr2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_mosq_corr2" name="est_mosq_corr2" value="8" ng-model="json.est_mosq_corr2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.est_mosq_corr_obs1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.est_mosq_corr_obs2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Deformaciones (dobladuras)</td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_def1" name="est_mosq_def1" value="1" ng-model="json.est_mosq_def1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_def1" name="est_mosq_def1" value="2" ng-model="json.est_mosq_def1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_def1" name="est_mosq_def1" value="3" ng-model="json.est_mosq_def1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_mosq_def1" name="est_mosq_def1" value="4" ng-model="json.est_mosq_def1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_def2" name="est_mosq_def2" value="5" ng-model="json.est_mosq_def2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_def2" name="est_mosq_def2" value="6" ng-model="json.est_mosq_def2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_def2" name="est_mosq_def2" value="7" ng-model="json.est_mosq_def2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_mosq_def2" name="est_mosq_def2" value="8" ng-model="json.est_mosq_def2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.est_mosq_def_obs1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.est_mosq_def_obs2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Grietas</td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_gri1" name="est_mosq_gri1" value="1" ng-model="json.est_mosq_gri1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_gri1" name="est_mosq_gri1" value="2" ng-model="json.est_mosq_gri1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_gri1" name="est_mosq_gri1" value="3" ng-model="json.est_mosq_gri1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_mosq_gri1" name="est_mosq_gri1" value="4" ng-model="json.est_mosq_gri1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_gri2" name="est_mosq_gri2" value="5" ng-model="json.est_mosq_gri2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_gri2" name="est_mosq_gri2" value="6" ng-model="json.est_mosq_gri2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_gri2" name="est_mosq_gri2" value="7" ng-model="json.est_mosq_gri2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_mosq_gri2" name="est_mosq_gri2" value="8" ng-model="json.est_mosq_gri2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.est_mosq_gri_obs1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.est_mosq_gri_obs2" /></td>-->
+
+                                </tr>
+                                <tr>
+                                    <td>Otro</td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_otro1" name="est_mosq_otro1" value="1" ng-model="json.est_mosq_otro1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_otro1" name="est_mosq_otro1" value="2" ng-model="json.est_mosq_otro1" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_otro1" name="est_mosq_otro1" value="3" ng-model="json.est_mosq_otro1" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_mosq_otro1" name="est_mosq_otro1" value="4" ng-model="json.est_mosq_otro1" /></td>-->
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_otro2" name="est_mosq_otro2" value="5" ng-model="json.est_mosq_otro2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_otro2" name="est_mosq_otro2" value="6" ng-model="json.est_mosq_otro2" /></td>
+                                    <td class="radiobtn"><input type="radio" id="est_mosq_otro2" name="est_mosq_otro2" value="7" ng-model="json.est_mosq_otro2" /></td>
+                                    <!--<td class="radiobtn"><input type="radio" id="est_mosq_otro2" name="est_mosq_otro2" value="8" ng-model="json.est_mosq_otro2" /></td>-->
+                                    <!--<td> <input class="form-control" type="text" ng-model="json.est_mosq_otro_obs1" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.est_mosq_otro_obs2" /></td>-->
+
+                                </tr>
+                                <!--FIN BLOQUE-->
+                                <!--BLOQUE PARRAFO-->
+                                <tr>
+                                    <td colspan="13" style="height:80px;">
+                                        <b><u>ORSERVACIONES GENERALES:</u></b>
+                                        <br />
+                                        {{json.observaciones_gen}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="13">
+                                        <p style="text-align:justify; font-size:12px">
+                                            <b><u>RESPONSABILIDADES DEL TRABAJADOR:</u></b>
+                                            <br />
+                                            1.Reportar al supervisor o al area de seguridad en el trabajo (SST) el deterioro o da&ntilde;o de los sistemas individuales o colectivos de prevencion y proteccion contra caidas.
+                                            <br />
+                                            2.Inspeccionar antes de cada uso los sistemas individuales o colectivos de proteccion contra caidas, Sistemas de acceso.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="col-xs-4" style="text-align:center;">
+                    <img style="height:150px;width:200px" src="{{upload1}}" />
+                    <label style="border-top: 1px solid; text-align: center;">
+                        <b>Firma del tecnico 1</b><br /> {{json.nombre_completo1}}<br />{{json.cedulatec1}}<br />
+                    </label>
+                </div>
+                <div class="col-xs-4" style="text-align:center">
+                    <img style="height:150px;width:200px" src="{{upload2}}" />
+                    <label style="border-top: 1px solid; text-align: center;">
+                        <b>Firma del tecnico 2</b> <br />{{json.nombre_completo2}}<br />{{json.cedulatec1}}<br />
+                    </label>
+                </div>
+                <div class="col-xs-4" style="text-align:center">
+                    <img style="height:110px;width:170px" src="{{upload3}}" />
+                    <label style="border-top: 1px solid; text-align: center;">
+                        <b>Firma del Responsable</b><br /> {{json.resp_inspeccion}}<br />{{json.ced_rp_insp}}<br />
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="window-footer">
+        <ss-barra formulario="#inspec_altura"
+                  showbtn="showbtn"
+                  disabledbtn="disabledbtn"
+                  nuevo="nuevo()"
+                  editar="editar()"
+                  guardar="guardar()"
+                  actualizar="actualizar()"
+                  eliminar="eliminar()"
+                  imprimir ="imprimir()">
+        </ss-barra>
+        <ss-buscador data="dataBuscador_objeto" resultado="resultado_objeto"></ss-buscador>
+        <ss-buscador data="dataInsp_equi_altura" resultado="rsInsp_equi_altura"></ss-buscador>
+        <ss-buscador data="dataEmpleado" resultado="rsEmpleado"></ss-buscador>
+    </div>
+</div>
+
+<style>
+    #bord {
+        border: solid 1px;
+        line-height: 20px;
+    }
+
+    .space-td {
+        width: 40px;
+    }
+
+
+    th {
+        text-align: center
+    }
+
+    .texto-vertical-2 {
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+    }
+
+    .texto-vertical-3 {
+        margin-top: 60px;
+        -ms-transform: rotate(270deg); /* IE 9 */
+        -moz-transform: rotate(270deg); /* Firefox */
+        -webkit-transform: rotate(270deg); /* Safari and Chrome */
+        -o-transform: rotate(270deg); /* Opera */
+    }
+
+    .radiobtn {
+        width: 10px;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        padding: 3px;
+    }
+
+    .center-table {
+        align-content: center;
+        margin-top: 90px;
+    }
+
+    .center-tableitem {
+        align-content: center;
+        margin-top: 90px;
+        margin-left: 20px;
+    }
+
+    .sv-modal {
+        max-width: 700px;
+    }
+</style>
+
+
+
+
+

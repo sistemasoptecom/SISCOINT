@@ -1,0 +1,65 @@
+﻿<div id="wrapper" ng-class="isNotActive ? 'ss-full-view':''">
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top no-print" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header" style="padding-left:10px;float: left;height: 50px;">
+            <h3 style="margin-top:5px; margin-bottom:0px; color:#fff;">
+                <button id="menucerrar" type="button" class="btnMainMenu" ng-init="isNotActive = false" ng-click="isNotActive = !isNotActive; movbar(isNotActive);">
+                    <span><i class="fa fa-bars" aria-hidden="true"></i></span>
+                </button>
+                <span id="salud-system" style="margin:10px; cursor:pointer;">SISTEMA DE CONTROL INTEGRAL - OPTECOM S.A.S</span>
+                <!---->
+            </h3>
+        </div>
+        <!-- Top Menu Items -->
+        <ul id="main_menu" class="nav navbar-right top-nav">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-user"></i>
+                    {{" "+username+" "}}
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <!--li><a href="#"><i class="fa fa-fw fa-user"></i>Perfil</a></!--li>
+                    <li><a href="#"><i class="fa fa-fw fa-envelope"></i>Mensajes</a></li>
+                    <li><a href="#"><i class="fa fa-fw fa-gear"></i>Configuracion</a></li>
+                    <li>class="divider"></li-->
+                    <li><a ng-click="LogOut()"><i class="fa fa-fw fa-power-off"></i> Cerrar sesion</a></li>
+                </ul>
+            </li>
+        </ul>
+        <!--Sidebar Menu Items - These collapse to the responsive navigation menu on small screens-->
+        <div class="side-nav-container" ng-class="isNotActive ? 'ss-nav-inactive' : ''" style="overflow-x: auto;">
+            <ul id="menu" class="nav navbar-nav side-nav no-print">
+                <li ng-repeat="modules in mainMenu | filter:visible != 'false' | filter:module  ">
+                    <a id="{{modules.module}}-{{$index}}" ng-click="settemplate(modules.url);setnameTemplate(modules.module)">
+                        <i class="fa {{modules.icon}}" style="margin-right: 15px; font-size: 20px;"></i>
+                        {{modules.name_module}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!---->
+    <div id="page-wrapper">
+        <div class="col-xs-12 title no-print" ng-class="actualwindow">
+            <h4 class="page-header"></h4>
+        </div>
+        <div class="col-xs-12 container-fluid" ng-include src="view.getView()" ng-class="actualwindow"></div>
+    </div>
+    <!--<div class="col-xs-2 no-print" style="font-size:14px;font-style:italic;margin-top:-10px;float:right"><span><b>© Creado por. Brahyan De las Salas</b></span></div>-->
+</div>
+
+<style>
+    ol, ol a {
+        background-color: black;
+        color: black;
+    }
+
+    .nav ol li a:hover {
+        background-color: aqua !important;
+    }
+    ul{
+        cursor:pointer
+    }
+</style>

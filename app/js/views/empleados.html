@@ -1,0 +1,72 @@
+﻿<div ng-controller="EmpleadoController" class="window-wrapper">
+    <div class="window-body">
+        <form id="empleados" name="empleados" class="form-horizontal" autocomplete="off">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-6" >
+                <div class="col-xs-12" style="margin-top:60px;">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Datos Personales</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-12 col-md-4">
+                                <label>Cedula<span class="req">*</span></label>
+                                <input type="number" id="ced" ng-model="json.cedula_emp" ng-blur="Validate_Empleado()" ng-required="true" class="form-control" name="CEDULA">
+                            </div>
+                            <div class="col-xs-12 col-md-4 col-sm-8">
+                                <label>Primer Nombre<span class="req">*</span></label>
+                                <input type="text" ng-model="json.nombre" ng-required="true" id="pnombre" class="form-control" name="PRIMER NOMBRE">
+                            </div>
+                            <div class="col-xs-12 col-md-4 col-sm-8">
+                                <label>Segundo Nombre</label>
+                                <input type="text" ng-model="json.snombre" ng-init="json.snombre =''" id="snombre" class="form-control" name="SEGUNDO NOMBRE">
+                            </div>
+                            <div class="col-xs-12 col-md-4 col-sm-8">
+                                <label>Primer Apellido<span class="req">*</span></label>
+                                <input type="text" ng-model="json.ppellido" ng-required="true" id="ppellido" class="form-control" name="PRIMER APELLIDO">
+                            </div>
+                            <div class="col-xs-12 col-md-4 col-sm-8">
+                                <label>Segundo Apellido<span class="req">*</span></label>
+                                <input type="text" ng-model="json.spellido" ng-required="true" id="spellido" class="form-control" name="SEGUNDO APELLIDO">
+                            </div>
+                            <div class="col-xs-4">
+                                <label>Empresa</label>
+                                <select class="form-control" ng-options="c.id as c.nombre for c in empresa" ng-model="json.empresa" ng-required="true" name="EMPRESA">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="col-xs-9">
+                                <label>Area<span class="req">*</span></label>
+                                <ss-busqueda-rapida data="dataNombre" resultado="rsNombre" key="key"></ss-busqueda-rapida>
+                            </div>
+                            <div class="col-xs-3">
+                                <label>C. Costo<span class="req">*</span></label>
+                                <input type="text" ng-model="json.ccosto" ng-required="true" readonly class="form-control">
+                            </div>
+                            <div class="col-xs-6">
+                                <label>Cargo<span class="req">*</span></label>
+                                <input type="text" ng-model="json.cargo" class="form-control" ng-required="true" name="CARGO">
+                            </div>
+                            <div class="col-md-2">
+                                <label>Permiso E.</label>
+                                <input type="checkbox" ng-model="json.permiso" ng-true-value="1" ng-false-value="0" />
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </form>
+    </div>
+    <div class="window-footer">
+        <ss-barra formulario="#empleados"
+                  showbtn="showbtn"
+                  disabledbtn="disabledbtn"
+                  nuevo="nuevo()"
+                  editar="editar()"
+                  guardar="guardar()"
+                  actualizar="actualizar()"
+                  eliminar="eliminar()">
+        </ss-barra>
+        <ss-buscador data="dataEmpleado" resultado="rsEmpleado"></ss-buscador>
+    </div>
+</div>

@@ -1,0 +1,271 @@
+<div ng-controller="Reporte_escaleras" class="window-wrapper">
+    <div class="window-body">
+        <form id="reporte" name="reporte" class="form-horizontal no-print" autocomplete="off">
+            <div class="col-xs-12">
+                <div class="col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Reporte Escaleras</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-3">
+                                <label>Buscar</label>
+                                <input class="form-control" ng-model="filtro" ng-change="filtro = filtro.toUpperCase()" />
+                            </div>
+                            <div class="col-xs-2">
+                                <label>Ciudad</label>
+                                <select class="form-control" ng-model="tipo_reporte">
+                                    <option value=""></option>
+                                    <option value="BARRANQUILLA">BARRANQUILLA</option>
+                                    <option value="BUCARAMANGA">BUCARAMANGA</option>
+                                    <option value="CALI">CALI</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-2">
+                                <a  class="no-print" id="test" ng-click="fnExcelReport();">
+                                    <img src="img/Excel_15.png" style="height:30px;display:block;" />
+                                </a>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="col-xs-2">
+                                    <label>Fecha Incio</label>
+                                    <input type="date" class="form-control" ng-model="startdate" />
+                                </div>
+                                <div class="col-xs-2">
+                                    <label>Fecha Fin</label>
+                                    <input type="date" class="form-control" ng-model="enddate" />
+                                </div>
+                                <div class="col-xs-1">
+                                    <label></label>
+                                    <button type="button" class="btn btn-primary" ng-click="readquery()">Consultar</button>
+                                </div>
+                            </div>
+                            <div class="col-xs-12" ng-show="true" style="margin-top:15px;">
+                                <div>
+                                    <table class="table table-bordered table-hover" id="myTable2">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center">ITEM</th>
+                                                <th style="text-align: center">H.V</th>
+                                                <th style="text-align: center">IDENTIFICACION</th>
+                                                <th style="text-align: center">FECHA INSP.</th>
+                                                <th style="text-align: center">MARCA</th>
+                                                <th style="text-align: center">EMPLEADO</th>
+                                                <th style="text-align: center">RESP. SEGUIMIENTO</th>
+                                                <th style="text-align: center">CIUDAD</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="cursor:default" ng-repeat="item in tablainspeccion  | filter: filtro | filter: centro_costo">
+                                                <td style="text-align: center">{{$index + 1}}</td>
+                                                <td><span style="cursor:pointer;" ng-click="buscar_acta(item)"><i class="fa fa-file" aria-hidden="true"></i></span> </td>
+                                                <td style="text-align: center">{{item.idenfiticacion}}</td>
+                                                <td style="text-align: center">{{convert(item.f_inspeccion)}}</td>
+                                                <td style="text-align: center">{{item.marca}}</td>
+                                                <td style="text-align: center">{{item.ced_empleado}}</td>
+                                                <td style="text-align: center">{{item.respinspeccion}}</td>
+                                                <td style="text-align: center">{{item.ciudad}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <button ng-show="false" type="button" class="btn btn-primary btn-imprimir" ng-click="search_pro()" id="acta-buscar" style="width:90px"> Si </button>
+        <div id="dvData" ng-show="false">
+            <table class="table table-bordered table-hover table-striped" id="tablet_report">
+                <thead>
+                    <tr>
+                        <th style="text-align: center">ITEM</th>
+                        <th style="text-align: center">TIPO</th>
+                        <th style="text-align: center">CODIGO</th>
+                        <th style="text-align: center">MARCA</th>
+                        <th style="text-align: center">REFERENCIA</th>
+                        <th style="text-align: center">SERIAL</th>
+                        <th style="text-align: center">LOTE</th>
+                        <th style="text-align: center">PROVEEDOR</th>
+                        <th style="text-align: center">EMPLEADO</th>
+                        <th style="text-align: center">F. INSPECCION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="cursor:pointer" ng-repeat="item in tablainspeccionmes" ng-class="trdell">
+                        <td style="text-align: center">{{$index + 1}}</td>
+                        <td style="text-align: center">{{item.Tipo_equipo}}</td>
+                        <td style="text-align: center">{{item.Codigo}}</td>
+                        <td style="text-align: center">{{item.Marca}}</td>
+                        <td style="text-align: center">{{item.Referencia}}</td>
+                        <td style="text-align: center">{{item.Serial}}</td>
+                        <td style="text-align: center">{{item.Lote}}</td>
+                        <td style="text-align: center">{{item.Proveedor}}</td>
+                        <td style="text-align: center">{{item.Empleado}}</td>
+                        <td style="text-align: center">{{convert(item.F_prox_inspec)}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--</div>-->
+    </div>
+    <div class="no-print">
+        <div class="waiting-wrapper"  ng-class="openWaiting ? 'open' : ''">
+            <div class="waiting">
+                <img src="fonts/animatedEllipse.gif" />
+                El servidor esta procesando la informacion
+            </div>
+        </div>
+    </div>
+    <div class="window-footer">
+        <ss-buscador data="dataActa" resultado="rsActa"></ss-buscador>
+    </div>
+</div>
+
+<style>
+
+    .amarillo {
+        background: #F6FC9A;
+    }
+
+    .rojo {
+        background: red;
+    }
+
+    .verde {
+        background: #62A61A;
+    }
+
+    #bord {
+        border: solid 1px;
+        line-height: 20px;
+    }
+
+    .table-report {
+        border: solid 1px;
+    }
+
+    .btn-custom {
+        display: block;
+        height: 25px;
+        text-align: center;
+        border: 1px solid;
+        border-color: #ccc;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    .sv-modal {
+        max-width: 750px;
+    }
+
+    .centermodal {
+        width: 50%;
+        max-width: 200px;
+        min-width: 100px;
+        margin: 0 auto;
+    }
+
+    .botonmodal {
+        margin-top: 18px;
+        display: block;
+        border: 3px solid;
+        border-color: #ccc;
+    }
+
+    .radios {
+    }
+
+    .in-line-content.title label {
+        color: #2196F3;
+    }
+
+        .in-line-content.title label.float-left {
+            padding-top: 0;
+        }
+
+    .in-line-content .border {
+        overflow: hidden;
+        padding-bottom: 5px;
+    }
+</style>
+
+<style>
+
+    #bord {
+        border: solid 1px;
+        line-height: 20px;
+    }
+
+    .table-report {
+        border: solid 1px;
+    }
+
+    .btn-custom {
+        display: block;
+        height: 25px;
+        text-align: center;
+        border: 1px solid;
+        border-color: #ccc;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+
+    .centermodal {
+        width: 50%;
+        max-width: 200px;
+        min-width: 100px;
+        margin: 0 auto;
+    }
+
+    .botonmodal {
+        margin-top: 18px;
+        display: block;
+        border: 3px solid;
+        border-color: #ccc;
+    }
+
+    .radios {
+    }
+
+    .in-line-content.title label {
+        color: #2196F3;
+    }
+
+        .in-line-content.title label.float-left {
+            padding-top: 0;
+        }
+
+    .in-line-content .border {
+        overflow: hidden;
+        padding-bottom: 5px;
+    }
+
+    .space-td {
+        width: 40px;
+    }
+
+    .space-check {
+        width: 30px;
+    }
+</style>
+
+<script>
+    $("#btnexport").click(function (e) {
+        exclude: ".table .table-bordered",
+        window.open('data:application/vnd.ms-excel,' + $('#dvData').html());
+        e.preventDefault();
+    });
+</script>

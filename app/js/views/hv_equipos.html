@@ -1,0 +1,488 @@
+<div ng-controller="HvController" class="window-wrapper">
+    <div class="window-body">
+        <form id="hvequipos" name="hvequipos" class="form-horizontal" autocomplete="off">
+            <div class="col-xs-12">
+                <div class="col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">DESCRIPCION GENERAL DEL EQUIPOS DE COMPUTO</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-12">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <td>No. Inventario</td>
+                                        <td><div><ss-busqueda-rapida data="dataequipos" resultado="rsequipos" key="key"></ss-busqueda-rapida></div></td>
+                                        <td>TIPO DE EQUIPO</td>
+                                        <td>
+                                            <select class="form-control" ng-required="true" ng-model="json.tipo_equipo">
+                                                <option value=""></option>
+                                                <option value="PORTATIL">PORTATIL</option>
+                                                <option value="ESCRITORIO">ESCRITORIO</option>
+                                            </select>
+                                        </td>
+                                        <td>NOMBRE</td>
+                                        <td width="300px"><input class="form-control" ng-model="json.nombre" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>NOMBRE DEL EQUIPO</td>
+                                        <td><input class="form-control" ng-model="json.nombre_equipo" /></td>
+                                        <td>GRUPO DE TRABAJO</td>
+                                        <td><input class="form-control" ng-model="json.grupo_trabajo" /></td>
+                                        <td>CEDULA</td>
+                                        <td width="300px"><input class="form-control" ng-model="json.cedula" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>UBICACION</td>
+                                        <td><input class="form-control" ng-required="true" name="UBICACION" ng-model="json.ubicacion" /></td>
+                                        <td>ACTIVACION DE WINDOWS</td>
+                                        <td><input class="form-control" ng-model="json.activacion_windows" /></td>
+                                        <td>FECHA</td>
+                                        <td width="300px"><input class="form-control" type="date" ng-model="json.fecha" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>PUESTO</td>
+                                        <td><input class="form-control" ng-model="json.puesto" /></td>
+                                        <td>MARCA</td>
+                                        <td><input class="form-control" ng-model="json.marca" /></td>
+                                        <td>CARGO</td>
+                                        <td><input class="form-control" ng-model="json.cargo" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>SISTEMA OPERATIVO</td>
+                                        <td>
+                                            <select class="form-control" ng-model="json.so">
+                                                <option value=""></option>
+                                                <option value="WINDOWS XP">WINDOWS XP</option>
+                                                <option value="WINDOWS VISTA">WINDOWS VISTA</option>
+                                                <option value="WINDOWS 7">WINDOWS 7</option>
+                                                <option value="WINDOWS 8">WINDOWS 8</option>
+                                                <option value="WINDOWS 10">WINDOWS 10</option>
+                                                <option value="WINDOWS SERVER">WINDOWS SERVER</option>
+                                            </select>
+                                        </td>
+                                        <td>MODELO DEL EQUIPO</td>
+                                        <td><input class="form-control" ng-model="json.modelo_equipo" /></td>
+                                        <td>TIPO DE SISTEMA</td>
+                                        <td>
+                                            <select class="form-control" ng-model="json.tipo_sistema">
+                                                <option value=""></option>
+                                                <option value="32 bits">32 bits</option>
+                                                <option value="64 bits">64 bits</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>COMPONENTES</th>
+                                            <th width="250px">ESPECIFICACION TECNICA</th>
+                                            <th>MARCA</th>
+                                            <th>SERIAL/MODELO</th>
+                                            <th>VELOCIDAD</th>
+                                            <th>CAPACIDAD</th>
+                                            <th>ESTADO</th>
+                                        </tr>
+                                        <tr>
+                                            <td>PROCESADOR</td>
+                                            <td><input class="form-control" ng-model="json.esp_pro" /></td>
+                                            <td><input class="form-control" ng-model="json.marca_pro" /></td>
+                                            <td><input class="form-control" ng-model="json.serial_pro" /></td>
+                                            <td><input class="form-control" ng-model="json.vel_pro" /></td>
+                                            <td><input class="form-control" ng-model="json.cap_pro" /></td>
+                                            <td>
+                                                <select class="form-control" ng-model="json.estado_pro">
+                                                    <option value=""></option>
+                                                    <option value="BUENO">BUENO</option>
+                                                    <option value="MALO">MALO</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>BATERIA</td>
+                                            <td><input class="form-control" ng-model="json.esp_bateria" /></td>
+                                            <td><input class="form-control" ng-model="json.marca_bateria" /></td>
+                                            <td><input class="form-control" ng-model="json.serial_bateria" /></td>
+                                            <td><input class="form-control" ng-model="json.vel_bateria" /></td>
+                                            <td><input class="form-control" ng-model="json.cap_bateria" /></td>
+                                            <td>
+                                                <select class="form-control" ng-model="json.estado_bateria">
+                                                    <option value=""></option>
+                                                    <option value="BUENO">BUENO</option>
+                                                    <option value="MALO">MALO</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>MEMORIA RAM</td>
+                                            <td><input class="form-control" ng-model="json.esp_ram" /></td>
+                                            <td><input class="form-control" ng-model="json.marca_ram" /></td>
+                                            <td><input class="form-control" ng-model="json.serial_ram" /></td>
+                                            <td><input class="form-control" ng-model="json.vel_ram" /></td>
+                                            <td><input class="form-control" ng-model="json.cap_ram" /></td>
+                                            <td>
+                                                <select class="form-control" ng-model="json.estado_ram">
+                                                    <option value=""></option>
+                                                    <option value="BUENO">BUENO</option>
+                                                    <option value="MALO">MALO</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>DISCO DURO</td>
+                                            <td><input class="form-control" ng-model="json.esp_disco" /></td>
+                                            <td><input class="form-control" ng-model="json.marca_disco" /></td>
+                                            <td><input class="form-control" ng-model="json.serial_disco" /></td>
+                                            <td><input class="form-control" ng-model="json.vel_disco" /></td>
+                                            <td><input class="form-control" ng-model="json.cap_disco" /></td>
+                                            <td>
+                                                <select class="form-control" ng-model="json.estado_disco">
+                                                    <option value=""></option>
+                                                    <option value="BUENO">BUENO</option>
+                                                    <option value="MALO">MALO</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr><th rowspan="6"><div class="texto-vertical-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TARJETAS</div></th></tr>
+                                        <tr>
+                                            <th>COMPONENTES</th>
+                                            <th width="250px">ESPECIFICACION TECNICA</th>
+                                            <th>MARCA</th>
+                                            <th>SERIAL/MODELO</th>
+                                            <th>VELOCIDAD</th>
+                                            <th>CAPACIDAD</th>
+                                            <th>ESTADO</th>
+                                        </tr>
+
+                                        <tr>
+                                            <td>SONIDO</td>
+                                            <td><input class="form-control" ng-model="json.esp_tsonido" /></td>
+                                            <td><input class="form-control" ng-model="json.marca_tsonido" /></td>
+                                            <td><input class="form-control" ng-model="json.serial_tsonido" /></td>
+                                            <td><input class="form-control" ng-model="json.vel_tsonido" /></td>
+                                            <td><input class="form-control" ng-model="json.cap_tsonido" /></td>
+                                            <td>
+                                                <select class="form-control" ng-model="json.estado_tsonido">
+                                                    <option value=""></option>
+                                                    <option value="BUENO">BUENO</option>
+                                                    <option value="MALO">MALO</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>VIDEO</td>
+                                            <td><input class="form-control" ng-model="json.esp_tvideo" /></td>
+                                            <td><input class="form-control" ng-model="json.marca_tvideo" /></td>
+                                            <td><input class="form-control" ng-model="json.serial_tvideo" /></td>
+                                            <td><input class="form-control" ng-model="json.vel_tvideo" /></td>
+                                            <td><input class="form-control" ng-model="json.cap_tvideo" /></td>
+                                            <td>
+                                                <select class="form-control" ng-model="json.estado_tvideo">
+                                                    <option value=""></option>
+                                                    <option value="BUENO">BUENO</option>
+                                                    <option value="MALO">MALO</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>T. RED LAN</td>
+                                            <td><input class="form-control" ng-model="json.esp_tlan" /></td>
+                                            <td><input class="form-control" ng-model="json.marca_tlan" /></td>
+                                            <td><input class="form-control" ng-model="json.seial_tlan" /></td>
+                                            <td><input class="form-control" ng-model="json.vel_tlan" /></td>
+                                            <td><input class="form-control" ng-model="json.cap_tlan" /></td>
+                                            <td>
+                                                <select class="form-control" ng-model="json.estado_tlan">
+                                                    <option value=""></option>
+                                                    <option value="BUENO">BUENO</option>
+                                                    <option value="MALO">MALO</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>T. INALAMBRICA WIFI</td>
+                                            <td><input class="form-control" ng-model="json.esp_twifi" /></td>
+                                            <td><input class="form-control" ng-model="json.marca_twifi" /></td>
+                                            <td><input class="form-control" ng-model="json.serial_twifi" /></td>
+                                            <td><input class="form-control" ng-model="json.vel_twifi" /></td>
+                                            <td><input class="form-control" ng-model="json.cap_twifi" /></td>
+                                            <td>
+                                                <select class="form-control" ng-model="json.estado_twifi">
+                                                    <option value=""></option>
+                                                    <option value="BUENO">BUENO</option>
+                                                    <option value="MALO">MALO</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr><th rowspan="6"><div class="texto-vertical-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UNIDADES</div></th></tr>
+                                        <tr>
+                                            <th>COMPONENTES</th>
+                                            <th width="250px">ESPECIFICACION TECNICA</th>
+                                            <th>MARCA</th>
+                                            <th>SERIAL/MODELO</th>
+                                            <th>VELOCIDAD</th>
+                                            <th>CAPACIDAD</th>
+                                            <th>ESTADO</th>
+                                        </tr>
+
+                                        <tr>
+                                            <td>DVD</td>
+                                            <td><input class="form-control" ng-model="json.esp_dvd" /></td>
+                                            <td><input class="form-control" ng-model="json.marca_dvd" /></td>
+                                            <td><input class="form-control" ng-model="json.serial_dvd" /></td>
+                                            <td><input class="form-control" ng-model="json.vel_dvd" /></td>
+                                            <td><input class="form-control" ng-model="json.cap_dvd" /></td>
+                                            <td>
+                                                <select class="form-control" ng-model="json.estado_dvd">
+                                                    <option value=""></option>
+                                                    <option value="BUENO">BUENO</option>
+                                                    <option value="MALO">MALO</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>OTRA</td>
+                                            <td><input class="form-control" ng-model="json.esp_otra" /></td>
+                                            <td><input class="form-control" ng-model="json.marca_otra" /></td>
+                                            <td><input class="form-control" ng-model="json.serial_otra" /></td>
+                                            <td><input class="form-control" ng-model="json.vel_otra" /></td>
+                                            <td><input class="form-control" ng-model="json.cap_otra" /></td>
+                                            <td>
+                                                <select class="form-control" ng-model="json.estado_otra">
+                                                    <option value=""></option>
+                                                    <option value="BUENO">BUENO</option>
+                                                    <option value="MALO">MALO</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>COMPONENTES</th>
+                                            <th width="250px">ESPECIFICACION TECNICA</th>
+                                            <th>MARCA</th>
+                                            <th>SERIAL/MODELO</th>
+                                            <th>VELOCIDAD</th>
+                                            <th>CAPACIDAD</th>
+                                            <th>ESTADO</th>
+                                        </tr>
+
+                                        <tr>
+                                            <td>MONITOR - PANTALLA</td>
+                                            <td><input class="form-control" ng-model="json.esp_pantalla" /></td>
+                                            <td><input class="form-control" ng-model="json.marca_pantalla" /></td>
+                                            <td><input class="form-control" ng-model="json.serial_pantalla" /></td>
+                                            <td><input class="form-control" ng-model="json.vel_pantalla" /></td>
+                                            <td><input class="form-control" ng-model="json.cap_pantalla" /></td>
+                                            <td>
+                                                <select class="form-control" ng-model="json.estado_pantalla">
+                                                    <option value=""></option>
+                                                    <option value="BUENO">BUENO</option>
+                                                    <option value="MALO">MALO</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>OTRA</td>
+                                            <td><input class="form-control" ng-model="json.esp_otro" /></td>
+                                            <td><input class="form-control" ng-model="json.marca_otro" /></td>
+                                            <td><input class="form-control" ng-model="json.serial_otro" /></td>
+                                            <td><input class="form-control" ng-model="json.vel_otro" /></td>
+                                            <td><input class="form-control" ng-model="json.cap_otro" /></td>
+                                            <td>
+                                                <select class="form-control" ng-model="json.estado_otro">
+                                                    <option value=""></option>
+                                                    <option value="BUENO">BUENO</option>
+                                                    <option value="MALO">MALO</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr><th rowspan="9"><div class="texto-vertical-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PERIFERICOS</div></th></tr>
+                                        <tr>
+                                            <th>COMPONENTES</th>
+                                            <th width="250px">ESPECIFICACION TECNICA</th>
+                                            <th>MARCA</th>
+                                            <th>SERIAL/MODELO</th>
+                                            <th>VELOCIDAD</th>
+                                            <th>CAPACIDAD</th>
+                                            <th>ESTADO</th>
+                                        </tr>
+
+                                        <tr>
+                                            <td>TECLADO</td>
+                                            <td><input class="form-control" ng-model="json.esp_teclado" /></td>
+                                            <td><input class="form-control" ng-model="json.marca_teclado" /></td>
+                                            <td><input class="form-control" ng-model="json.serial_teclado" /></td>
+                                            <td><input class="form-control" ng-model="json.vel_teclado" /></td>
+                                            <td><input class="form-control" ng-model="json.cap_teclado" /></td>
+                                            <td>
+                                                <select class="form-control" ng-model="json.estado_teclado">
+                                                    <option value=""></option>
+                                                    <option value="BUENO">BUENO</option>
+                                                    <option value="MALO">MALO</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>MOUSE</td>
+                                            <td><input class="form-control" ng-model="json.esp_mouse" /></td>
+                                            <td><input class="form-control" ng-model="json.marca_mouse" /></td>
+                                            <td><input class="form-control" ng-model="json.serial_mouse" /></td>
+                                            <td><input class="form-control" ng-model="json.vel_mouse" /></td>
+                                            <td><input class="form-control" ng-model="json.cap_mouse" /></td>
+                                            <td>
+                                                <select class="form-control" ng-model="json.est_mouse">
+                                                    <option value=""></option>
+                                                    <option value="BUENO">BUENO</option>
+                                                    <option value="MALO">MALO</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>PARLANTES</td>
+                                            <td><input class="form-control" ng-model="json.esp_parlantes" /></td>
+                                            <td><input class="form-control" ng-model="json.marca_parlantes" /></td>
+                                            <td><input class="form-control" ng-model="json.serial_parlantes" /></td>
+                                            <td><input class="form-control" ng-model="json.vel_parlantes" /></td>
+                                            <td><input class="form-control" ng-model="json.cap_parlantes" /></td>
+                                            <td>
+                                                <select class="form-control" ng-model="json.estado_parlantes">
+                                                    <option value=""></option>
+                                                    <option value="BUENO">BUENO</option>
+                                                    <option value="MALO">MALO</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>CAMARA</td>
+                                            <td><input class="form-control" ng-model="json.esp_camara" /></td>
+                                            <td><input class="form-control" ng-model="json.marca_camara" /></td>
+                                            <td><input class="form-control" ng-model="json.serial_camara" /></td>
+                                            <td><input class="form-control" ng-model="json.vel_camara" /></td>
+                                            <td><input class="form-control" ng-model="json.cap_camara" /></td>
+                                            <td>
+                                                <select class="form-control" ng-model="json.estado_camara">
+                                                    <option value=""></option>
+                                                    <option value="BUENO">BUENO</option>
+                                                    <option value="MALO">MALO</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>MICROFONO</td>
+                                            <td><input class="form-control" ng-model="json.esp_micro" /></td>
+                                            <td><input class="form-control" ng-model="json.marca_micro" /></td>
+                                            <td><input class="form-control" ng-model="json.serial_micro" /></td>
+                                            <td><input class="form-control" readonly ng-model="json.vel_micro" /></td>
+                                            <td><input class="form-control" readonly ng-model="json.cap_micro" /></td>
+                                            <td>
+                                                <select class="form-control" ng-model="json.estado_micro">
+                                                    <option value=""></option>
+                                                    <option value="BUENO">BUENO</option>
+                                                    <option value="MALO">MALO</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>CARGADOR</td>
+                                            <td><input class="form-control" ng-model="json.esp_cargador" /></td>
+                                            <td><input class="form-control" ng-model="json.marca_cargador" /></td>
+                                            <td><input class="form-control" ng-model="json.serial_cargador" /></td>
+                                            <td><input class="form-control" ng-model="json.vel_cargador" /></td>
+                                            <td><input class="form-control" ng-model="json.cap_cargador" /></td>
+                                            <td>
+                                                <select class="form-control" ng-model="json.estado_cargador">
+                                                    <option value=""></option>
+                                                    <option value="BUENO">BUENO</option>
+                                                    <option value="MALO">MALO</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>PROGRAMAS LICENCIADOS</th>
+                                            <th>VERSION DEL SOFTWARE</th>
+                                            <th>ID DEL PRODUCTO</th>
+                                        </tr>
+
+                                        <tr>
+                                            <td><input class="form-control" ng-model="json.programa1" /></td>
+                                            <td><input class="form-control" ng-model="json.versionprograma1" /></td>
+                                            <td><input class="form-control" ng-model="json.idprograma1" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input class="form-control" ng-model="json.programa2" /></td>
+                                            <td><input class="form-control" ng-model="json.versionprograma2" /></td>
+                                            <td><input class="form-control" ng-model="json.idprograma2" /></td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr><th colspan="3" style="text-align:center">CONFIGURACION DE RED</th></tr>
+                                        <tr>
+                                            <th>NOMBRE DE RED</th>
+                                            <th>NOMBRE DEL EQUIPO</th>
+                                            <th>DIRECCION IP</th>
+                                            <th>DIRECCION MAC</th>
+                                        </tr>
+
+                                        <tr>
+                                            <td><input class="form-control" ng-model="json.nombre_red" /></td>
+                                            <td><input class="form-control" ng-model="json.nombre_equipo_red" /></td>
+                                            <td><input class="form-control" ng-model="json.direccion_ip" /></td>
+                                            <td><input class="form-control" ng-model="json.direccion_mac" /></td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="window-footer">
+        <ss-barra formulario="#hvequipos"
+                  showbtn="showbtn"
+                  disabledbtn="disabledbtn"
+                  nuevo="nuevo()"
+                  editar="editar()"
+                  guardar="guardar()"
+                  actualizar="actualizar()"
+                  buscar="buscar()"
+                  eliminar="eliminar()">
+        </ss-barra>
+        <ss-buscador data="dataEmpleado" resultado="rsEmpleado"></ss-buscador>
+
+    </div>
+</div>
+
+
+<style>
+    .texto-vertical-2 {
+        writing-mode: vertical-lr;
+        transform: rotate(180deg);
+        margin-top:70px;
+    }
+</style>
+

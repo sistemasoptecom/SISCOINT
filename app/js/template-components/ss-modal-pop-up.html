@@ -1,0 +1,46 @@
+﻿<div class="modal-view2-wrapper" ng-class="modalViewOpen ? 'modal-view2-wrapper-open' : ''">
+    <div class="modal-view2">
+        <div class="head">
+            <div class="modal-header"><button id="cerrar" class="btn btn-default btn-xs" ng-click="close()">X</button></div>
+        </div>
+        <div class="body" ng-include src="data.url">
+        </div>
+    </div>
+</div>
+
+<style>
+    .modal-view2-wrapper {
+        z-index: 1130;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: none;
+    }
+
+        .modal-view2-wrapper.modal-view2-wrapper-open {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-view2-wrapper .modal-view2 {
+            width: 92%;
+            height: 98%;
+            background-color: #fff;
+            border-radius: 5px;
+            border: 1px solid #337ab7;
+            -webkit-box-shadow: 2px 2px 8px 0px rgba(122,122,122,1);
+            -moz-box-shadow: 2px 2px 8px 0px rgba(122,122,122,1);
+            box-shadow: 2px 2px 8px 0px rgba(122,122,122,1);
+        }
+
+            .modal-view2-wrapper .modal-view2 .body {
+                height: calc(100% - 43px);
+            }
+
+                .modal-view2-wrapper .modal-view2 .body .btn-cerrar {
+                    /*display:none;*/
+                }
+</style>

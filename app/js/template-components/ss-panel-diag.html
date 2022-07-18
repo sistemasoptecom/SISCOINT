@@ -1,0 +1,29 @@
+﻿<div class="col-xs-12" style="padding:0;">
+    <div class="col-md-6">
+        <label>Diagnostico principal<span class="req">*</span></label>
+        <ss-busqueda-rapida data="dataDiag1" resultado="rsDiag1" key="key"></ss-busqueda-rapida>
+    </div>
+    <div class="col-md-6">
+        <label>Diagnostico relacionado 1</label>
+        <ss-busqueda-rapida data="dataDiag2" resultado="rsDiag2" key="key2"></ss-busqueda-rapida>
+    </div>
+    <div class="col-md-6">
+        <label>Diagnostico relacionado 2</label>
+        <ss-busqueda-rapida data="dataDiag3" resultado="rsDiag3" key="key3"></ss-busqueda-rapida>
+    </div>
+    <div class="col-md-6">
+        <label>Diagnostico relacionado 3</label>
+        <ss-busqueda-rapida data="dataDiag4" resultado="rsDiag4" key="key4"></ss-busqueda-rapida>
+    </div>
+    <div class="col-md-6">
+        <label>Tipo de diagósticos<span class="req">*</span></label>
+        <select name="Tipo de diagostico" class="form-control" ng-required="true" ng-model="tipo_dx" ng-options="item.key as item.values for item in tipo_dx2" ng-change="enviar(1,item.key)"></select>
+    </div>
+    <div class="col-xs-12" style="padding:0;">
+        <div class="col-md-6">
+            <label>Diagnóstico de manejo</label>
+            <textarea class="form-control" ng-model="manejo" ng-blur="enviar(2,manejo)"></textarea>
+        </div>
+    </div>
+
+</div>

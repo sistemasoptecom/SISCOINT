@@ -1,0 +1,62 @@
+﻿<div class="print-border padding" >  
+    <h3 class="light-font text-center"><b>DATOS PERSONALES DEL PACIENTE</b></h3> 
+    <table width="100%">
+        <tr>
+            <td class="bold-font"><b>Nombre Completo:</b></td>
+            <td class="light-font">{{nomcomp}}</td>
+            <td class="bold-font"><b>Edad:</b></td>
+            <td class="light-font">{{pp.edad}}</td>
+        </tr>
+        <tr>
+            <td class="bold-font"><b>Sexo:</b></td>
+            <td class="light-font">{{sex}}</td>
+            <td class="bold-font"><b>Identificaión:</b></td>
+            <td class="light-font">{{cedula}}</td>
+        </tr>
+        <tr>
+            <td class="bold-font"><b>Telefono:</b></td>
+            <td class="light-font">{{tel}}</td>
+            <td class="bold-font"><b>Direccion:</b></td>
+            <td class="lightt-font">{{direccion}}</td>
+        </tr>
+        <tr>
+            <td class="bold-font"><b>Empresa:</b></td>
+            <td class="light-font">{{pp.empresa}}</td>
+        </tr>
+    </table> 
+    <!--<div class="col-xs-9"><h7 class="x"><b>NOMBRE COMPLETO:&nbsp;&nbsp;&nbsp;&nbsp;</b> {{nomcomp}}</h7></div>
+    <div class="col-xs-3"><h7 ><b>EDAD &nbsp;&nbsp;&nbsp;</b> {{pp.edad}}</h7></div>
+    <div class="col-xs-3"><h7 class="x"><b>SEXO &nbsp;&nbsp;&nbsp;</b>{{sex}}</h7></div>
+    <div class="col-xs-5"><h7 class="x"><b>IDENTIFICACION &nbsp;&nbsp;&nbsp;</b>{{cedula}}</h7></div>
+    <div class="col-xs-4"><h7><b>TELEFONO &nbsp;&nbsp;&nbsp;</b>{{tel}}</h7></div>
+    <div class="col-xs-4"><h7 class="x"><b>DIRECCION &nbsp;&nbsp;&nbsp;</b>{{direccion}}</h7></div>
+    <div class="col-xs-8"><h7><b>EMPRESA &nbsp;&nbsp;&nbsp;</b>{{pp.empresa}}</h7></div>-->
+</div>
+
+<style>
+    .x
+    {
+        margin-left:10px;
+        margin-top:30px;
+    }
+    .y
+    {
+        margin-left:30px;
+        margin-top:40px;
+    }
+    .title {
+        text-align:center;
+    }
+    .bold-font{
+        font: bold monospace;
+        font-size: medium !important;
+    }
+    .light-font{
+        font: 100% monospace;
+    }
+    .padding{
+        padding-right: 10px; 
+        padding-left: 10px;
+        padding-bottom: 10px;
+    }
+</style>

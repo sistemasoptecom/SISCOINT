@@ -1,0 +1,686 @@
+<div ng-controller="Inspecciones_escaleras_Controller" class="window-wrapper">
+    <div class="window-body">
+        <form id="inspec_escaleras" name="inspec_escaleras" class="form-horizontal no-print" autocomplete="off">
+            <div class="col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">INSPECCION DE ESCALERAS</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-xs-4">
+                            <label>Nombre del Tecnico<span class="req">*</span></label>
+                            <ss-busqueda-rapida data="dataTecnico1" resultado="rsTecnico1" key="key"></ss-busqueda-rapida>
+                        </div>
+                        <div class="col-xs-2">
+                            <label>AREA<span class="req">*</span></label>
+                            <select class="form-control" ng-model="json.area" ng-required="true" name="AREA">
+                                <option value=""></option>
+                                <option value="INSTALACIONES">INSTALACIONES</option>
+                                <option value="MANTENIMIENTO">MANTENIMIENTO</option>
+                                <option value="RED EXTERNA">RED EXTERNA</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-2">
+                            <label>FECHA DE INSPECCION<span class="req">*</span></label>
+                            <input class="form-control" type="date" ng-model="json.f_inspeccion" ng-required="true" name="FECHA" />
+                        </div>
+                        <div class="col-xs-2">
+                            <label>ID<span class="req">*</span></label>
+                            <input class="form-control" type="text" ng-model="json.idenfiticacion" ng-required="true" name="ID" />
+                        </div>
+                        <div class="col-xs-2">
+                            <label>Ciudad<span class="req">*</span></label>
+                            <select class="form-control" ng-model="json.ciudad" ng-required="true">
+                                <option value=""></option>
+                                <option value="BARRANQUILLA">BARRANQUILLA</option>
+                                <option value="BUCARAMANGA">BUCARAMANGA</option>
+                                <option value="CALI">CALI</option>
+                            </select>
+                        </div>
+                        <button ng-show="false" type="button" class="btn btn-primary btn-imprimir" ng-click="search_pro()" id="buscar_obj" style="width:90px"> Si </button>
+                        <div class="col-xs-12">
+                            <div class="col-xs-2">
+                                <label>Marca</label>
+                                <input class="form-control" type="text" ng-model="json.marca" />
+                            </div>
+                            <div class="col-xs-2">
+                                <label>N. de pasos</label>
+                                <input class="form-control" type="number" ng-model="json.pasos" />
+                            </div>
+                            <div class="col-xs-1">
+                                <label>Fibra</label>
+                                <input type="checkbox" ng-model="json.fibra" />
+                            </div>
+                            <div class="col-xs-1">
+                                <label>Metalica</label>
+                                <input type="checkbox" ng-model="json.metalica" />
+                            </div>
+                            <div class="col-xs-1">
+                                <label>Un Cuerpo</label>
+                                <input type="checkbox" ng-model="json.uncuerpo" />
+                            </div>
+                            <div class="col-xs-1">
+                                <label>Dos Cuerpo</label>
+                                <input type="checkbox" ng-model="json.doscuerpos" />
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <table class="table table-bordered table-hover" style="padding:3px">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="3">TIPO DE ESCALERA</th>
+                                        <th rowspan="3" style="width: 420px">DESCRIPCION</th>
+                                        <th colspan="3">ESTADO ESTRUCTURAL</th>
+                                        <th rowspan="2" colspan="1">OBSERVACIONES</th>
+                                    </tr>
+                                    <tr>
+                                        <th>B</th>
+                                        <th>R</th>
+                                        <th>M</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!--BLOQUE-->
+                                    <tr>
+                                        <td rowspan="14"><label class="center-tableitem">ESCALERA DE UNO O DOS CUERPOS</label></td>
+                                        <td>Escalera dielectrica</td>
+                                        <td class="radiobtn"><input type="radio" id="descrip1" name="descrip1" value="1" ng-model="json.descrip1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip1" name="descrip1" value="2" ng-model="json.descrip1" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip1" name="descrip1" value="3" ng-model="json.descrip1" /></td>
+
+                                        <td> <input class="form-control" type="text" ng-model="json.obs1" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Remaches y Diagonales Completas</td>
+                                        <td class="radiobtn"><input type="radio" id="descrip2" name="descrip2" value="1" ng-model="json.descrip2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip2" name="descrip2" value="2" ng-model="json.descrip2" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip2" name="descrip2" value="3" ng-model="json.descrip2" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs2" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Etiqueta Legible</td>
+                                        <td class="radiobtn"><input type="radio" id="descrip3" name="descrip3" value="1" ng-model="json.descrip3" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip3" name="descrip3" value="2" ng-model="json.descrip3" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip3" name="descrip3" value="3" ng-model="json.descrip3" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs3" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Topes superirores e inferiores completas</td>
+                                        <td class="radiobtn"><input type="radio" id="descrip4" name="descrip4" value="1" ng-model="json.descrip4" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip4" name="descrip4" value="2" ng-model="json.descrip4" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip4" name="descrip4" value="3" ng-model="json.descrip4" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs4" /></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Sistema de sujecion para trabajo en posto con banda antideslizante</td>
+                                        <td class="radiobtn"><input type="radio" id="descrip5" name="descrip5" value="1" ng-model="json.descrip5" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip5" name="descrip5" value="2" ng-model="json.descrip5" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip5" name="descrip5" value="3" ng-model="json.descrip5" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs5" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sistema de polea movil</td>
+                                        <td class="radiobtn"><input type="radio" id="descrip6" name="descrip6" value="1" ng-model="json.descrip6" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip6" name="descrip6" value="2" ng-model="json.descrip6" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip6" name="descrip6" value="3" ng-model="json.descrip6" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs6" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Riel de seccion movil sin fracturas,dobladas,corrosion o soltura de fibra</td>
+                                        <td class="radiobtn"><input type="radio" id="descrip7" name="descrip7" value="1" ng-model="json.descrip7" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip7" name="descrip7" value="2" ng-model="json.descrip7" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip7" name="descrip7" value="3" ng-model="json.descrip7" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs7" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cuerda de seguridad para izaje de ries Cuerda en nylon o manilla integra sin desgastes o empalmes</td>
+                                        <td class="radiobtn"><input type="radio" id="descrip8" name="descrip8" value="1" ng-model="json.descrip8" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip8" name="descrip8" value="2" ng-model="json.descrip8" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip8" name="descrip8" value="3" ng-model="json.descrip8" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs8" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gancho o sistema de bloqueo,resorte,u&ntilde;eta de seguridad completa y funcional</td>
+                                        <td class="radiobtn"><input type="radio" id="descrip9" name="descrip9" value="1" ng-model="json.descrip9" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip9" name="descrip9" value="2" ng-model="json.descrip9" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip9" name="descrip9" value="3" ng-model="json.descrip9" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs9" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Zapata con caucho antideslizante completos,sin dobladuras,corrosion o soltura de fibra</td>
+                                        <td class="radiobtn"><input type="radio" id="descrip10" name="descrip10" value="1" ng-model="json.descrip10" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip10" name="descrip10" value="2" ng-model="json.descrip10" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip10" name="descrip10" value="3" ng-model="json.descrip10" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs10" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pelda&ntilde;o antideslizante completos, sin dobladuras,perforaciones o lisas</td>
+                                        <td class="radiobtn"><input type="radio" id="descrip11" name="descrip11" value="1" ng-model="json.descrip11" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip11" name="descrip11" value="2" ng-model="json.descrip11" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip11" name="descrip11" value="3" ng-model="json.descrip11" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs11" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Riel seccion base o travesa&ntilde;o sin fracturas, dobladas,corrosion o soltura de fibra</td>
+                                        <td class="radiobtn"><input type="radio" id="descrip12" name="descrip12" value="1" ng-model="json.descrip12" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip12" name="descrip12" value="2" ng-model="json.descrip12" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip12" name="descrip12" value="3" ng-model="json.descrip12" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs12" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Guias superiores e inferiores. Completas</td>
+                                        <td class="radiobtn"><input type="radio" id="descrip13" name="descrip13" value="1" ng-model="json.descrip13" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip13" name="descrip13" value="2" ng-model="json.descrip13" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip13" name="descrip13" value="3" ng-model="json.descrip13" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs13" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Extensiones de la escalera ruedan correctamente dentro de las guias </td>
+                                        <td class="radiobtn"><input type="radio" id="descrip14" name="descrip14" value="1" ng-model="json.descrip14" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip14" name="descrip14" value="2" ng-model="json.descrip14" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip14" name="descrip14" value="3" ng-model="json.descrip14" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs14" /></td>
+                                    </tr>
+                                    <!--FIN BLOQUE-->
+                                    <!--BLOQUE-->
+                                    <tr>
+                                        <td rowspan="9"><label class="center-tableitem">ESCALERA TIPO O TIJERA</label></td>
+                                        <td>Etiqueta legible</td>
+                                        <td class="radiobtn"><input type="radio" id="descrip15" name="descrip15" value="1" ng-model="json.descrip15" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip15" name="descrip15" value="2" ng-model="json.descrip15" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip15" name="descrip15" value="3" ng-model="json.descrip15" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs15" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tapadera sin fracturas o perforaciones</td>
+                                        <td class="radiobtn"><input type="radio" id="descrip16" name="descrip16" value="1" ng-model="json.descrip16" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip16" name="descrip16" value="2" ng-model="json.descrip16" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip16" name="descrip16" value="3" ng-model="json.descrip16" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs16" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mensual diagonal sin dobles,suelta o ausencia</td>
+                                        <td class="radiobtn"><input type="radio" id="descrip17" name="descrip17" value="1" ng-model="json.descrip17" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip17" name="descrip17" value="2" ng-model="json.descrip17" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip17" name="descrip17" value="3" ng-model="json.descrip17" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs17" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Barra de tension funcional</td>
+                                        <td class="radiobtn"><input type="radio" id="descrip18" name="descrip18" value="1" ng-model="json.descrip18" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip18" name="descrip18" value="2" ng-model="json.descrip18" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip18" name="descrip18" value="3" ng-model="json.descrip18" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs18" /></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Zapatas "pies de seguridad" Existentes con cauchos antideslizantes</td>
+                                        <td class="radiobtn"><input type="radio" id="descrip19" name="descrip19" value="1" ng-model="json.descrip19" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip19" name="descrip19" value="2" ng-model="json.descrip19" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip19" name="descrip19" value="3" ng-model="json.descrip19" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs19" /></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Larguero posterior, Lineales sin golpes o sueltas</td>
+                                        <td class="radiobtn"><input type="radio" id="descrip20" name="descrip20" value="1" ng-model="json.descrip20" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip20" name="descrip20" value="2" ng-model="json.descrip20" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip20" name="descrip20" value="3" ng-model="json.descrip20" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs20" /></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Larguero anterior lineales sin golpes o sueltas</td>
+                                        <td class="radiobtn"><input type="radio" id="descrip21" name="descrip21" value="1" ng-model="json.descrip21" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip21" name="descrip21" value="2" ng-model="json.descrip21" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip21" name="descrip21" value="3" ng-model="json.descrip21" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs21" /></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Escalones antiderrapantes completos, sin dobles o perforacion libre de material fraso</td>
+                                        <td class="radiobtn"><input type="radio" id="descrip22" name="descrip22" value="1" ng-model="json.descrip22" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip22" name="descrip22" value="2" ng-model="json.descrip22" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip22" name="descrip22" value="3" ng-model="json.descrip22" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs22" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Horizontal posterior lineales sin golpes o sueltas</td>
+                                        <td class="radiobtn"><input type="radio" id="descrip23" name="descrip23" value="1" ng-model="json.descrip23" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip23" name="descrip23" value="2" ng-model="json.descrip23" /></td>
+                                        <td class="radiobtn"><input type="radio" id="descrip23" name="descrip23" value="3" ng-model="json.descrip23" /></td>
+                                        <td> <input class="form-control" type="text" ng-model="json.obs23" /></td>
+                                    </tr>
+                                    <!--FIN BLOQUE-->
+                                </tbody>
+                            </table>
+                            <div class="col-xs-6">
+                                <button type="button" class="btn btn-primary btn-imprimir" ng-click="openfirmas()" id="buscar_pro" style="width:90px">Firmar</button>
+                            </div>
+                            <!--MODAL-->
+                            <div class="sv-modal-wrapper no-print" ng-class="openModalPRO ? 'active':''">
+                                <div class="sv-modal">
+                                    <div class="sv-modal-head">
+                                        <label style="color:#fff">FIRMA DIGITAL</label>
+                                        <button ng-click="closePRO()" class="btn btn-default btn-xs">X</button>
+                                    </div>
+                                    <div class="sv-modal-body">
+                                        <div class="sv-content">
+                                            <div class="col-xs-6">
+                                                <label>Tecnico</label>
+                                            </div>
+                                            <!--<div class="col-xs-6">
+                            <label>Tecnico 2</label>
+                        </div>-->
+                                            <div class="col-xs-12">
+                                                <canvas id="sig-canvas" width="300" height="100" style="border:solid">
+                                                    Get a better browser, bro.
+                                                </canvas>
+                                                <!--<canvas id="sig-canvas2" width="300" height="100" style="border:solid">
+                                Get a better browser, bro.
+                            </canvas>-->
+                                                <div class="col-xs-6">
+                                                    <button type="button" class="btn btn-primary btn-imprimir" ng-click="limpiarfirma1()" id="buscar_pro" style="width:90px">Limpiar</button>
+                                                </div>
+                                                <!--<div class="col-xs-4">
+                                <button type="button" class="btn btn-primary btn-imprimir" ng-click="limpiarfirma2()" style="width:90px">Limpiar</button>
+                            </div>-->
+                                                <div class="col-xs-2">
+                                                    <button type="button" class="btn btn-primary btn-imprimir" ng-click="guardarfirmas()" style="width:90px">Guardar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="print">
+            <table id="bord" class="table-hover">
+                <tbody>
+                    <tr>
+                        <td id="bord" rowspan="4" style="text-align:center;width:20% "><img style="width:200px;padding:5px" src="img/logo_optecom.jpg" /></td>
+
+                        <td id="bord" rowspan="4" style="text-align:center;width:52%"><h3><b>INSPECCION DE ESCALERAS</b></h3></td>
+                        <td id="bord"><b>Codigo:&nbsp;</b><span>R-GHU-041</span></td>
+                    </tr>
+
+                    <tr><td id="bord"><b>Version:&nbsp;</b><span>001</span></td></tr>
+                    <tr>
+                        <td id="bord"><b>Fecha Vigencia:</b><span>16/09/2015</span></td>
+                    </tr>
+                    <tr>
+                        <td id="bord"><b>Pag</b><span>1 de 1</span></td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td><label>Nombre del Tecnico:</label></td>
+                        <td>{{json.nombre_completo1}}</td>
+                        <td><label>Area:</label></td>
+                        <td>{{json.area}}</td>
+                        <td><label>Fecha de Inspeccion</label></td>
+                        <td>{{json.f_inspeccion}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td><label>ID</label></td>
+                        <td>{{json.idenfiticacion}}</td>
+                        <td><label>Marca:</label></td>
+                        <td>{{json.marca}}</td>
+                        <td><label>N. de pasos</label></td>
+                        <td>{{json.pasos}}</td>
+                        <td><label>Fibra:</label></td>
+                        <td><input type="checkbox" ng-model="json.fibra" /></td>
+                        <td><label>Metalica:</label></td>
+                        <td><input type="checkbox" ng-model="json.metalica" /></td>
+                        <td><label>Un Cuerpo:</label></td>
+                        <td><input type="checkbox" ng-model="json.uncuerpo" /></td>
+                        <td><label>Dos Cuerpo:</label></td>
+                        <td><input type="checkbox" ng-model="json.doscuerpos" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--</div>-->
+            <button ng-show="false" type="button" class="btn btn-primary btn-imprimir" ng-click="search_pro()" id="buscar_obj" style="width:90px"> Si </button>
+            <div class="col-xs-12">
+                <table class="table table-bordered table-hover" style="padding:0px">
+                    <thead>
+                        <tr>
+                            <th rowspan="3">TIPO DE ESCALERA</th>
+                            <th rowspan="3" style="width: 420px">DESCRIPCION</th>
+                            <th colspan="3">ESTADO ESTRUCTURAL</th>
+                            <th rowspan="2" colspan="1">OBSERVACIONES</th>
+                        </tr>
+                        <tr>
+                            <th>B</th>
+                            <th>R</th>
+                            <th>M</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--BLOQUE-->
+                        <tr>
+                            <td rowspan="14"><label style="margin-top:170px">ESCALERA DE UNO O DOS CUERPOS</label></td>
+                            <td>Escalera dielectrica</td>
+                            <td class="radiobtn"><input type="radio" id="descrip1" name="descrip1" value="1" ng-model="json.descrip1" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip1" name="descrip1" value="2" ng-model="json.descrip1" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip1" name="descrip1" value="3" ng-model="json.descrip1" /></td>
+
+                            <td> <input class="form-control" type="text" ng-model="json.obs1" /></td>
+                        </tr>
+                        <tr>
+                            <td>Remaches y Diagonales Completas</td>
+                            <td class="radiobtn"><input type="radio" id="descrip2" name="descrip2" value="1" ng-model="json.descrip2" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip2" name="descrip2" value="2" ng-model="json.descrip2" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip2" name="descrip2" value="3" ng-model="json.descrip2" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs2" /></td>
+                        </tr>
+                        <tr>
+                            <td>Etiqueta Legible</td>
+                            <td class="radiobtn"><input type="radio" id="descrip3" name="descrip3" value="1" ng-model="json.descrip3" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip3" name="descrip3" value="2" ng-model="json.descrip3" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip3" name="descrip3" value="3" ng-model="json.descrip3" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs3" /></td>
+                        </tr>
+                        <tr>
+                            <td>Topes superirores e inferiores completas</td>
+                            <td class="radiobtn"><input type="radio" id="descrip4" name="descrip4" value="1" ng-model="json.descrip4" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip4" name="descrip4" value="2" ng-model="json.descrip4" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip4" name="descrip4" value="3" ng-model="json.descrip4" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs4" /></td>
+
+                        </tr>
+                        <tr>
+                            <td>Sistema de sujecion para trabajo en posto con banda antideslizante</td>
+                            <td class="radiobtn"><input type="radio" id="descrip5" name="descrip5" value="1" ng-model="json.descrip5" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip5" name="descrip5" value="2" ng-model="json.descrip5" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip5" name="descrip5" value="3" ng-model="json.descrip5" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs5" /></td>
+                        </tr>
+                        <tr>
+                            <td>Sistema de polea movil</td>
+                            <td class="radiobtn"><input type="radio" id="descrip6" name="descrip6" value="1" ng-model="json.descrip6" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip6" name="descrip6" value="2" ng-model="json.descrip6" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip6" name="descrip6" value="3" ng-model="json.descrip6" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs6" /></td>
+                        </tr>
+                        <tr>
+                            <td>Riel de seccion movil sin fracturas,dobladas,corrosion o soltura de fibra</td>
+                            <td class="radiobtn"><input type="radio" id="descrip7" name="descrip7" value="1" ng-model="json.descrip7" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip7" name="descrip7" value="2" ng-model="json.descrip7" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip7" name="descrip7" value="3" ng-model="json.descrip7" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs7" /></td>
+                        </tr>
+                        <tr>
+                            <td>Cuerda de seguridad para izaje de ries Cuerda en nylon o manilla integra sin desgastes o empalmes</td>
+                            <td class="radiobtn"><input type="radio" id="descrip8" name="descrip8" value="1" ng-model="json.descrip8" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip8" name="descrip8" value="2" ng-model="json.descrip8" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip8" name="descrip8" value="3" ng-model="json.descrip8" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs8" /></td>
+                        </tr>
+                        <tr>
+                            <td>Gancho o sistema de bloqueo,resorte,u&ntilde;eta de seguridad completa y funcional</td>
+                            <td class="radiobtn"><input type="radio" id="descrip9" name="descrip9" value="1" ng-model="json.descrip9" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip9" name="descrip9" value="2" ng-model="json.descrip9" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip9" name="descrip9" value="3" ng-model="json.descrip9" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs9" /></td>
+                        </tr>
+                        <tr>
+                            <td>Zapata con caucho antideslizante completos,sin dobladuras,corrosion o soltura de fibra</td>
+                            <td class="radiobtn"><input type="radio" id="descrip10" name="descrip10" value="1" ng-model="json.descrip10" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip10" name="descrip10" value="2" ng-model="json.descrip10" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip10" name="descrip10" value="3" ng-model="json.descrip10" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs10" /></td>
+                        </tr>
+                        <tr>
+                            <td>Pelda&ntilde;o antideslizante completos, sin dobladuras,perforaciones o lisas</td>
+                            <td class="radiobtn"><input type="radio" id="descrip11" name="descrip11" value="1" ng-model="json.descrip11" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip11" name="descrip11" value="2" ng-model="json.descrip11" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip11" name="descrip11" value="3" ng-model="json.descrip11" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs11" /></td>
+                        </tr>
+                        <tr>
+                            <td>Riel seccion base o travesa&ntilde;o sin fracturas, dobladas,corrosion o soltura de fibra</td>
+                            <td class="radiobtn"><input type="radio" id="descrip12" name="descrip12" value="1" ng-model="json.descrip12" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip12" name="descrip12" value="2" ng-model="json.descrip12" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip12" name="descrip12" value="3" ng-model="json.descrip12" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs12" /></td>
+                        </tr>
+                        <tr>
+                            <td>Guias superiores e inferiores. Completas</td>
+                            <td class="radiobtn"><input type="radio" id="descrip13" name="descrip13" value="1" ng-model="json.descrip13" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip13" name="descrip13" value="2" ng-model="json.descrip13" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip13" name="descrip13" value="3" ng-model="json.descrip13" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs13" /></td>
+                        </tr>
+                        <tr>
+                            <td>Extensiones de la escalera ruedan correctamente dentro de las guias </td>
+                            <td class="radiobtn"><input type="radio" id="descrip14" name="descrip14" value="1" ng-model="json.descrip14" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip14" name="descrip14" value="2" ng-model="json.descrip14" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip14" name="descrip14" value="3" ng-model="json.descrip14" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs14" /></td>
+                        </tr>
+                        <!--FIN BLOQUE-->
+                        <!--BLOQUE-->
+                        <tr>
+                            <td rowspan="9"><label style="margin-top:100px">ESCALERA TIPO O TIJERA</label></td>
+                            <td>Etiqueta legible</td>
+                            <td class="radiobtn"><input type="radio" id="descrip15" name="descrip15" value="1" ng-model="json.descrip15" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip15" name="descrip15" value="2" ng-model="json.descrip15" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip15" name="descrip15" value="3" ng-model="json.descrip15" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs15" /></td>
+                        </tr>
+                        <tr>
+                            <td>Tapadera sin fracturas o perforaciones</td>
+                            <td class="radiobtn"><input type="radio" id="descrip16" name="descrip16" value="1" ng-model="json.descrip16" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip16" name="descrip16" value="2" ng-model="json.descrip16" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip16" name="descrip16" value="3" ng-model="json.descrip16" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs16" /></td>
+                        </tr>
+                        <tr>
+                            <td>Mensual diagonal sin dobles,suelta o ausencia</td>
+                            <td class="radiobtn"><input type="radio" id="descrip17" name="descrip17" value="1" ng-model="json.descrip17" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip17" name="descrip17" value="2" ng-model="json.descrip17" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip17" name="descrip17" value="3" ng-model="json.descrip17" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs17" /></td>
+                        </tr>
+                        <tr>
+                            <td>Barra de tension funcional</td>
+                            <td class="radiobtn"><input type="radio" id="descrip18" name="descrip18" value="1" ng-model="json.descrip18" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip18" name="descrip18" value="2" ng-model="json.descrip18" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip18" name="descrip18" value="3" ng-model="json.descrip18" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs18" /></td>
+
+                        </tr>
+                        <tr>
+                            <td>Zapatas "pies de seguridad" Existentes con cauchos antideslizantes</td>
+                            <td class="radiobtn"><input type="radio" id="descrip19" name="descrip19" value="1" ng-model="json.descrip19" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip19" name="descrip19" value="2" ng-model="json.descrip19" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip19" name="descrip19" value="3" ng-model="json.descrip19" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs19" /></td>
+
+                        </tr>
+                        <tr>
+                            <td>Larguero posterior, Lineales sin golpes o sueltas</td>
+                            <td class="radiobtn"><input type="radio" id="descrip20" name="descrip20" value="1" ng-model="json.descrip20" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip20" name="descrip20" value="2" ng-model="json.descrip20" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip20" name="descrip20" value="3" ng-model="json.descrip20" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs20" /></td>
+
+                        </tr>
+                        <tr>
+                            <td>Larguero anterior lineales sin golpes o sueltas</td>
+                            <td class="radiobtn"><input type="radio" id="descrip21" name="descrip21" value="1" ng-model="json.descrip21" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip21" name="descrip21" value="2" ng-model="json.descrip21" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip21" name="descrip21" value="3" ng-model="json.descrip21" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs21" /></td>
+
+                        </tr>
+                        <tr>
+                            <td>Escalones antiderrapantes completos, sin dobles o perforacion libre de material fraso</td>
+                            <td class="radiobtn"><input type="radio" id="descrip22" name="descrip22" value="1" ng-model="json.descrip22" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip22" name="descrip22" value="2" ng-model="json.descrip22" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip22" name="descrip22" value="3" ng-model="json.descrip22" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs22" /></td>
+                        </tr>
+                        <tr>
+                            <td>Horizontal posterior lineales sin golpes o sueltas</td>
+                            <td class="radiobtn"><input type="radio" id="descrip23" name="descrip23" value="1" ng-model="json.descrip23" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip23" name="descrip23" value="2" ng-model="json.descrip23" /></td>
+                            <td class="radiobtn"><input type="radio" id="descrip23" name="descrip23" value="3" ng-model="json.descrip23" /></td>
+                            <td> <input class="form-control" type="text" ng-model="json.obs23" /></td>
+                        </tr>
+                        <!--FIN BLOQUE-->
+                    </tbody>
+                </table>
+                <div class="col-xs-6">
+                    <button type="button" class="btn btn-primary btn-imprimir" ng-click="openfirmas()" id="buscar_pro" style="width:90px">Firmar</button>
+                </div>
+                <!--MODAL-->
+                <div class="sv-modal-wrapper no-print" ng-class="openModalPRO ? 'active':''">
+                    <div class="sv-modal">
+                        <div class="sv-modal-head">
+                            <label style="color:#fff">FIRMA DIGITAL</label>
+                            <button ng-click="closePRO()" class="btn btn-default btn-xs">X</button>
+                        </div>
+                        <div class="sv-modal-body">
+                            <div class="sv-content">
+                                <div class="col-xs-6">
+                                    <label>Tecnico 1</label>
+                                </div>
+                                <!--<div class="col-xs-6">
+                                    <label>Tecnico 2</label>
+                                </div>-->
+                                <div class="col-xs-12">
+                                    <canvas id="sig-canvas" width="300" height="100" style="border:solid">
+                                        Get a better browser, bro.
+                                    </canvas>
+                                    <!--<canvas id="sig-canvas2" width="300" height="100" style="border:solid">
+                                        Get a better browser, bro.
+                                    </canvas>-->
+                                    <div class="col-xs-6">
+                                        <button type="button" class="btn btn-primary btn-imprimir" ng-click="limpiarfirma1()" id="buscar_pro" style="width:90px">Limpiar</button>
+                                    </div>
+                                    <!--<div class="col-xs-4">
+                                        <button type="button" class="btn btn-primary btn-imprimir" ng-click="limpiarfirma2()" style="width:90px">Limpiar</button>
+                                    </div>-->
+                                    <div class="col-xs-2">
+                                        <button type="button" class="btn btn-primary btn-imprimir" ng-click="guardarfirmas()" style="width:90px">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--PANEL FIRMAS-->
+            <div class="col-xs-12" style="margin-top:30px">
+                <div class="col-xs-4" style="text-align:center;">
+                    <img style="height:150px;width:200px" src="{{upload1}}" />
+                    <label style="border-top: 1px solid; text-align: center;">
+                        <b>Firma del tecnico</b><br /> {{json.nombre_completo1}}<br />{{json.ced_empleado}}<br />
+                    </label>
+                </div>
+                <div class="col-xs-4"></div>
+                <!--<div class="col-xs-4" style="text-align:center">
+                    <img style="height:150px;width:200px" src="{{upload2}}" />
+                    <label style="border-top: 1px solid; text-align: center;">
+                        <b>Firma del tecnico 2</b> {{json.nombre_completo2}}<br />{{json.cedulatec1}}<br />
+                    </label>
+                </div>-->
+                <div class="col-xs-4" style="text-align:center">
+                    <img style="height:110px;width:170px" src="{{upload3}}" />
+                    <label style="border-top: 1px solid; text-align: center;">
+                        <b>Firma del Responsable</b><br /> {{json.resp_inspeccion}}<br />{{json.ced_usu_inspec}}<br />
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="window-footer">
+        <ss-barra formulario="#inspec_escaleras"
+                  showbtn="showbtn"
+                  disabledbtn="disabledbtn"
+                  nuevo="nuevo()"
+                  editar="editar()"
+                  guardar="guardar()"
+                  actualizar="actualizar()"
+                  eliminar="eliminar()"
+                  imprimir="imprimir()">
+        </ss-barra>
+        <ss-buscador data="dataBuscador_objeto" resultado="resultado_objeto"></ss-buscador>
+        <ss-buscador data="datainspescaleras" resultado="rsinspescaleras"></ss-buscador>
+    </div>
+</div>
+
+<style>
+    #bord {
+        border: solid 1px;
+        line-height: 20px;
+    }
+
+    .space-td {
+        width: 40px;
+    }
+
+
+    th {
+        text-align: center
+    }
+
+    .texto-vertical-2 {
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+    }
+
+    .texto-vertical-3 {
+        margin-top: 60px;
+        -ms-transform: rotate(270deg); /* IE 9 */
+        -moz-transform: rotate(270deg); /* Firefox */
+        -webkit-transform: rotate(270deg); /* Safari and Chrome */
+        -o-transform: rotate(270deg); /* Opera */
+    }
+
+    .radiobtn {
+        width: 10px;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        padding: 3px;
+    }
+
+    .center-table {
+        align-content: center;
+        margin-top: 90px;
+    }
+
+    .center-tableitem {
+        align-content: center;
+        margin-top: 180px;
+        margin-left: 20px;
+    }
+
+    .sv-modal {
+        max-width: 350px;
+    }
+
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+   padding: 1px; 
+}
+</style>

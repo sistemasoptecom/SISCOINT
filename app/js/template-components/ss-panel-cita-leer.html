@@ -1,0 +1,113 @@
+﻿<div class="pc-main-wrapper">
+    <div class="pc-list-wrapper">
+        <div class="pc-list-data">
+            <div class="row no-print">
+                <div class="col-sm-8">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label>Medico <span class="req">*</span></label>
+                            <ss-busqueda-rapida data="datapaciente" resultado="rspaciente" key="key"></ss-busqueda-rapida>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <label></label>
+                </div>
+            </div>
+        </div>
+        <div class="pc-list-content">
+            <div class="col-md-12">
+                <div class="alert alert-danger fade in" ng-show="find" ng-bind="message"></div>
+            </div>
+            <div class="col-md-12">
+                <div class="alert alert-danger fade in" ng-show="mostrar">{{mensaje}}</div>
+            </div>        
+            <div class="col-xs-12 no-print">
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Paciente</th>
+                            <th>Codigo</th>
+                            <th>Empresa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in list" ng-click="setPaciente(item)" ng-class="estado(item)">
+                            <td>{{item.Paciente}}</td>
+                            <td>{{item.Codigo}}</td>
+                            <td>{{item.Empresa}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="pc-modal-wrapper" ng-class="openModal ? 'active':''">
+        <div class="pc-modal">
+            <div class="pc-modal-head">
+                <button ng-click="close()" class="btn btn-default btn-xs">X</button>
+            </div>
+            <div class="pc-modal-body">
+                <div class="pc-tabs">
+                    <div class="tab" ng-click="setActiveView('tabMain');validar()" ng-class="activeView == 'tabMain' ? 'activeView' : ''">
+                        <span>Citas Medicas</span>
+                    </div>
+                    <div class="tab" ng-repeat="item in views" ng-class="activeView == item.name ? 'activeView' : ''" ng-click="setActiveView(item.name)">
+                        <span>{{item.name}}</span>
+                        <span ng-click="closeview(item.name)" style="float:right;">X</span>
+                    </div>
+                </div>
+                <div class="pc-content">
+                    <div class="pc-view" ng-show="activeView == 'tabMain'">
+                        <div class="col-xs-12" style="background:#0d47a1;color:#fff;">
+                            <div class="form-group">
+                                <h4>Paciente</h4>
+                                <input type="text" readonly="true" class="form-control" ng-model="json.paciente" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4" ng-show="reg" style="height:200px;overflow:auto">
+                            <table class="table">
+                                <thead><tr ng-bind-html="t_head"></tr></thead>
+                                <tbody ng-bind-html="t_body"></tbody>
+                            </table>
+                        </div>
+                        <div ng-repeat="item in menu" class="col-sm-6 col-md-4 col-lg-2">
+                            <div class="pc-view-content" ng-click="!item.estado() ? addView(item) : '';" ng-class="!item.estado() ? '' : 'disabled'">
+                                <a class="pc-view-a">
+                                    <img src={{item.icon}} />
+                                    <h4>{{item.name}}</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pc-view" ng-repeat="item in views" ng-include src="item.url" ng-show="activeView == item.name" ng-class="activeView == item.name ? 'activeView':''"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="sv-modal-wrapper no-print" ng-class="openModal2 ? 'active':''">
+    <div class="sv-modal">
+        <div class="sv-modal-head">
+            <label>ADVERTENCIA</label>
+            <button ng-click="close2()" class="btn btn-default btn-xs">X</button>
+        </div>
+        <div class="sv-modal-body">
+            <div class="sv-content">
+                <div class="col-xs-12">
+                    <div class="col-xs-3">
+                        <i class="fa fa-exclamation-triangle" aria-hidden="true" style="font-size:4em;color:dodgerblue;"></i>
+                    </div>
+                    <div class="col-xs-9">
+                        <label>No puede entrar en una fecha superior a la actual</label>
+                    </div>
+                    <div class="col-xs-12">
+                        <button type="button" class="btn btn-primary btn-sm" ng-click="close2()" style="float:right;">Aceptar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,440 @@
+<div ng-controller="AprobarPresion" class="window-wrapper">
+    <div class="window-body">
+        <form id="reporte" name="reporte" class="form-horizontal no-print" autocomplete="off">
+            <div class="col-xs-12">
+                <div class="col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">APROBACION PRESION</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-1">
+                                
+                            </div>
+                           <!--- <div class="col-xs-2">
+                                <label>Buscar numero pedido</label>
+                                <input class="form-control" ng-model="searchnumber.nro_pedido" ng-change="filtro = filtro.toUpperCase()" />
+                            </div>-->
+                           <!--- <div class="col-xs-2">
+                                <label>Centro de costo</label>
+                                <select class="form-control" ng-options="c.ccosto as c.area for c in centros" ng-model="searchnumber.ccosto">
+                                    <option value=""></option>
+                                </select>
+                            </div>-->
+                           <!--- <div class="col-xs-2">
+                                <a class="no-print" id="test" ng-click="buscar_report();">
+                                    <img src="img/Excel_15.png" style="cursor:pointer; height:30px;display:block;" />
+                                </a>
+                            </div>-->
+                            <div class="col-xs-12" style="margin-top:15px;">
+                                <div>
+                                    <table class="table table-bordered table-hover table-striped" id="myTable">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center">ITEM</th>
+                                                <th style="text-align: center">NRO. PRESION</th>
+                                                <th style="text-align: center">FECHA</th>
+                                                <th style="text-align: center">CECO</th>
+                                                <th style="text-align: center">VALOR</th>
+                                                <th style="text-align: center">USUARIO</th>
+                                                <th style="text-align: center">VISUALIZAR</th>
+                                                <th style="text-align: center"><acronym title="VISUALIZAR PRESION" lang="es">V.PRE</acronym></th>
+                                              <!---  <th style="text-align: center"><acronym title="VISUALIZAR SRP" lang="es">V.SRP</acronym></th>-->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="cursor:default" ng-repeat="(key, item) in grilla | filter: searchnumber" ng-class="trdell">
+                                                <td style="text-align: center">{{$index + 1}}</td>
+                                                <td style="text-align: center">{{item.id}}</td>
+                                                <td style="text-align: center">{{convert(item.fecha)}}</td>
+                                                <td style="text-align: center">{{item.dependencia}}</td>
+                                                <td style="text-align: center">{{formatnumber(item.vlr_total)}}</td>
+                                                <td style="text-align: center">{{item.usuario}}</td>
+                                               <!---<td style="text-align: center">
+
+                                                    <div ng-show="item.vto_bueno_fina != 1">
+                                                        <input ng-click="clickCheck(key)" type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="item.vto_bueno_fina" />
+                                                    </div>
+
+                                                    <div ng-show="item.vto_bueno_fina == 1">
+                                                        <i class="fa fa-check"> </i>
+                                                    </div>
+
+                                                </td>-->
+                                                <td style="text-align: center"><span style="cursor:pointer" ng-click="buscar_acta(item)"><i class="fa fa-search" aria-hidden="true"></i></span> </td>
+                                                <td style="text-align: center"><button id="reporte-guardar" type="button" class="btn btn-primary btn-guardar" ng-click="guardar_aprobados(item)"> EJECUTAR</button> </td>
+
+                                              <!---- <td style="text-align: center"><span style="cursor:pointer" ng-click="buscar_srp(item)"><i class="fa fa-search" aria-hidden="true"></i></span> </td>-->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <button ng-show="false" type="button" class="btn btn-primary btn-imprimir" ng-click="search_pro()" id="acta-buscar" style="width:90px"> Si </button>
+    </div>
+    <div class="no-print">
+        <div class="waiting-wrapper" ng-class="openWai ? 'open' : ''">
+            <div class="waiting">
+                <img src="fonts/animatedEllipse.gif" />
+                El servidor esta procesando la informacion
+            </div>
+        </div>
+    </div>
+    <div class="no-print">
+        <div class="waiting-wrapper" ng-class="openWaiting ? 'open' : ''">
+            <div class="waiting">
+                <div id="modal" style="z-index:3000" class="sv-modal-wrapper no-print" ng-class="openModalPRO ? 'active':''">
+                    <div class="sv-modal">
+                        <div class="sv-modal-head">
+                            <label style="color:#fff">VISUALIZACION DE PRESION</label>
+                            <button ng-click="closePRO()" class="btn btn-default btn-xs">X</button>
+                        </div>
+                        <div class="sv-modal-body">
+                            <div class="sv-content">
+                                <div class="col-xs-12">
+                                    <div class="col-xs-12">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">SOLICITUD PRESION</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-xs-6">
+                                                    <div class="col-xs-3">
+                                                        <label>Nro. Presion</label>
+                                                        <span style="color:red;font-size:30px;font-family:monospace">{{json3.id}}</span>
+                                                    </div>
+                                                    <div class="col-xs-4">
+                                                        <label>Fecha</label>
+                                                        <input type="date" ng-model="json3.fecha" readonly class="form-control" />
+                                                    </div>
+                                                    <div class="col-xs-5">
+                                                        <label>Usuario</label>
+                                                        <input class="form-control" type="text" ng-model="json3.usuario" readonly />
+                                                    </div>
+
+                                                    <!--
+                                                    <div class="col-xs-12">
+                                                        <label>Proveedor<span class="req">*</span></label>
+                                                        <ss-busqueda-rapida data="dataproveedor" resultado="rsproveedor" key="key3"></ss-busqueda-rapida>
+                                                    </div>
+                                                    <div class="col-xs-12">
+                                                        <label>Centro de costo<span class="req">*</span></label>
+                                                        <ss-busqueda-rapida data="dataccosto" resultado="rsccosto" key="key2"></ss-busqueda-rapida>
+                                                    </div>-->
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <label>Justificacion<span class="req">*</span></label>
+                                                    <textarea readonly class="form-control" ng-model="json3.justificacion"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">DETALLE PRESION</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-md-12">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>CCOSTO</th>
+                                                            <th>CUENTA</th>
+                                                            <th style="width:400px;text-align:center">DESCRIPCION</th>
+                                                            <th>VALOR</th>
+                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td colspan="7">
+                                                                <div class="innerb">
+                                                                    <table class="table">
+                                                                        <tbody>
+                                                                            <tr ng-repeat="item in tablapresiones" ng-class="trdell" ng-init="show=true">
+                                                                                <td>{{item.ccosto}}</td>
+                                                                                <td>{{item.cuenta}}</td>
+                                                                                <td style="width:400px;text-align:center">{{item.rubro}}</td>
+                                                                                <td>{{formatnumber(item.valor)}}</td>
+                                                                                
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-xs-4" style="float:right">
+                                                <div class="col-xs-6" style="color:red;font-size:20px;font-family:monospace"><b>VALOR TOTAL:</b></div>
+                                                <div class="col-xs-2"><span style="color:red;font-size:20px;font-family:monospace">{{formatnumber(json3.vlr_total)}}</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="waiting-wrapper" ng-class="showsrp ? 'open' : ''">
+            <div class="waiting">
+                <div id="modal" style="z-index:3000" class="sv-modal-wrapper no-print" ng-class="openModalPRO ? 'active':''">
+                    <div class="sv-modal">
+                        <div class="sv-modal-head">
+                            <label style="color:#fff">VISUALIZACION DE SRP</label>
+                            <button ng-click="closePRO()" class="btn btn-default btn-xs">X</button>
+                        </div>
+                        <div class="sv-modal-body">
+                            <div class="sv-content">
+                                <div class="col-xs-12">
+                                    <div class="col-xs-12">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">PEDIDO</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-xs-6">
+                                                    <div class="col-xs-3">
+                                                        <label>Nro. SRP</label>
+                                                        <span style="color:red;font-size:30px;font-family:monospace">{{json3.nro_srp}}</span>
+                                                    </div>
+                                                    <div class="col-xs-4">
+                                                        <label>Fecha</label>
+                                                        <input type="date" ng-model="json3.fecha" readonly class="form-control" />
+                                                    </div>
+                                                    <div class="col-xs-5">
+                                                        <label>Usuario</label>
+                                                        <input class="form-control" type="text" ng-model="json3.usuario" readonly />
+                                                    </div>
+
+                                                    <div class="col-xs-12">
+                                                        <label>Proveedor<span class="req">*</span></label>
+                                                        <ss-busqueda-rapida data="dataproveedor" resultado="rsproveedor" key="key3"></ss-busqueda-rapida>
+                                                    </div>
+                                                    <div class="col-xs-12">
+                                                        <label>Centro de costo<span class="req">*</span></label>
+                                                        <ss-busqueda-rapida data="dataccosto" resultado="rsccosto" key="key2"></ss-busqueda-rapida>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <label>Justificacion<span class="req">*</span></label>
+                                                    <textarea readonly class="form-control" ng-model="json3.justificacion"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">DETALLE DEL SRP</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-md-12">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="width:120px;" >CUENTA</th>
+                                                            <th style="width:550px">RUBRO</th>
+                                                            <th>SUBTOTAL</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td colspan="3">
+                                                                <div class="innerb">
+                                                                    <table class="table">
+                                                                        <tbody>
+                                                                            <tr ng-repeat="item in tablapedidos" ng-class="trdell" ng-init="show=true">
+                                                                                <td style="width:124px;" >{{item.cuenta}}</td>
+                                                                                <td style="width:550px">{{item.rubro}}</td>
+                                                                                <td>{{formatnumber(item.total)}}</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-xs-4" style="float:right">
+                                                <div class="col-xs-6" style="color:red;font-size:20px;font-family:monospace"><b>VALOR TOTAL:</b></div>
+                                                <div class="col-xs-2"><span style="color:red;font-size:20px;font-family:monospace">{{formatnumber(vlr_total)}}</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="window-footer">
+        <div class="col-xs-12 barra">
+           <!--- <div class="btn-group">
+                <button id="reporte-guardar" type="button" class="btn btn-primary btn-guardar" ng-click="guardar_aprobados()">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar.
+                </button>
+            </div>-->
+            <div class="btn-group">
+                <button id="reporte-guardar" type="button" class="btn btn-primary btn-guardar" ng-click="preload()">
+                    <i class="fa fa-refresh" aria-hidden="true"></i> Refrescar
+                </button>
+            </div>
+        </div>
+        <ss-buscador data="dataActa" resultado="rsActa"></ss-buscador>
+    </div>
+</div>
+
+
+<style>
+
+        .innerb{
+        overflow:auto;
+        max-height:100px;
+    }
+
+    #bord {
+        border: solid 1px;
+        line-height: 20px;
+    }
+
+    .table-report {
+        border: solid 1px;
+    }
+
+    .btn-custom {
+        display: block;
+        height: 25px;
+        text-align: center;
+        border: 1px solid;
+        border-color: #ccc;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    .sv-modal {
+        max-width: 1000px;
+    }
+
+    .centermodal {
+        width: 50%;
+        max-width: 200px;
+        min-width: 100px;
+        margin: 0 auto;
+    }
+
+    .botonmodal {
+        margin-top: 18px;
+        display: block;
+        border: 3px solid;
+        border-color: #ccc;
+    }
+
+    .radios {
+    }
+
+    .in-line-content.title label {
+        color: #2196F3;
+    }
+
+        .in-line-content.title label.float-left {
+            padding-top: 0;
+        }
+
+    .in-line-content .border {
+        overflow: hidden;
+        padding-bottom: 5px;
+    }
+
+    #bord {
+        border: solid 1px;
+        line-height: 20px;
+    }
+
+    .table-report {
+        border: solid 1px;
+    }
+
+    .btn-custom {
+        display: block;
+        height: 25px;
+        text-align: center;
+        border: 1px solid;
+        border-color: #ccc;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+
+    .centermodal {
+        width: 50%;
+        max-width: 200px;
+        min-width: 100px;
+        margin: 0 auto;
+    }
+
+    .botonmodal {
+        margin-top: 18px;
+        display: block;
+        border: 3px solid;
+        border-color: #ccc;
+    }
+
+    .radios {
+    }
+
+    .in-line-content.title label {
+        color: #2196F3;
+    }
+
+        .in-line-content.title label.float-left {
+            padding-top: 0;
+        }
+
+    .in-line-content .border {
+        overflow: hidden;
+        padding-bottom: 5px;
+    }
+
+    .space-td {
+        width: 40px;
+    }
+
+    .space-check {
+        width: 30px;
+    }
+</style>
+
+<script>
+    $("#btnexport").click(function (e) {
+        exclude: ".table .table-bordered",
+        window.open('data:application/vnd.ms-excel,' + $('#dvData').html());
+        e.preventDefault();
+    });
+</script>

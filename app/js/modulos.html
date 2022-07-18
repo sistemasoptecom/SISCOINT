@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="viewport" content="width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <!--<link rel="icon" sizes="192x192" href="/icon.png">-->
+    <title>SISCOINT</title>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" sizes="192x192" href="login-css/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="app/login-css/ico/apple-touch-icon-57-precomposed.png">
+
+</head>
+
+<!--<style>
+
+    body {
+        background-image: url("img/logo.png");
+        background-repeat: no-repeat;
+        width: 100%;
+        /*background-size: cover;*/
+    }
+</style>-->
+<body>
+
+    <!-- Top content -->
+    <div class="top-content">
+        <div class="inner-bg">
+            <div class="container">
+                <div class="row">
+                    <h1 style="text-align:center;margin-top:-80px;"><b>SISTEMA DE CONTROL INTEGRAL</b></h1>
+                </div>
+                <div class="col-xs-12" style="margin-top:80px;"></div>
+                <div class="col-xs-1" style="margin-left:-50px"></div>
+                <div class="col-xs-3">
+                    <a  class="no-print" id="test" ng-click="validatemodule(1)">
+                        <img src="img/control_admon.jpg" style="width:100%" /><br />
+                        <h3 style="text-align:center"><b>ADMINISTRATIVO</b></h3>
+                    </a>
+                </div>
+                <div class="col-xs-1"></div>
+                <div class="col-xs-3">
+                    <a  class="no-print" id="test" ng-click="validatemodule(2);">
+                        <img src="img/SST.jpg" style="width:100%" />
+                    </a>
+                    <h3 style="text-align:center"><b>SST</b></h3>
+                </div>
+                <div class="col-xs-1"></div>
+                <div class="col-xs-3">
+                    <a class="no-print" id="test" ng-click="validatemodule(3);">
+                        <img src="img/CII.jpg" style="width:100%" />
+                    </a>
+                    <h3 style="text-align:center"><b>COMPRAS</b></h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <style>
+        img:hover{
+            -webkit-box-shadow: 4px 10px 17px 0px rgba(50,38,224,1);
+            -moz-box-shadow: 4px 10px 17px 0px rgba(50,38,224,1);
+            box-shadow: 4px 10px 17px 0px rgba(50,38,224,1);
+            cursor:pointer;
+        }
+        b{
+        color:#001b58;
+        }
+        h1{
+            
+            -webkit-box-shadow: 4px 10px 17px 0px rgba(50,38,224,1);
+            -moz-box-shadow: 4px 10px 17px 0px rgba(50,38,224,1);
+            box-shadow: 4px 10px 17px 0px rgba(50,38,224,1);
+        }
+        body {
+            background: rgba(254,254,254,1);
+            background: -moz-linear-gradient(top, rgba(254,254,254,1) 0%, rgba(254,254,254,1) 26%, rgba(219,219,219,1) 60%, rgba(209,209,209,1) 77%, rgba(209,209,209,1) 88%, rgba(226,226,226,1) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(254,254,254,1)), color-stop(26%, rgba(254,254,254,1)), color-stop(60%, rgba(219,219,219,1)), color-stop(77%, rgba(209,209,209,1)), color-stop(88%, rgba(209,209,209,1)), color-stop(100%, rgba(226,226,226,1)));
+            background: -webkit-linear-gradient(top, rgba(254,254,254,1) 0%, rgba(254,254,254,1) 26%, rgba(219,219,219,1) 60%, rgba(209,209,209,1) 77%, rgba(209,209,209,1) 88%, rgba(226,226,226,1) 100%);
+            background: -o-linear-gradient(top, rgba(254,254,254,1) 0%, rgba(254,254,254,1) 26%, rgba(219,219,219,1) 60%, rgba(209,209,209,1) 77%, rgba(209,209,209,1) 88%, rgba(226,226,226,1) 100%);
+            background: -ms-linear-gradient(top, rgba(254,254,254,1) 0%, rgba(254,254,254,1) 26%, rgba(219,219,219,1) 60%, rgba(209,209,209,1) 77%, rgba(209,209,209,1) 88%, rgba(226,226,226,1) 100%);
+            background: linear-gradient(to bottom, rgba(254,254,254,1) 0%, rgba(254,254,254,1) 26%, rgba(219,219,219,1) 60%, rgba(209,209,209,1) 77%, rgba(209,209,209,1) 88%, rgba(226,226,226,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#e2e2e2', GradientType=0 );
+        }
+       .space{
+        margin-left:100px;
+       }
+    </style>
+
+    <!--[if lt IE 10]>
+        <script src="assets/js/placeholder.js"></script>
+    <![endif]-->
+
+</body>
+
+</html>

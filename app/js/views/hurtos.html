@@ -1,0 +1,66 @@
+﻿<div ng-controller="Reportehurtos" class="window-wrapper">
+    <div class="window-body">
+        <form id="hurtos" name="hurtos" class="form-horizontal" autocomplete="off">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-6">
+                <div class="col-xs-12" style="margin-top:30px;">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">GENERAR REPORTE EN RANGO DE FECHAS</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-3">
+                                <label>Fecha Inicio</label>
+                                <input type="date" class="form-control" ng-model="fecha_inicio" />
+                            </div>
+                            <div class="col-xs-3">
+                                <label>Fecha Fin</label>
+                                <input type="date" class="form-control" ng-model="fecha_fin" />
+                            </div>
+                            <div class="col-xs-3">
+                                <label></label>
+                                <input type="button" class="btn btn-info" ng-click="buscar_hurtos()" value="Buscar" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-body">
+                            <div class="col-xs-12" style="margin-top:15px;">
+                                <div>
+                                    <table class="table table-bordered table-hover table-striped" id="myTable">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center">ITEM</th>
+                                                <th style="text-align: center">DESCRIPCION</th>
+                                                <th style="text-align: center">AF</th>
+                                                <th style="text-align: center">IMEI/SN/INV</th>
+                                                <th style="text-align: center">USUARIO</th>
+                                                <th style="text-align: center">AREA</th>
+                                                <th style="text-align: center">FECHA</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="cursor:pointer" ng-repeat="item in grilla" ng-class="trdell">
+                                                <td style="text-align: center">{{$index + 1}}</td>
+                                                <td style="text-align: center">{{item.descripcion}}</td>
+                                                <td style="text-align: center">{{item.af}}</td>
+                                                <td style="text-align: center">{{item.imei}}</td>
+                                                <td style="text-align: center">{{item.usuario}}</td>
+                                                <td style="text-align: center">{{item.area}}</td>
+                                                <td style="text-align: center">{{convert(item.fecha_estado)}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

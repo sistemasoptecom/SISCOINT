@@ -1,0 +1,771 @@
+<div ng-controller="Aprobar_AS_Controller" class="window-wrapper">
+    <div class="window-body">
+        <form id="reporte" name="reporte" class="form-horizontal no-print" autocomplete="off">
+            <div class="col-xs-12">
+                <div class="col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">REPORTE ACTAS DE SATISFACCION</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-1">
+                                <label>Estado</label>
+                                <select class="form-control" ng-model="tipo_filtro" ng-change="reportepedidos()">
+                                    <option value="1">PENDIENTES</option>
+                                    <option value="2">APROBADOS</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-2">
+                                <label>Buscar consecutivo de acta</label>
+                                <input class="form-control" ng-model="searchnumber.consecutivo" ng-change="filtro = filtro.toUpperCase()" />
+                            </div>
+                            <div class="col-xs-12" style="margin-top:15px;">
+                                <div>
+                                    <table class="table table-bordered table-hover table-striped" id="myTable">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center">ITEM</th>
+                                                <th style="text-align: center">CONSECUTIVO</th>
+                                                <th style="text-align: center">FECHA</th>
+                                                <th style="text-align: center">ELABORADO POR</th>
+                                                <th style="text-align: center">PROVEEDOR</th>
+                                                <th style="text-align: center">VALOR</th>
+                                                <th style="text-align: center">VISTA</th>
+                                                <th style="text-align: center">IMPRIMIR</th>
+                                                <th style="text-align: center">ESTADO</th>
+                                                <th ng-if="tipo_filtro ==1"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="cursor:default" ng-repeat="item in grilla | filter: searchnumber" ng-class="trdell">
+                                                <td style="text-align: center">{{$index + 1}}</td>
+                                                <td style="text-align: center">{{item.consecutivo}}</td>
+                                                <td style="text-align: center">{{convert(item.fecha)}}</td>
+                                                <td style="text-align: center">{{item.elaborado_por}}</td>
+                                                <td style="text-align: center">{{item.nombre_proveedor}}</td>
+                                                <td style="text-align: center">{{formatnumber(item.total)}}</td>
+                                                <td style="text-align: center"><span style="cursor:pointer" ng-click="buscar_acta(item)"><i class="fa fa-search" aria-hidden="true"></i></span> </td>
+                                                <td style="text-align: center"><span style="cursor:pointer" ng-click="imprimir2(item)"><i class="fa fa-print" aria-hidden="true"></i></span> </td>
+                                                <td style="text-align: center">{{validar_est(item.aprobado)}}</td>
+                                                <td style="text-align: center" ng-if="tipo_filtro ==1">
+                                                    <button ng-click="aprobar_as(item)" type="button" class="btn btn-success">APROBAR</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <button ng-show="false" type="button" class="btn btn-primary btn-imprimir" ng-click="search_pro()" id="acta-buscar" style="width:90px"> Si </button>
+        <div class="no-print">
+            <div class="waiting-wrapper" ng-class="openWaiting ? 'open' : ''">
+                <div class="waiting">
+                    <div id="modal" style="z-index:3000" class="sv-modal-wrapper no-print" ng-class="openModalPRO ? 'active':''">
+                        <div class="sv-modal" style="height:700px">
+                            <div class="sv-modal-head">
+                                <label style="color:#fff">ACTA DE SATISFACCION</label>
+                                <button ng-click="closePRO()" class="btn btn-default btn-xs"><b style="color:red">X</b></button>
+                            </div>
+                            <div class="sv-modal-body">
+                                <div class="sv-content" style="overflow-y:scroll;height:620px;">
+                                    <div class="col-xs-12" style="cursor:not-allowed">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-body">
+                                                <div class="col-xs-3 col-md-3">
+                                                    <label>Fecha:</label>
+                                                    <input type="date" ng-model="json.fecha" readonly ng-required="true" class="form-control" name="FECHA">
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    <label>Consecutivo:</label>
+                                                    <span><b style="font-size:25px;color:red">{{json.consecutivo}}</b></span>
+                                                </div>
+                                                <!--TIPO DE ACTA-->
+                                                <div class="col-xs-12" style="margin-top:15px;">
+                                                    <div class="panel panel-primary">
+                                                        <div class="panel-heading">
+                                                            <h3 class="panel-title center">TIPO DE ACTA</h3>
+                                                        </div>
+                                                        <div class="panel-body">
+                                                            <div class="col-xs-12">
+                                                                <div class="col-xs-2">
+                                                                    <label class="radio-inline">
+                                                                        <input type="radio" id="act" ng-disabled="true" name="TIPO DE ACTA" value="1" ng-required="true" ng-model="json.tipo_acta" />Acta Total
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-xs-2">
+                                                                    <label class="radio-inline">
+                                                                        <input type="radio" id="act" ng-disabled="true" name="TIPO DE ACTA" value="2" ng-model="json.tipo_acta" />Acta Parcial
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-xs-2">
+                                                                    <label class="radio-inline">
+                                                                        <input type="radio" id="act" ng-disabled="true" name="TIPO DE ACTA" value="3" ng-model="json.tipo_acta" />Nota Credito
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12">
+                                                    <div class="panel panel-primary">
+                                                        <div class="panel-heading">
+                                                            <h3 class="panel-title center">TIPO DE COMPROMISO</h3>
+                                                        </div>
+                                                        <div class="panel-body">
+                                                            <div class="col-xs-12">
+                                                                <div class="col-xs-2">
+                                                                    <label class="radio-inline">
+                                                                        <input type="radio" id="comp" ng-disabled="true" name="TIPO DE COMPROMISO" value="1" ng-required="true" ng-model="json.tipo_comp" />Contrato
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-xs-3">
+                                                                    <label class="radio-inline">
+                                                                        <input type="radio" id="comp" ng-disabled="true" name="TIPO DE COMPROMISO" value="2" ng-model="json.tipo_comp" />Orden de Servicio
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-xs-3">
+                                                                    <label class="radio-inline">
+                                                                        <input type="radio" id="comp" ng-disabled="true" name="TIPO DE COMPROMISO" value="3" ng-model="json.tipo_comp" />Orden de Compra
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-xs-1">
+                                                                    <label class="radio-inline">
+                                                                        <input type="radio" id="comp" ng-disabled="true" name="TIPO DE COMPROMISO" value="4" ng-model="json.tipo_comp" />Otro
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-xs-1">
+                                                                    <label>Cual?</label>
+                                                                </div>
+                                                                <div class="col-xs-2">
+                                                                    <input class="form-control" readonly ng-disabled="json.tipo_comp < 4" ng-model="json.cual_compromiso" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-2">
+                                                                <label>Factura:<span class="req">*</span></label>
+                                                            </div>
+                                                            <div class="col-xs-2">
+                                                                <label><input class="form-control" readonly type="text" ng-model="json.nro_factura" /></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12">
+                                                    <div class="panel panel-primary">
+                                                        <div class="panel-heading">
+                                                            <h3 class="panel-title center">INFORMACION DEL PROVEEDOR Y/O CONTRATISTA</h3>
+                                                        </div>
+                                                        <div class="panel-body">
+                                                            <div class="col-xs-6">
+                                                                <div class="col-xs-6">
+                                                                    <label>Proveedor o Contratista:</label>
+                                                                    <input class="form-control" readonly ng-model="json.nombre_proveedor" />
+                                                                </div>
+                                                                <div class="col-xs-6">
+                                                                    <label>N. de Orden o Contrato:</label>
+                                                                    <input class="form-control" readonly ng-model="json.nro_oden" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-2">
+                                                                <label>Remision:<span class="req">*</span></label>
+                                                            </div>
+                                                            <div class="col-xs-2">
+                                                                <label><input class="form-control" readonly ng-required="true" type="text" ng-model="json.remision" /></label>
+                                                            </div>
+                                                            <div class="col-xs-3">
+                                                                <label>Objeto o descripcion del bien o servicio Recibido:</label>
+                                                            </div>
+                                                            <div class="col-xs-3">
+                                                                <textarea class="form-control" readonly ng-required="true" name="DESCRIPCION DE BIEN O SERVICIO" ng-model="json.objeto_beneficio" />
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12">
+                                                    <div class="panel panel-primary">
+                                                        <div class="panel-heading">
+                                                            <h3 class="panel-title center"><b>PRESTACI�N DEL SERVICIO</b></h3>
+                                                        </div>
+                                                        <div class="panel-body">
+                                                            <div class="col-xs-3 col-md-2">
+                                                                <label>Fecha de inicio<span class="req">*</span></label>
+                                                                <input type="date" readonly ng-model="json.fecha_inicio" ng-required="true" class="form-control" name="FECHA DE INICIO">
+                                                            </div>
+                                                            <div class="col-xs-4 col-md-3">
+                                                                <label>Fecha de terminacion<span class="req">*</span></label>
+                                                                <input type="date" readonly ng-model="json.fecha_terminacion" ng-required="true" class="form-control" name="FECHA DE TERMINACION">
+                                                            </div>
+                                                            <button ng-show="false" type="button" class="btn btn-primary btn-imprimir" ng-click="open()" id="brCeco" style="width:90px"> Si </button>
+                                                            <div class="col-xs-12" style="margin-top:15px;">
+                                                                <table class="table table-bordered table-hover">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>AF</th>
+                                                                            <th>NRO PEDIDO</th>
+                                                                            <th>NRO SRP</th>
+                                                                            <th style="width:100px">CECO</th>
+                                                                            <th>CUENTA</th>
+                                                                            <th>NRO RP</th>
+                                                                            <th>VALOR MAX</th>
+                                                                            <th>VALOR</th>
+                                                                            <th>OTROS</th>
+                                                                            <th>IVA</th>
+                                                                            <th>SUBTOTAL</th>
+                                                                            <th>SALDO DISPONIBLE</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr ng-repeat="item in tabla" ng-class="trdell" ng-init="show=true">
+                                                                            <td>{{item.activo}}</td>
+                                                                            <td>{{item.nro_pedido}}</td>
+                                                                            <td>{{item.nro_srp}}</td>
+                                                                            <td>{{item.ceco}}</td>
+                                                                            <td>{{item.cuenta}}</td>
+                                                                            <td>{{item.nro_rp}}</td>
+                                                                            <td>{{formatnumber(item.valor_max)}}</td>
+                                                                            <td>{{formatnumber(item.valor)}}</td>
+                                                                            <td>{{formatnumber(item.otros)}}</td>
+                                                                            <td>{{formatnumber(item.iva)}}</td>
+                                                                            <td>{{formatnumber(item.subtotal)}}</td>
+                                                                            <td>{{formatnumber(item.saldo_disponible)}}</td>
+                                                                            <td style="text-align: center;" ng-show="sh_edit">
+                                                                                <button type="button" class="btn btn-primary btn-circle" ng-click="load_edit(item,$index)" id="add"><i class="glyphicon glyphicon-pencil"></i></button>
+                                                                            </td>
+                                                                            <td style="text-align: center;" ng-show="sh_add">
+                                                                                <span class="btn btn-danger btn-xs" ng-show="show" ng-disabled="delete" ng-click="deleteservicio($index)">
+                                                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                                    Remover
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12">
+                                                    <div class="panel panel-primary">
+                                                        <div class="panel-heading">
+                                                            <h3 class="panel-title center"><b>ASPECTOS FINANCIEROS</b></h3>
+                                                        </div>
+                                                        <div class="panel-body">
+                                                            <div class="col-xs-2">
+                                                                <label>Subtotal</label>
+                                                                <input class="form-control" ng-model="formatnumber(json.subtotal)" readonly />
+                                                            </div>
+                                                            <div class="col-xs-2">
+                                                                <label>Iva</label>
+                                                                <input class="form-control" ng-model="formatnumber(json.iva)" readonly />
+                                                            </div>
+                                                            <div class="col-xs-2">
+                                                                <label>Total</label>
+                                                                <input class="form-control" ng-model="formatnumber(json.total)" readonly />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12">
+                                                    <div class="panel panel-primary">
+                                                        <div class="panel-body">
+                                                            <div class="col-xs-12">
+                                                                <div class="col-xs-12">
+                                                                    <div class="col-xs-2"><label>ELABORADO POR:</label></div>
+                                                                    <div class="col-xs-3">
+                                                                        <input class="form-control" type="text" readonly ng-model="json.elaborado_por" />
+                                                                    </div>
+                                                                    <div class="col-xs-4"><label>DEPENDENCIA DEL SOLICITANTE:</label></div>
+                                                                    <div class="col-xs-3">
+                                                                        <input class="form-control" type="text" readonly ng-model="json.dependencia" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-6">
+                                                                    <div class="col-xs-12">
+                                                                        <div class="col-xs-4"><img style="width:200px;padding:5px" src="{{json.ruta_firma}}" /></div>
+                                                                    </div>
+                                                                    <div class="col-xs-12">
+                                                                        <!--<label>AUTORIZA:</label>-->
+                                                                        <input class="form-control" type="text" readonly ng-model="json.autoriza" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-6">
+                                                                    <label>OBSERVACION:</label>
+                                                                    <div class="col-xs-12">
+                                                                        <textarea class="form-control" readonly ng-model="json.observacion" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="no-print">
+            <div class="waiting-wrapper" ng-class="openWait? 'open' : ''">
+                <div class="waiting">
+                    <div id="modal" style="z-index:3000" class="sv-modal-wrapper no-print" ng-class="openModalPRO ? 'active':''">
+                        <div class="sv-modal">
+                            <div class="sv-modal-head">
+                                <label style="color:#fff">DETALLE RECURSO PRESUPUESTAL</label>
+                                <button ng-click="cerrar_detalle()" class="btn btn-default btn-xs"><b style="color:red">X</b></button>
+                            </div>
+                            <div class="sv-modal-body">
+                                <div class="sv-content">
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-2">
+                                            <label>Nro. RP</label>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            {{numero_rp}}
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <label>Saldo Inicial</label>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            {{formatnumber(saldo_inicial)}}
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">DETALLE DE MOVIMIENTOS</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="col-md-12" style="overflow:auto;height:450px;max-height:450px;">
+                                                    <table class="table table-bordered table-hover table-striped" id="myTable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="text-align:center;">FACTURA</th>
+                                                                <th style="text-align:center;">FECHA</th>
+                                                                <th style="text-align:center;">VALOR</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="item in detalle_rp" ng-class="trdell" ng-init="show=true">
+                                                                <td>{{item.factura}}</td>
+                                                                <td style="width:124px;">{{item.fecha}}</td>
+                                                                <td>{{formatnumber(item.valor)}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-7" style="float:right">
+                                                <div class="col-xs-4">
+                                                    <label>TOTAL:</label>
+                                                </div>
+                                                <div class="col-xs-8">
+                                                    {{formatnumber(total)}}
+                                                </div>
+                                                <div class="col-xs-4"><label>DISPONIBLE:</label></div>
+                                                <div class="col-xs-8">{{formatnumber(disponible)}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--IMPRIMIR ACTA-->
+        <!--IMPRIMIR========================================================================================-->
+        <div class="print">
+            <div class="col-xs-12">
+                <table id="bord" class="table-hover">
+                    <tbody>
+                        <tr>
+                            <td id="bord" rowspan="4" style="text-align:center;width:20% "><img style="width:200px;padding:5px" src="{{ruta}}" /></td>
+
+                            <td id="bord" rowspan="4" style="text-align:center;width:52%"><h3><b>ACTA DE SATISFACCION</b></h3></td>
+                            <td id="bord"><b>Codigo:&nbsp;</b><span>R-ADF-008</span></td>
+                        </tr>
+
+                        <tr><td id="bord"><b>Version:&nbsp;</b><span><b> 005 </b></span></td></tr>
+                        <tr>
+                            <td id="bord"><b>Fecha Vigencia:</b><span><b> 09-06-2022 </b></span></td>
+                        </tr>
+                        <tr>
+                            <td id="bord"><b>Pag</b><span> 1 de 1</span></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xs-12">
+                <div class="col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-body">
+                            <div class="col-xs-2 col-md-2">
+                                <label>Fecha<span class="req">*</span></label>
+                            </div>
+                            <div class="col-xs-2">
+                                <input type="date" ng-model="json.fecha" ng-required="true" class="form-control" name="FECHA">
+                            </div>
+                            <div class="col-xs-2"><label>Consecutivo</label></div>
+                            <div class="col-xs-2"><b>{{json.consecutivo}}</b></div>
+                            <!--TIPO DE ACTA-->
+                            <div class="col-xs-12" style="margin-top:15px;">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title left">TIPO DE ACTA</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-xs-12">
+                                            <div class="col-xs-2">
+                                                <label class="radio-inline">
+                                                    <input type="radio" id="act" name="TIPO DE ACTA" value="1" ng-required="true" ng-model="json.tipo_acta" />Acta Total
+                                                </label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <label class="radio-inline">
+                                                    <input type="radio" id="act" name="TIPO DE ACTA" value="2" ng-model="json.tipo_acta" />Acta Parcial
+                                                </label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <label class="radio-inline">
+                                                    <input type="radio" id="act" name="TIPO DE ACTA" value="3" ng-model="json.tipo_acta" />Nota Credito
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title left">TIPO DE COMPROMISO</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-xs-12">
+                                            <div class="col-xs-2">
+                                                <label class="radio-inline">
+                                                    <input type="radio" id="comp" name="TIPO DE COMPROMISO" value="1" ng-required="true" ng-model="json.tipo_comp" />Contrato
+                                                </label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <label class="radio-inline">
+                                                    <input type="radio" id="comp" name="TIPO DE COMPROMISO" value="2" ng-model="json.tipo_comp" />Orden de Servicio
+                                                </label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <label class="radio-inline">
+                                                    <input type="radio" id="comp" name="TIPO DE COMPROMISO" value="3" ng-model="json.tipo_comp" />Orden de Compra
+                                                </label>
+                                            </div>
+                                            <div class="col-xs-2">
+                                                <label class="radio-inline">
+                                                    <input type="radio" id="comp" name="TIPO DE COMPROMISO" value="4" ng-model="json.tipo_comp" />Otro
+                                                </label>
+                                            </div>
+                                            <div class="col-xs-1">
+                                                <label>Cual?</label>
+                                            </div>
+                                            <div class="col-xs-2">
+                                                <input class="form-control" ng-disabled="json.tipo_comp < 4" ng-model="json.cual_compromiso" />
+                                            </div>
+                                            <div class="col-xs-2">
+                                                <label>N° de Factura:<span class="req">*</span></label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <label><input class="form-control" ng-required="true" name="FACTURA" type="text" ng-model="json.nro_factura" /></label>
+                                            </div>
+                                            <!--<div class="col-xs-1"><button type="button" ng-show="rp" class="btn btn-primary btn-imprimir" ng-click="openrp()" style="width:90px">Buscar RP</button></div>-->
+                                            <div class="col-xs-1"><button type="button" id="brRP" ng-show="false" class="btn btn-primary btn-imprimir" ng-click="openrp()">Buscar RP</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title left"><b>INFORMACION DEL PROVEEDOR Y/O CONTRATISTA</b></h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-xs-8">
+                                            <label>Proveedor o Contratista:<span class="req">*</span></label>
+                                            {{json.nit_proveedor}} &nbsp; {{json.nombre_proveedor}}
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <label>N° de Orden o Contrato:</label>
+                                            {{json.nro_oden}}
+                                        </div>
+                                        <!-- <div class="col-xs-2">
+                                            <label>Remision:<span class="req">*</span></label>
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <label><input class="form-control" ng-required="true" type="text" ng-model="json.remision" /></label>
+                                        </div> -->
+                                        <div class="col-xs-12">
+                                            <label>Objeto o descripción del bien o servicio Recibido:</label>
+                                            {{json.objeto_beneficio}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title left"><b>PRESTACION DEL SERVICIO</b></h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-xs-3 col-md-2">
+                                            <label>Fecha de inicio<span class="req">*</span></label>
+                                            <input type="date" ng-model="json.fecha_inicio" ng-required="true" class="form-control" name="FECHA DE INICIO">
+                                        </div>
+                                        <div class="col-xs-3 col-md-2">
+       
+                                            <label>Fecha de terminacion<span class="req">*</span></label>
+                                            <input type="date" ng-model="json.fecha_terminacion" ng-required="true" class="form-control" name="FECHA DE TERMINACION">
+                                        </div>
+                                        <button ng-show="false" type="button" class="btn btn-primary btn-imprimir" ng-click="open()" id="brCeco" style="width:90px"> Si </button>
+                                        <div class="col-xs-12" style="margin-top:15px;">
+                                            <table class="table table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>AF</th>
+                                                        <th>PEDIDO</th>
+                                                        <th>CECO</th>
+                                                        <th>CUENTA</th>
+                                                        <th>NRO RP</th>
+                                                        <th>VALOR</th>
+                                                        <th>OTROS</th>
+                                                        <th>IVA</th>
+                                                        <th>SUBTOTAL</th>
+                                                        <th>SALDO DISPONIBLE</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="item in tabla" ng-class="trdell" ng-init="show=true">
+                                                        <td>{{item.activo}}</td>
+                                                        <td>{{item.nro_pedido}}</td>
+                                                        <td>{{item.ceco}}</td>
+                                                        <td>{{item.cuenta}}</td>
+                                                        <td>{{item.nro_rp}}</td>
+                                                        <td>{{formatnumber(item.valor)}}</td>
+                                                        <td>{{formatnumber(item.otros)}}</td>
+                                                        <td>{{formatnumber(item.iva)}}</td>
+                                                        <td>{{formatnumber(item.subtotal)}}</td>
+                                                        <td>{{formatnumber(item.saldo_disponible)}}</td>
+                                                        <td style="text-align: center;" ng-show="sh_edit">
+                                                            <button type="button" class="btn btn-primary btn-circle" ng-click="load_edit(item,$index)" id="add"><i class="glyphicon glyphicon-pencil"></i></button>
+                                                        </td>
+                                                        <td style="text-align: center;" ng-show="sh_add">
+                                                            <span class="btn btn-danger btn-xs" ng-show="show" ng-disabled="delete" ng-click="deleteservicio($index)">
+                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                Remover
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title left"><b>ASPECTOS FINANCIEROS</b></h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-xs-2">
+                                            <label>Subtotal</label>
+                                            <input class="form-control" ng-model="formatnumber(json.subtotal)" readonly />
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <label>Iva</label>
+                                            <input class="form-control" ng-model="formatnumber(json.iva)" readonly />
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <label>Total</label>
+                                            <input class="form-control" ng-model="formatnumber(json.total)" readonly />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <table class="table">
+                                    <tr>
+                                        <td><label>ELABORADO POR:</label></td>
+                                        <td>{{json.elaborado_por}}</td>
+                                        <td><label>DEPENDENCIA DEL SOLICITANTE:</label></td>
+                                        <td>{{json.dependencia}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><div class="col-xs-4"><img style="width:300px;padding:5px" src="{{json.ruta_firma}}" /></div><br /> <label>AUTORIZA:</label><br />{{json.aprobado_por}}</td>
+                                        <td colspan="2" style="text-align:center">
+                                            <label>OBSERVACION:</label><br />
+                                            {{json.observacion}}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="no-print">
+        <div class="waiting-wrapper" ng-class="openWai ? 'open' : ''">
+            <div class="waiting">
+                <img src="fonts/animatedEllipse.gif" />
+                El servidor esta procesando la informacion
+            </div>
+        </div>
+    </div>
+
+    <div class="window-footer">
+        <ss-buscador data="dataActa" resultado="rsActa"></ss-buscador>
+    </div>
+</div>
+<style>
+
+    .innerb {
+        overflow: auto;
+        max-height: 100px;
+    }
+
+    #bord {
+        border: solid 1px;
+        line-height: 20px;
+    }
+
+    .table-report {
+        border: solid 1px;
+    }
+
+    .btn-custom {
+        display: block;
+        height: 25px;
+        text-align: center;
+        border: 1px solid;
+        border-color: #ccc;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    .sv-modal {
+        max-width: 1000px;
+    }
+
+    .centermodal {
+        width: 50%;
+        max-width: 200px;
+        min-width: 100px;
+        margin: 0 auto;
+    }
+
+    .botonmodal {
+        margin-top: 18px;
+        display: block;
+        border: 3px solid;
+        border-color: #ccc;
+    }
+
+    .radios {
+    }
+
+    .in-line-content.title label {
+        color: #2196F3;
+    }
+
+        .in-line-content.title label.float-left {
+            padding-top: 0;
+        }
+
+    .in-line-content .border {
+        overflow: hidden;
+        padding-bottom: 5px;
+    }
+
+    #bord {
+        border: solid 1px;
+        line-height: 20px;
+    }
+
+    .table-report {
+        border: solid 1px;
+    }
+
+    .btn-custom {
+        display: block;
+        height: 25px;
+        text-align: center;
+        border: 1px solid;
+        border-color: #ccc;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+
+    .centermodal {
+        width: 50%;
+        max-width: 200px;
+        min-width: 100px;
+        margin: 0 auto;
+    }
+
+    .botonmodal {
+        margin-top: 18px;
+        display: block;
+        border: 3px solid;
+        border-color: #ccc;
+    }
+
+    .radios {
+    }
+
+    .in-line-content.title label {
+        color: #2196F3;
+    }
+
+        .in-line-content.title label.float-left {
+            padding-top: 0;
+        }
+
+    .in-line-content .border {
+        overflow: hidden;
+        padding-bottom: 5px;
+    }
+
+    .space-td {
+        width: 40px;
+    }
+
+    .space-check {
+        width: 30px;
+    }
+</style>
+
+<script>
+    $("#btnexport").click(function (e) {
+        exclude: ".table .table-bordered",
+        window.open('data:application/vnd.ms-excel,' + $('#dvData').html());
+        e.preventDefault();
+    });
+</script>

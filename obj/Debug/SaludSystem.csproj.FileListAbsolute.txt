@@ -1,0 +1,63 @@
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\roslyn\csc.exe
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\roslyn\vbc.exe
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\roslyn\VBCSCompiler.exe
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\SaludSystem.dll.config
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\SaludSystem.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\SaludSystem.pdb
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\AjaxMin.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\CrystalDecisions.ReportSource.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\CrystalDecisions.Shared.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\CrystalDecisions.Web.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\stdole.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\obj\Debug\SaludSystem.csprojResolveAssemblyReference.cache
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\obj\Debug\Interop.CrystalActiveXReportViewerLib13.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\obj\Debug\Interop.CrystalReportViewerExportLib.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\obj\Debug\SaludSystem.csproj.ResolveComReference.cache
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\obj\Debug\SaludSystem.dll
+C:\Users\win 8.1 pro\Documents\Visual Studio 2015\Projects\SS-CLIENTE\SaludSystemCollection\SaludSystem\SaludSystem\obj\Debug\SaludSystem.pdb
+D:\SANTACATALINA20170130\SaludSystem\obj\Debug\SaludSystem.dll
+D:\SANTACATALINA20170130\SaludSystem\obj\Debug\SaludSystem.pdb
+E:\DAVID_NO_BORRAR\SANTACATALINA\SaludSystem\obj\Debug\SaludSystem.dll
+E:\DAVID_NO_BORRAR\SANTACATALINA\SaludSystem\obj\Debug\SaludSystem.pdb
+C:\Users\DESARROLLO_01\Desktop\David\SaludSystem\obj\Debug\SaludSystem.dll
+C:\Users\DESARROLLO_01\Desktop\David\SaludSystem\obj\Debug\SaludSystem.pdb
+E:\DESARROLLO-WEB\infotec\SaludSystem\obj\Debug\SaludSystem.dll
+E:\DESARROLLO-WEB\infotec\SaludSystem\obj\Debug\SaludSystem.pdb
+C:\Users\DESARROLLO_01\Desktop\SaludSystem\obj\Debug\SaludSystem.dll
+C:\Users\DESARROLLO_01\Desktop\SaludSystem\obj\Debug\SaludSystem.pdb
+\\192.168.1.111\Repositorio\Jess\Integracion 17-03-2017\SaludSystem\obj\Debug\SaludSystem.dll
+\\192.168.1.111\Repositorio\Jess\Integracion 17-03-2017\SaludSystem\obj\Debug\SaludSystem.pdb
+E:\DESARROLLO-WEB\infotec\SaludSystemWCF-Integracion\SaludSystem\obj\Debug\SaludSystem.dll
+E:\DESARROLLO-WEB\infotec\SaludSystemWCF-Integracion\SaludSystem\obj\Debug\SaludSystem.pdb
+D:\SaludSystemWCF-Integracion\SaludSystem\obj\Debug\SaludSystem.dll
+D:\SaludSystemWCF-Integracion\SaludSystem\obj\Debug\SaludSystem.pdb
+D:\DAVID_NO_BORRAR\WEB\DESARROLLOWEB\SaludSystem\obj\Debug\SaludSystem.dll
+D:\DAVID_NO_BORRAR\WEB\DESARROLLOWEB\SaludSystem\obj\Debug\SaludSystem.pdb
+D:\INTEGRACION_WEB\SaludSystem\obj\Debug\SaludSystem.dll
+D:\INTEGRACION_WEB\SaludSystem\obj\Debug\SaludSystem.pdb
+C:\Users\DESARROLLO\Desktop\WEB\SaludSystem\obj\Debug\SaludSystem.dll
+C:\Users\DESARROLLO\Desktop\WEB\SaludSystem\obj\Debug\SaludSystem.pdb

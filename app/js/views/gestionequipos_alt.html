@@ -1,0 +1,109 @@
+<div ng-controller="gestion_equi_alt" class="window-wrapper">
+    <div class="window-body">
+        <form id="equipos" name="equipos" class="form-horizontal" autocomplete="off">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-6">
+                <div class="col-xs-12" style="margin-top:20px;">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">ARTICULO</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-12 col-md-4 col-sm-8">
+                                <label>Tipo de Elemento<span class="req">*</span></label>
+                                <select class="form-control" ng-model="json.tipo" ng-required="true" name="TIPO">
+                                    <option value=""></option>
+                                    <option value="1">ARNES</option>
+                                    <option value="2">ESLINGA P.</option>
+                                    <option value="3">ESLINGA Y.</option>
+                                    <option value="4">TIE OFF</option>
+                                    <option value="5">LINEA VIDA</option>
+                                    <option value="6">ESLINGA SEGURIDAD SENC.</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-12 col-md-4 col-sm-8">
+                                <label>Codigo<span class="req">*</span></label>
+                                <input type="text" ng-model="json.codigo" ng-required="true" class="form-control" name="CODIGO">
+                            </div>
+                            <div class="col-xs-12 col-md-4 col-sm-8">
+                                <label>Marca<span class="req">*</span></label>
+                                <input type="text" ng-model="json.marca" ng-required="true" id="imei" ng-blur="Validate_imei()" class="form-control" name="MARCA">
+                            </div>
+                            <div class="col-xs-12 col-md-4 col-sm-8">
+                                <label>Referencia<span class="req">*</span></label>
+                                <input type="text" ng-model="json.referencia" ng-required="true" id="nuevo_imei" name="REFERENCIA" class="form-control">
+                            </div>
+
+                            <div class="col-xs-12 col-md-4 col-sm-8">
+                                <label>Serial<span class="req">*</span></label>
+                                <input type="text" ng-model="json.serial" ng-required="true"  id="linea" class="form-control" name="SERIAL">
+                            </div>
+                            <div class="col-xs-12 col-md-4 col-sm-8">
+                                <label>Lote<span class="req">*</span></label>
+                                <input type="text" ng-model="json.lote" ng-required="true"  id="linea_act" class="form-control" name="LOTE">
+                            </div>
+                            <div class="col-xs-12 col-md-4 col-sm-8">
+                                <label>Mes Fabricacion<span class="req">*</span></label>
+                                <select class="form-control" ng-model="json.mes_fabricacion" ng-required="true" name="MES FABRICACION">
+                                    <option value=""></option>
+                                    <option value="01">ENERO</option>
+                                    <option value="02">FEBRERO</option>
+                                    <option value="03">MARZO</option>
+                                    <option value="04">ABRIL</option>
+                                    <option value="05">MAYO</option>
+                                    <option value="06">JUNIO</option>
+                                    <option value="07">JULIO</option>
+                                    <option value="08">AGOSTO</option>
+                                    <option value="09">SEPTIEMBRE</option>
+                                    <option value="10">OCTUBRE</option>
+                                    <option value="11">NOVIEMBRE</option>
+                                    <option value="12">DICIMEBRE</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-12 col-md-4 col-sm-8">
+                                <label>A&ntilde;o Fabricacion<span class="req">*</span></label>
+                                <input type="text" ng-model="json.ano_fabricacion" ng-required="true" id="fact" name="AÑO FABRICACION" class="form-control">
+                            </div>
+                            <div class="col-xs-12 col-md-4 col-sm-8">
+                                <label>Fecha Compra<span class="req">*</span></label>
+                                <input type="date" ng-model="json.f_compra" ng-required="true" id="causacion" name="FECHA COMPRA" class="form-control">
+                            </div>
+                            <div class="col-xs-12 col-md-4 col-sm-8">
+                                <label>Proveedor<span class="req">*</span></label>
+                                <input type="text" ng-model="json.proveedor" ng-required="true" id="val" class="form-control" name="PROVEEDOR">
+                            </div>
+                            <div class="col-xs-12 col-md-4 col-sm-8">
+                                <label>Factura<span class="req">*</span></label>
+                                <input type="text" ng-model="json.factura" id="val" class="form-control" name="FACTURA">
+                            </div>
+                            <div class="col-xs-4">
+                                <label>Valor<span class="req">*</span></label>
+                                <input type="text" ng-model="json.valor" id="val" ng-required="true" class="form-control" name="VALOR">
+                            </div>
+                            <!--<div class="col-xs-8">
+                                <label>Centro de costo<span class="req">*</span></label>
+                                <ss-busqueda-rapida data="datacentro" resultado="rscentro" key="key1"></ss-busqueda-rapida>
+                            </div>-->
+                            <div class="col-xs-12">
+                                <label>Observacion</label>
+                                <textarea class="form-control" ng-model="json.observacion" ng-init="json.observacion=''" name="OBSERVACION"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="window-footer">
+        <ss-barra formulario="#equipos"
+                  showbtn="showbtn"
+                  disabledbtn="disabledbtn"
+                  nuevo="nuevo()"
+                  editar="editar()"
+                  guardar="guardar()"
+                  actualizar="actualizar()"
+                  eliminar="eliminar()">
+        </ss-barra>
+        <ss-buscador data="dataActivos" resultado="rsActivos"></ss-buscador>
+    </div>
+</div>

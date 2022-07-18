@@ -1,0 +1,77 @@
+﻿<div class="yes-no-wrapper" ng-class="yesNoOpen ? 'yes-no-wrapper-open' : ''">
+    <div class="yes-no">
+        <div class="head">
+            <span class="modal-title" style="display:block">{{data.title}}</span>
+        </div>
+        <div class="body">
+            {{data.message}}
+        </div>
+        <div class="footer">
+            <button class="btn btn-primary btn-md" type="button" ng-click="yes()">Si</button>
+            <button class="btn btn-primary btn-md" type="button" ng-click="no()">No</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .yes-no-wrapper {
+        z-index: 1120;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: none;
+    }
+
+        .yes-no-wrapper.yes-no-wrapper-open {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .yes-no-wrapper .yes-no {
+            background-color: #fff;
+            border-radius: 5px;
+            border: 1px solid #337ab7;
+            -webkit-box-shadow: 2px 2px 8px 0px rgba(122,122,122,1);
+            -moz-box-shadow: 2px 2px 8px 0px rgba(122,122,122,1);
+            box-shadow: 2px 2px 8px 0px rgba(122,122,122,1);
+        }
+
+    .yes-no .head,
+    .yes-no .body,
+    .yes-no .footer {
+        padding:15px;
+        text-align:center;
+    }
+
+    .yes-no .head {
+        background-color:#337ab7;
+        color:#fff;
+        text-align:center;
+    }
+
+    
+</style>
+
+<!--
+
+<script type="text/ng-template" id="ssModalYesNoContent.html">
+    <div class="modal-header" style="padding:0;">
+        <span class="modal-title" style="display:block;padding:10px;">{{data.title}}</span>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-xs-12">
+                {{data.message}}
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer" style="padding:10px;">
+        <button class="btn btn-primary btn-xs" type="button" ng-click="yes()">Si</button>
+        <button class="btn btn-primary btn-xs" type="button" ng-click="no()">No</button>
+    </div>
+</script>
+
+    -->

@@ -1,0 +1,33 @@
+﻿<div class="modal-view2-wrapper no-print" ng-class="ModalMessageOpen ? 'modal-view2-wrapper-open' : ''">
+    <div class="sv-modal">
+        <div class="sv-modal-head" id="alertColor" ng-class="data.estado == 1 ? 'rojo': data.estado == 2 ? 'amarillo':data.estado == 3 ?'verde':''" >
+            <label style="text-align:left !important;" >{{data.title}}</label>
+            <button ng-click="close()" id="closePend" class="btn btn-default btn-xs">X</button>
+        </div>
+        <div class="sv-modal-body">
+            <div class="sv-content">
+                <div class="col-xs-12">
+                    <div class="col-xs-12" style="text-align:center;">
+                        <label>{{data.message}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .rojo {
+        background-color: rgba(236,85,85,1);
+        color: white;
+    }
+    .amarillo {
+        background-color:rgba(236,195,43,1);
+        color:black;
+    }
+    .verde {
+        background-color: rgba(78,193,81,1);
+        color:white;
+    }
+
+</style>

@@ -1,0 +1,79 @@
+<div ng-controller="ProveedorController" class="window-wrapper">
+    <div class="window-body">
+        <form id="proveedores" name="proveedores" class="form-horizontal" autocomplete="off">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-6" >
+                <div class="col-xs-12" style="margin-top:60px;">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Datos Proveedores</h3>
+                        </div>
+                        
+                        <div class="panel-body">
+
+                            <!-- <div class="col-xs-12 col-md-4">
+                                <label>Id<span class="req">*</span></label>
+                                <input type="number" id="id" ng-model="json.id" ng-required="true" class="form-control" name="ID">
+                            </div> -->
+
+                            <div class="col-xs-12 col-md-4">
+                                <label>Nit<span class="req">*</span></label>
+                                <input type="number" id="nit" ng-model="json.nit" ng-blur="Validate_Proveedores()" ng-required="true" class="form-control" name="NIT">
+                            </div>
+                            <div class="col-xs-12 col-md-4 col-sm-8">
+                                <label>Razon social<span class="req">*</span></label>
+                                <input type="text" ng-model="json.razon_social" ng-required="true" id="razon_social" class="form-control" name="Razon Social">
+                            </div>
+                            <div class="col-xs-12 col-md-4 col-sm-8">
+                                <label>Representante Legal</label>
+                                <input type="text" ng-model="json.representante_legal" ng-required="true" id="representante_legal" name="representante_legal"  class="form-control" >
+                            </div>
+                             <div class="col-xs-12 col-md-4 col-sm-8">
+                                <label>Telefono<span class="req"></span></label>
+                                <input type="text" ng-model="json.tel" ng-required="true" id="tel" name="tel" class="form-control">
+                            </div>
+                            <div class="col-xs-12 col-md-4 col-sm-8">
+                                <label>Asesor<span class="req"></span></label>
+                                <input type="text" ng-model="json.asesor" ng-required="true" id="asesor" class="form-control" name="asesor">
+                            </div>
+                          
+                            <div class="col-xs-12 col-md-4 col-sm-8">
+                                <label>Correo<span class="req"></span></label>
+                                <input type="text" ng-model="json.correo" ng-required="true" id="correo" class="form-control" name="correo">
+                            </div> 
+
+                            <div class="col-xs-12 col-md-4 col-sm-8">
+                                <label>Tel Asesor</label>
+                                <input type="text" ng-model="json.tel_asesor"  id="tel_asesor" class="form-control" name="tel_asesor">
+                            </div>
+
+                            <div class="col-xs-6">
+                                <label>Contrato<span class="req"></span></label>
+                                <input type="text" ng-model="json.contrato" class="form-control" id="contrato" ng-required="true" name="contrato" maxlength="14">
+                            </div>
+
+                             <div class="col-xs-6">
+                                <label>Estado<span class="req">*</span></label>
+                                <input type="number" ng-model="json.estado" class="form-control" id="estado" ng-required="true" name="estado" value="2">
+                            </div> 
+                         
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </form>
+    </div>
+    <div class="window-footer">
+        <ss-barra formulario="#proveedores"
+                  showbtn="showbtn"
+                  disabledbtn="disabledbtn"
+                  nuevo="nuevo()"
+                  editar="editar()"
+                  guardar="guardar()"
+                  actualizar="actualizar()"
+                  eliminar="eliminar()">
+        </ss-barra>
+        <ss-buscador data="dataproveedor" resultado="Rsproveedor"></ss-buscador>
+        
+    </div>
+</div>

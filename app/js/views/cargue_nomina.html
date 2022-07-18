@@ -1,0 +1,85 @@
+<div ng-controller="Cargue_Nomina_Controller" class="window-wrapper">
+    <div class="window-body">
+        <form id="nomina" name="nomina" class="form-horizontal" autocomplete="off">
+            <div class="col-xs-12">
+                <div class="col-xs-2"><input class="form-control" fileread="uploadme" id="archivo" type="file" ng-model="archivo" /></div>
+                <div class="col-xs-1"><button type="button" class="btn btn-primary btn-imprimir" ng-click="Anexar()" style="width:90px">Procesar</button></div>
+                <div class="col-md-1"><label>Concepto<span class="req">*</span></label></div>
+                <div class="col-xs-12 col-md-2">
+                    <select class="form-control" ng-model="json.tipo_articulo" ng-required="true" name="TIPO" id="tipo">
+                        <option value="NOMINA">NOMINA</option>
+                        <option value="LIQUIDACIONES">LIQUIDACIONES</option>
+                        <option value="APORTES">APORTES</option>
+                        <option value="APORTES">APORTES</option>
+                        <option value="PRESTACIONES SOCIALES">PRESTACIONES SOCIALES</option>
+                    </select>
+                </div>
+                <div class="col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">INGRESAR PLANILLA</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-12">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:50px;text-align:center">COMP</th>
+                                            <th style="width:50px;text-align:center">CIA</th>
+                                            <th style="width:150px;text-align:center">VIGENCIA</th>
+                                            <th style="width:159px;text-align:center">MES</th>
+                                            <th style="width:159px;text-align:center">PERIODO</th>
+                                            <th style="width:159px;text-align:center">AREA</th>
+                                            <th style="width:70px;text-align:center">IMPU</th>
+                                            <th style="width:70px;text-align:center">VALOR</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="8">
+                                                <div class="innerb">
+                                                    <table class="table">
+                                                        <tbody>
+                                                            <tr ng-repeat="item in planilla  | filter: buscar" ng-class="trdell">
+                                                                <td style="width:50px">{{item.Comp}}</td>
+                                                                <td style="width:50px">{{item.Cia}}</td>
+                                                                <td style="width:150px">{{item.Vigencia}}</td>
+                                                                <td style="width:125px">{{item.Mes}}</td>
+                                                                <td style="width:425px">{{item.Periodo}}</td>
+                                                                <td style="width:71px">{{item.Area}}</td>
+                                                                <td style="width:125px">{{item.Impu}}</td>
+                                                                <td style="width:159px">{{formatnumber(item.Valor)}}</td>
+                                                                <td ng-show="item.indice =='UP'" ng-click="show_mov(item.id)" style=" width:70px; text-align: center"><span style="cursor:pointer"><i class="fa fa-arrow-up" aria-hidden="true"></i></span> </td>
+                                                                <!--<td ng-show="item.indice =='UP'" style=" width:70px; text-align: center"><span style="cursor:pointer"><i class="fa fa-arrow-down" aria-hidden="true"></i></span> </td>-->
+                                                                <td ng-show="item.indice =='RIGHT'" ng-click="show_mov(item.id)" style=" width:70px; text-align: center"><span style="cursor:pointer"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="no-print">
+            <div class="waiting-wrapper" ng-class="openWaiting ? 'open' : ''">
+                <div class="waiting">
+                    <img src="fonts/animatedEllipse.gif" />
+                    El servidor esta procesando la informacion
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="window-footer">
+        <div class="btn-group">
+            <button id="reporte-guardar" type="button" class="btn btn-primary btn-guardar" ng-click="reportepedidos()">
+                <i class="fa fa-close" aria-hidden="true"></i> Cerrar
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,972 @@
+<div ng-controller="opex_controller" class="window-wrapper">
+    <div class="window-body">
+        <form id="ingreso_act_cont" name="ingreso_act_cont" class="form-horizontal no-print" autocomplete="off">
+            <div class="col-xs-12">
+                <div class="col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">VALORES</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-12" style="margin-top:15px;">
+                                <div>
+                                    <table class="table table-bordered table-hover table-striped" id="myTable">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center">AGRUPACION</th>
+                                                <th style="text-align: center">RUBRO</th>
+                                                <th style="text-align: center">CONCEPTO</th>
+                                                <th style="text-align: center">ENERO</th>
+                                                <th style="text-align: center">FEBRERO</th>
+                                                <th style="text-align: center">MARZO</th>
+                                                <th style="text-align: center">ABRIL</th>
+                                                <th style="text-align: center">MAYO</th>
+                                                <th style="text-align: center">JUNIO</th>
+                                                <th style="text-align: center">JULIO</th>
+                                                <th style="text-align: center">AGOSTO</th>
+                                                <th style="text-align: center">SEPTIEMBRE</th>
+                                                <th style="text-align: center">OCTUBRE</th>
+                                                <th style="text-align: center">NOVIEMBRE</th>
+                                                <th style="text-align: center">DICIEMBRE</th>
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <th style="text-align: center" rowspan="20">AVERIAS Y POSVENTAS</th>
+                                            <th style="text-align: center" rowspan="4">Averias y Postventa Adsl</th>
+                                            <th style="text-align: center">Atencion Averias ADSL Metrotel</th>
+                                            <th style="text-align: center"><input type="number" class="form-control" ng-model="json.enero1" ng-change="total_enero_adsl(json.enero1)" /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center">Atencion Averias ADSL Telebucaramanga</th>
+                                            <th style="text-align: center"><input type="number" class="form-control" ng-model="json.enero2" ng-change="total_enero_adsl(json.enero2)" /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+
+                                            <th style="text-align: center">Atencion Posventa ADSL Matrotel</th>
+                                            <th style="text-align: center"><input type="number" class="form-control" ng-model="json.enero3" ng-change="total_enero_adsl(json.enero3)" /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+
+                                            <th style="text-align: center">Atencion Posventa ADSL Telebucaramanga</th>
+                                            <th style="text-align: center"><input type="number" class="form-control" ng-model="json.enero4" ng-change="total_enero_adsl(json.enero4)" /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+
+                                            <th style="text-align: center">Total Averias y Postventa Adsl</th>
+                                            <th style="text-align: center"></th>
+                                            <th style="text-align: center"><input type="number" class="form-control" ng-model="json.totalenero1" /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <!--******************************************************************************-->
+                                        <tr>
+                                            <th style="text-align: center" rowspan="4">Averias y Postventa DTH</th>
+                                            <th style="text-align: center">Atencion Averias ADSL Metrotel</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center">Atencion Averias ADSL Telebucaramanga</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+
+                                            <th style="text-align: center">Atencion Posventa ADSL Matrotel</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+
+                                            <th style="text-align: center">Atencion Posventa ADSL Telebucaramanga</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+
+                                            <th style="text-align: center">Total Averias y Postventa DTH</th>
+                                            <th style="text-align: center"></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center" rowspan="4">Averias y Postventa FTTH</th>
+                                            <th style="text-align: center">Atencion Averias ADSL Metrotel</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center">Atencion Averias ADSL Telebucaramanga</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+
+                                            <th style="text-align: center">Atencion Posventa ADSL Matrotel</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+
+                                            <th style="text-align: center">Atencion Posventa ADSL Telebucaramanga</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+
+                                            <th style="text-align: center">Total Averias y Postventa FTTH</th>
+                                            <th style="text-align: center"></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <!--*******************************************************************-->
+                                        <tr>
+                                            <th style="text-align: center" rowspan="4">Averias y Postventa STB</th>
+                                            <th style="text-align: center">Atencion Averias ADSL Metrotel</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center">Atencion Averias ADSL Telebucaramanga</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+
+                                            <th style="text-align: center">Atencion Posventa ADSL Matrotel</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+
+                                            <th style="text-align: center">Atencion Posventa ADSL Telebucaramanga</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+
+                                            <th style="text-align: center">Total Averias y Postventa STB</th>
+                                            <th style="text-align: center"></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center" colspan="3">Total Averias y Postventa STB</th>
+                                            <th style="text-align: center"></th>
+                                            <th style="text-align: center"></th>
+                                            <th style="text-align: center"></th>
+                                            <th style="text-align: center"></th>
+                                            <th style="text-align: center"></th>
+                                            <th style="text-align: center"></th>
+                                            <th style="text-align: center"></th>
+                                            <th style="text-align: center"></th>
+                                            <th style="text-align: center"></th>
+                                            <th style="text-align: center"></th>
+                                            <th style="text-align: center"></th>
+                                            <th style="text-align: center"></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center" rowspan="7">PLANTA EXTERNA</th>
+                                            <th style="text-align: center" rowspan="2">INVENTARIO FO</th>
+                                            <th style="text-align: center">Inventario de Fibra Optica Telebucaramanga</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center">Inventario de Fibra Optica Metrotel</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+
+                                            <th style="text-align: center">Total Averias y Postventa STB</th>
+                                            <th style="text-align: center"></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center" rowspan="4">Mantenimiento de Planta Externa_Fija</th>
+                                            <th style="text-align: center">Mantenimiento Planta Externa - Telebucaramanga</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center">Mantenimiento Planta Externa metrotel</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center">Mtto.Correctivo redes Prim. y Secun</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center">Mtto.Correctivo redes Prim. y Secun - Materiales</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+
+                                            <th style="text-align: center" colspan="3">Total planta externa</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <!--================================================================-->
+                                        <tr>
+                                            <th style="text-align: center" rowspan="8">SOPORTES</th>
+                                            <th style="text-align: center" rowspan="2">Soporte ACS TR069</th>
+                                            <th style="text-align: center">Soporte Plataforma Administracion de Modems Friendly Soporte TR069 - Telebucaramanga</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center">Soporte Plataforma Administracion de Modems Friendly Soporte TR069 - Metrotel</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+
+                                            <th style="text-align: center">Total Soporte ACS TR069</th>
+                                            <th style="text-align: center"></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center" rowspan="2">Soporte Geotecnico</th>
+                                            <th style="text-align: center">Soporte Geotecnico, administrar, monitorear, - Telebucaramanga</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center">Soporte Geotecnico, administrar, monitorear, - Metrotel</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+
+                                            <th style="text-align: center" colspan="3">Total Soporte Geotecnico</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center" rowspan="2">Soporte SOC</th>
+                                            <th style="text-align: center">Servicio de operacion y gestion del  SOC (Service Operation Center) - Telebucaramanga</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center">Servicio de operacion y gestion del  SOC (Service Operation Center) - Metrotel</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+
+                                            <th style="text-align: center" colspan="3">Total Soporte SOC</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+
+                                            <th style="text-align: center" colspan="3">Total soportes</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <!--===========================================================================-->
+
+                                        <tr>
+                                            <th style="text-align: center" rowspan="9">MST - CID</th>
+                                            <th style="text-align: center" rowspan="4">Agendamiento y Despacho</th>
+                                            <th style="text-align: center">Agendamiento - Altas - Telebucaramanga</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center">Agendamiento - Altas - Metrotel</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center">Agendamiento - Posventas - Telebucaramanga</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center">Agendamiento - Posventas - Metrotel</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+
+                                            <th style="text-align: center">Total Agendamiento y Despacho</th>
+                                            <th style="text-align: center"></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center" rowspan="4">Soporte Actividades RA_Fija</th>
+                                            <th style="text-align: center">Soporte Asistec Altas - Telebucaramanga</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center">Soporte Asistec - Telebucaramanga</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center">Soporte Asistec Altas - Metrotel</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center">Soporte Asistec - Metrotel</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                        <tr>
+
+                                            <th style="text-align: center" colspan="3">Total Soporte Actividades RA_Fija</th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                            <th style="text-align: center"><input type="number" class="form-control"   /></th>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="no-print">
+        <div class="waiting-wrapper" ng-class="openWai ? 'open' : ''">
+            <div class="waiting">
+                <img src="fonts/animatedEllipse.gif" />
+                El servidor esta procesando la informacion
+            </div>
+        </div>
+    </div>
+    <div class="window-footer">
+        <ss-buscador data="dataActa" resultado="rsActa"></ss-buscador>
+    </div>
+</div>
+<style>
+
+    .innerb {
+        overflow: auto;
+        max-height: 100px;
+    }
+
+    #bord {
+        border: solid 1px;
+        line-height: 20px;
+    }
+
+    .table-report {
+        border: solid 1px;
+    }
+
+    .btn-custom {
+        display: block;
+        height: 25px;
+        text-align: center;
+        border: 1px solid;
+        border-color: #ccc;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    .sv-modal {
+        max-width: 1000px;
+    }
+
+    .centermodal {
+        width: 50%;
+        max-width: 200px;
+        min-width: 100px;
+        margin: 0 auto;
+    }
+
+    .botonmodal {
+        margin-top: 18px;
+        display: block;
+        border: 3px solid;
+        border-color: #ccc;
+    }
+
+    .radios {
+    }
+
+    .in-line-content.title label {
+        color: #2196F3;
+    }
+
+        .in-line-content.title label.float-left {
+            padding-top: 0;
+        }
+
+    .in-line-content .border {
+        overflow: hidden;
+        padding-bottom: 5px;
+    }
+
+    #bord {
+        border: solid 1px;
+        line-height: 20px;
+    }
+
+    .table-report {
+        border: solid 1px;
+    }
+
+    .btn-custom {
+        display: block;
+        height: 25px;
+        text-align: center;
+        border: 1px solid;
+        border-color: #ccc;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+
+    .centermodal {
+        width: 50%;
+        max-width: 200px;
+        min-width: 100px;
+        margin: 0 auto;
+    }
+
+    .botonmodal {
+        margin-top: 18px;
+        display: block;
+        border: 3px solid;
+        border-color: #ccc;
+    }
+
+    .radios {
+    }
+
+    .in-line-content.title label {
+        color: #2196F3;
+    }
+
+        .in-line-content.title label.float-left {
+            padding-top: 0;
+        }
+
+    .in-line-content .border {
+        overflow: hidden;
+        padding-bottom: 5px;
+    }
+
+    .space-td {
+        width: 40px;
+    }
+
+    .space-check {
+        width: 30px;
+    }
+</style>
+
+<script>
+    $("#btnexport").click(function (e) {
+        exclude: ".table .table-bordered",
+        window.open('data:application/vnd.ms-excel,' + $('#dvData').html());
+        e.preventDefault();
+    });
+</script>
